@@ -9,7 +9,12 @@ Deadlines / week, Deadline is op maandag
 
 Voorbeeld: 
 * Week 3 XML Parser + DEMO
-* --> XML Parser moet af zijn voor maandag
+
+Dus de XML Parser moet af zijn voor maandag
+
+Zie Trello voor de assignments per persoon per (sub)taak
+
+#Overzicht planning per week 
 
 | WEEK NR | TAAK                             | OPMERKING |
 |---------|----------------------------------|-----------|
