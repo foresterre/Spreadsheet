@@ -1,6 +1,7 @@
 Spreadsheet
 ===========
 
+School Project - Spreadsheet program written in java
 
 Planning
 ========
@@ -17,5 +18,3 @@ Planning
 | Week 8  | UML af + klad versie eindverslag |           |
 | Week 9  | Laatste lootjes                  | DEMO 4    |
 | Week 10 | FINAL                            |           |
-
-School Project - Spreadsheet program written in java
