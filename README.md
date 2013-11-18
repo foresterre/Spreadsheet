@@ -46,18 +46,18 @@ Tools
 -----
 
 ####Applicaties:
-*Eclipse
-*Java SDK 1.7
-*[http://astah.net/editions/community](Astah Community Edition)
+* Eclipse
+* Java SDK 1.7
+* [http://astah.net/editions/community](Astah Community Edition)
 
 ####Libraries:
-*-
+* -
 
 
 ####Web applicatie:
-*Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
-*Github: Dit project
-
+* Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
+* Github: Dit project
+** [https://help.github.com/articles/set-up-git](Set up Git, github artikel)
 
 
 Overige details
