@@ -14,7 +14,7 @@ Dus de XML Parser moet af zijn voor maandag
 
 Zie Trello voor de assignments per persoon per (sub)taak
 
-#Overzicht planning per week 
+####Overzicht planning per week 
 
 | WEEK NR | TAAK                             | OPMERKING |
 |---------|----------------------------------|-----------|
@@ -30,10 +30,9 @@ Zie Trello voor de assignments per persoon per (sub)taak
 | Week 10 | FINAL                            |           |
 
 
-Details per week te doen (In planning staan deadlines)
-------------------------------------------------------
+####Details per week te doen (In planning staan deadlines)
 
-##Week 2:
+#####Week 2:
 
 TODO's Deze week:
 * XML parser
@@ -46,22 +45,23 @@ TODO's Deze week:
 Tools
 -----
 
-##Applicaties:
+####Applicaties:
 Eclipse
 Java SDK 1.7
 [http://astah.net/editions/community](Astah Community Edition)
 
-##Libraries:
+####Libraries:
 -
 
 
-##Web applicatie:
+####Web applicatie:
 Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
 Github: Dit project
 
 
 
 Overige details
---------------
+---------------
+
 
 School Project - Spreadsheet program written in java
