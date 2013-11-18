@@ -57,7 +57,7 @@ Tools
 ####Web applicatie:
 * Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
 * Github: Dit project
-** [https://help.github.com/articles/set-up-git](Set up Git, github artikel)
+* [https://help.github.com/articles/set-up-git](Set up Git, github artikel)
 
 
 Overige details
