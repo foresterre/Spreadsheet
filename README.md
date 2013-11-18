@@ -1,10 +1,15 @@
-Spreadsheet
-===========
+Project: Spreadsheet
+====================
 
-School Project - Spreadsheet program written in java
 
 Planning
-========
+--------
+
+Deadlines / week, Deadline is op maandag
+
+Voorbeeld: 
+* Week 3 XML Parser + DEMO
+* --> XML Parser moet af zijn voor maandag
 
 | WEEK NR | TAAK                             | OPMERKING |
 |---------|----------------------------------|-----------|
@@ -18,3 +23,40 @@ Planning
 | Week 8  | UML af + klad versie eindverslag |           |
 | Week 9  | Laatste lootjes                  | DEMO 4    |
 | Week 10 | FINAL                            |           |
+
+
+Details per week te doen (In planning staan deadlines)
+------------------------------------------------------
+
+##Week 2:
+
+TODO's Deze week:
+* XML parser
+* XML Lezen
+* XML Schrijven
+* Testen of het werkt
+* UML van onze XML Driver + Parser
+* 
+
+Tools
+-----
+
+##Applicaties:
+Eclipse
+Java SDK 1.7
+[http://astah.net/editions/community](Astah Community Edition)
+
+##Libraries:
+-
+
+
+##Web applicatie:
+Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
+Github: Dit project
+
+
+
+Overige details
+--------------
+
+School Project - Spreadsheet program written in java
