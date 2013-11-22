@@ -16,6 +16,10 @@ public class Cell
 		this.content = content;
 	}
 
+	public Cell() {
+		content = "text";
+	}
+
 	/**
 	 * 
 	 * @return

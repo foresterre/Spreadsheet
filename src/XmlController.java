@@ -25,19 +25,15 @@ import org.xml.sax.SAXException;
 public class XmlController 
 {
 
-	/**
-	 * 
-	 * @param filename
-	 */
 	public XmlController() 
-	{
-		
+	{		
 	}
 	
 	//De main is om zelf te kijken of het werkt
 	public static void main(String[] args) {
 		XmlController xc = new XmlController();
-		xc.Write("test.xml");
+		Sheet sheet = new Sheet();
+		xc.Write(sheet, "test.xml");
 	}
 	public static Sheet Read(String filename) 
 	{		
@@ -65,7 +61,7 @@ public class XmlController
 		
 	}
 
-	public void Write(String filename) 
+	public void Write(Sheet sheetObject, String filename) 
 	{
 		try 
 		{
@@ -77,20 +73,20 @@ public class XmlController
 			docBuilder = docFactory.newDocumentBuilder();			 
 		
 			Document doc = docBuilder.newDocument();
-			Element sheet = doc.createElement("sheet");
-			doc.appendChild(sheet);	 
+			Element sheetElement = doc.createElement("sheet");
+			doc.appendChild(sheetElement);	 
 			
 			int j = 0;
 			for (int i = 0; i < rows; i++)
 			{
 				//Initialize column counter j to 0
 				j = 0;
-				//Create element <row id="i"> and add row as child to sheet
-				createCell(doc, sheet, i, j);
+				//Create element <cell column="j" row="i"> and add cell as child to sheet
+				createCell(sheetObject, doc, sheetElement, i, j);
 				for(j = 0; j < columns; j++)
 				{
-					//Create element <cell id="j"> and add cell as child to row and content as child to cell
-					createCell(doc, sheet, i, j);
+					//Create element <cell column="j" row="i"> and add cell as child to sheet
+					createCell(sheetObject, doc, sheetElement, i, j);
 				}
 			}
 			// write the content into xml file			
@@ -117,10 +113,10 @@ public class XmlController
 		}
 	}
 	
-	private void createCell(Document doc, Element sheet, int row, int column)
+	private void createCell(Sheet sheetObject, Document doc, Element sheetElement, int i, int j)
 	{
-		row += 1;		//Java starts counting by 0
-		column += 1;	//Java starts counting by 0
+		int row = i+1;		//Java starts counting by 0
+		int column = j+1;	//Java starts counting by 0		
 		Element cell = doc.createElement("cell");
 		String cellstr = "";
 		cellstr += row;
@@ -128,9 +124,9 @@ public class XmlController
 		cellstr = "";
 		cellstr += column;
 		cell.setAttribute("column", cellstr);
-		sheet.appendChild(cell);
+		sheetElement.appendChild(cell);
 		Element content = doc.createElement("content");
-		content.appendChild(doc.createTextNode("cell " + row + "," + column));
+		content.appendChild(doc.createTextNode(sheetObject.getContent(row, column)));
 		cell.appendChild(content);
 	}
 	

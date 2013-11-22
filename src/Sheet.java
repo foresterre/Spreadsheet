@@ -13,6 +13,14 @@ public class Sheet
 	public Sheet() 
 	{
 		cells = new Cell[rows][columns];
+		for(int i = 0; i < rows; i++)
+		{
+			for(int j = 0; j < columns; j++)
+			{
+				cells[i][j] = new Cell();
+			}
+		}
+		
 	}
 	
 	public static int getRows()
@@ -23,6 +31,11 @@ public class Sheet
 	public static int getColumns()
 	{
 		return columns;
+	}
+	
+	public String getContent(int row, int column)
+	{		
+		return cells[row-1][column-1].getContent();
 	}
 
 }
