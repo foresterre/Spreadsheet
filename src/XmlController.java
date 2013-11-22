@@ -69,8 +69,8 @@ public class XmlController
 	{
 		try 
 		{
-			int columns = 10;
-			int rows = 20;
+			int rows = Sheet.getRows();
+			int columns = Sheet.getColumns();			
 			
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder;			
@@ -78,17 +78,19 @@ public class XmlController
 		
 			Document doc = docBuilder.newDocument();
 			Element sheet = doc.createElement("sheet");
-			doc.appendChild(sheet);
-	 
-			Element row = null;			
+			doc.appendChild(sheet);	 
+			
+			int j = 0;
 			for (int i = 0; i < rows; i++)
 			{
+				//Initialize column counter j to 0
+				j = 0;
 				//Create element <row id="i"> and add row as child to sheet
-				row = createRow(doc, sheet, i);
-				for(int j = 0; j < columns; j++)
+				createCell(doc, sheet, i, j);
+				for(j = 0; j < columns; j++)
 				{
 					//Create element <cell id="j"> and add cell as child to row and content as child to cell
-					createCell(doc, row, i, j);
+					createCell(doc, sheet, i, j);
 				}
 			}
 			// write the content into xml file			
@@ -115,27 +117,20 @@ public class XmlController
 		}
 	}
 	
-	private Element createRow(Document doc, Element sheet, int i)
+	private void createCell(Document doc, Element sheet, int row, int column)
 	{
-		Element row = doc.createElement("row");
-		String rowstr = "";
-		rowstr += i;
-		Attr rowattr = doc.createAttribute("id");
-		rowattr.setValue(rowstr);				
-		sheet.appendChild(row);
-		return row;
-	}
-	
-	private void createCell(Document doc, Element row, int i, int j)
-	{
+		row += 1;		//Java starts counting by 0
+		column += 1;	//Java starts counting by 0
 		Element cell = doc.createElement("cell");
 		String cellstr = "";
-		cellstr += j;
-		Attr cellattr = doc.createAttribute("id");
-		cellattr.setValue(cellstr);
-		row.appendChild(cell);
+		cellstr += row;
+		cell.setAttribute("row", cellstr);		
+		cellstr = "";
+		cellstr += column;
+		cell.setAttribute("column", cellstr);
+		sheet.appendChild(cell);
 		Element content = doc.createElement("content");
-		content.appendChild(doc.createTextNode("cell " + (i+1) + "," + (j+1)));
+		content.appendChild(doc.createTextNode("cell " + row + "," + column));
 		cell.appendChild(content);
 	}
 	
