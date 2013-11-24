@@ -73,19 +73,30 @@ public class XmlDriver
 					Element element = (Element) node;
 					String content = element.getElementsByTagName("content").item(0).getTextContent();
 					Cell cell = new Cell(content);
+					
+					// Throw an exception if the xml file has to many columns
 					int x = Integer.parseInt(element.getAttribute("column"));
 					if (x > columns)
 					{
 						throw new FileCorruptException("The xml file has to many columns");
 					}
+					
+					// Throw an exception if the xml file has to many rows
 					int y = Integer.parseInt(element.getAttribute("row"));
 					if (y > rows)
 					{
 						throw new FileCorruptException("The xml file has to many rows");
 					}
 					sheet.setCell(cell, x, y);
+					
+					//DEBUG CODE
+					//System.out.println("Column: " + x);
+					//System.out.println("Row: " + y);
+					//System.out.println(cell.toString());
 				}
 			}
+			//DEBUG CODE
+			System.out.println(sheet.toString());
 		} 
 		catch (IOException e)
 		{

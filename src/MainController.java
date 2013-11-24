@@ -19,22 +19,35 @@ public class MainController {
 	public static void main(String[] args) {
 		openFile("test.xml");
 		saveFileAs("test2.xml");
+		
+		//Debug test
+		try
+		{
+			XmlDriver.read("visual-test.xml");
+		}
+		catch (FileCorruptException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Method for opening file
 	 * 
-	 * @param filename
-	 * @return boolean True if succeeded
+	 * @param filename The name of the file to read
+	 * @return boolean True if file reading succeeded
 	 */
 	public static boolean openFile(String filename)
 	{
 		boolean succes = false;
-		try{
+		try
+		{
 			setSheet(XmlDriver.read(filename));
 			MainController.filename = filename;
 			succes = true;
-		} catch (FileCorruptException e) {
+		} 
+		catch (FileCorruptException e)
+		{
 			System.err.println("The file requested is corrupt");
 		}
 		return succes;
@@ -52,7 +65,7 @@ public class MainController {
 	/**
 	 * Method for saving current sheet to file
 	 * 
-	 * @return boolean True if succeeded
+	 * @return boolean True if file save succeeded
 	 */
 	public static boolean saveFile()
 	{
@@ -72,7 +85,7 @@ public class MainController {
 	 * Method for saving current sheet to new file
 	 * 
 	 * @param filename Name of new file
-	 * @return boolean True if succeeded
+	 * @return boolean True if file write succeeded
 	 */
 	public static boolean saveFileAs(String filename)
 	{
@@ -97,7 +110,7 @@ public class MainController {
 	}
 
 	/**
-	 * @param sheet the sheet to set
+	 * @param sheet Sets a Sheet object to the MainController sheet 
 	 */
 	public static void setSheet(Sheet sheet) {
 		MainController.sheet = sheet;

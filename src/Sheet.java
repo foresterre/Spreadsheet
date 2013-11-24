@@ -108,5 +108,27 @@ public class Sheet
 		}
 		return false;
 	}
+	
+	/**
+	* toString method 
+	* Visualizes the content of the xml file
+	*
+	* @return String returns a representation of the xml content with its values
+	*/
+	public String toString()
+	{
+
+		String returnString = "";   
+		for (int i = 0; i < getRows(); i++) 
+		{
+			for (int j = 0; j < getColumns(); j++)
+			{
+				returnString = returnString + " " + cells[j][i].toString();
+			}
+			returnString = returnString +  "\n";
+		}
+                
+		return returnString;
+	}
 
 }
