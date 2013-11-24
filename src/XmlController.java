@@ -15,6 +15,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -37,9 +39,7 @@ public class XmlController
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		XmlController xc = new XmlController();
-		Sheet sheet = new Sheet();
-		xc.Write(sheet, "test.xml");
+		
 	}
 	
 	/**
@@ -49,6 +49,7 @@ public class XmlController
 	 */
 	public static Sheet Read(String filename) 
 	{		
+		
 		// get the rows and columns from the Sheet object
 		int rows = Sheet.getRows();
 		int columns = Sheet.getColumns();	
@@ -63,14 +64,25 @@ public class XmlController
 			DocumentBuilderFactory sheetDocBuildFac = DocumentBuilderFactory.newInstance();
 			DocumentBuilder sheetDocBuild = sheetDocBuildFac.newDocumentBuilder();
 			Document sheetDoc = sheetDocBuild.parse(xmlFile);
+			sheetDoc.getDocumentElement().normalize();
 			
+			// read xml file
+			NodeList nodeList = sheetDoc.getElementsByTagName("cell");
 			
-			// read into object
-			//int i = 0;
-			//for (int j = 0; j < rows; j++)
-			//{
-			//	
-			//}
+			for (int i = 0; i < nodeList.getLength(); i++) 
+			{
+				Node node = nodeList.item(i);
+				
+				if (node.getNodeType() == Node.ELEMENT_NODE)
+				{
+					Element element = (Element) node;
+					String content = element.getElementsByTagName("content").item(0).getTextContent();
+					Cell cell = new Cell(content);
+					int x = Integer.parseInt(element.getAttribute("column"));
+					int y = Integer.parseInt(element.getAttribute("row"));
+					sheet.setCell(cell, x, y);
+				}
+			}
 		} 
 		catch (IOException e)
 		{
@@ -99,8 +111,8 @@ public class XmlController
 		try 
 		{
 			// Get the rows and columns from the Sheet object
+			int columns = Sheet.getColumns();
 			int rows = Sheet.getRows();
-			int columns = Sheet.getColumns();			
 			
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder;			
@@ -110,8 +122,9 @@ public class XmlController
 			Element sheetElement = doc.createElement("sheet");
 			doc.appendChild(sheetElement);	 
 			
-			int j = 0;
-			for (int i = 0; i < rows; i++)
+			int j;
+			
+			for (int i = 0; i < columns; i++)
 			{
 				// Initialize column counter j to 0
 				j = 0;
@@ -119,7 +132,7 @@ public class XmlController
 				// Create element <cell column="j" row="i"> and add cell as child to sheet
 				createCell(sheetObject, doc, sheetElement, i, j);
 				
-				for(j = 0; j < columns; j++)
+				for(j = 0; j < rows; j++)
 				{
 					// Create element <cell column="j" row="i"> and add cell as child to sheet
 					createCell(sheetObject, doc, sheetElement, i, j);

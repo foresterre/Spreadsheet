@@ -17,7 +17,7 @@ public class Cell
 	}
 
 	public Cell() {
-		content = "text";
+		content = "";
 	}
 
 	/**

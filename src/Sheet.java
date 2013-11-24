@@ -5,17 +5,18 @@
  */
 public class Sheet 
 {
-	static int rows = 20;
 	static int columns = 10;
+	static int rows = 20;
 	
-	private Cell[][] cells;
+	
+	Cell[][] cells;
 	
 	public Sheet() 
 	{
-		cells = new Cell[rows][columns];
-		for(int i = 0; i < rows; i++)
+		cells = new Cell[columns][rows];
+		for(int i = 0; i < columns; i++)
 		{
-			for(int j = 0; j < columns; j++)
+			for(int j = 0; j < rows; j++)
 			{
 				cells[i][j] = new Cell();
 			}
@@ -23,19 +24,29 @@ public class Sheet
 		
 	}
 	
-	public static int getRows()
-	{
-		return rows;
-	}
-	
 	public static int getColumns()
 	{
 		return columns;
 	}
 	
-	public String getContent(int row, int column)
+	public static int getRows()
+	{
+		return rows;
+	}
+		
+	public String getContent(int column, int row)
 	{		
-		return cells[row-1][column-1].getContent();
+		return cells[column-1][row-1].getContent();
+	}
+	
+	public Cell getCell(int column, int row)
+	{		
+		return cells[column-1][row-1];
+	}
+	
+	public void setCell(Cell cell, int column, int row)
+	{
+		this.cells[column-1][row-1] = cell;
 	}
 
 }
