@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class XmlDriverTest {
 
-	
+	@Test
 	public void testRead() throws FileCorruptException {
 		
 		Sheet sheet = XmlDriver.read("testRead.xml");
@@ -14,7 +14,7 @@ public class XmlDriverTest {
 			for (int j = 1; j < Sheet.getColumns(); j++) 
 			{
 				Cell cell = sheet.getCell(i, j);
-				assertEquals("text", cell.getContent());
+				assertEquals("text", cell.getFormula());
 			}
 		}
 	}
@@ -28,16 +28,16 @@ public class XmlDriverTest {
 			for (int j = 1; j < Sheet.getColumns(); j++) 
 			{
 				Cell cell = sheet.getCell(i, j);
-				assertEquals("text", cell.getContent());
+				assertEquals("text", cell.getFormula());
 			}
 		}
 	}
 
 	@Test
 	public void testWrite() {
-		//XmlDriver xc = new XmlDriver();
-		//Sheet sheet = new Sheet();
-		//xc.Write(sheet, "test-write.xml");
+		XmlDriver xd = new XmlDriver();
+		Sheet sheet = new Sheet();
+		xd.write(sheet, "testWrite.xml");
 	}
 
 }

@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
  * 
  * @author m.olsthoorn
  */
-public class XmlDriver 
+public class XmlDriver
 {
 	
 	/**
@@ -152,7 +152,7 @@ public class XmlDriver
 					sheetElement.appendChild(cell);
 					
 					Element content = doc.createElement("content");
-					content.appendChild(doc.createTextNode(sheetObject.getCell(column, row).getContent()));
+					content.appendChild(doc.createTextNode(sheetObject.getCell(column, row).getFormula()));
 					cell.appendChild(content);
 				}
 			}
@@ -179,42 +179,5 @@ public class XmlDriver
 		{			
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * CREATECELL METHOD
-	 * @param sheetObject Object which holds the information of the Cell objects
-	 * @param doc
-	 * @param sheetElement
-	 * @param i
-	 * @param j
-	 */
-	private void createCell(Sheet sheetObject, Document doc, Element sheetElement, int i, int j)
-	{
-		// row and column variables
-		int row = i+1;		//Java starts counting by 0
-		int column = j+1;	//Java starts counting by 0	
-		
-		// Create cell Element
-		Element cell = doc.createElement("cell");
-		
-		// Create String cellstr and set it empty
-		String cellstr = "";
-		
-		// Add row to cellstr
-		cellstr = cellstr + row;
-		cell.setAttribute("row", cellstr);		
-		
-		// Refill for column
-		cellstr = "";
-		cellstr = cellstr + column;
-		cell.setAttribute("column", cellstr);
-		
-		// Add the child "cell" to the sheetElement
-		sheetElement.appendChild(cell);
-		
-		Element content = doc.createElement("content");
-		content.appendChild(doc.createTextNode(sheetObject.getCell(column, row).getContent()));
-		cell.appendChild(content);
 	}
 }

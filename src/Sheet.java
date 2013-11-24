@@ -58,18 +58,6 @@ public class Sheet
 	{
 		return rows;
 	}
-		
-	/**
-	 * Method that returns the content of a cell
-	 * 
-	 * @param column int Integer representing the column
-	 * @param row int Integer representing the row
-	 * @return String the content of the cell
-	 */
-	public String getContent(int column, int row)
-	{		
-		return cells[column-1][row-1].getContent();
-	}
 	
 	/**
 	 * Method that returns the cell
