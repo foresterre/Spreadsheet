@@ -24,34 +24,62 @@ import org.xml.sax.SAXException;
  */
 public class XmlController 
 {
-
+	
+	/**
+	 * CONCTRUCTOR XmlController Class
+	 */
 	public XmlController() 
 	{		
 	}
 	
-	//De main is om zelf te kijken of het werkt
+	/**
+	 * MAIN METHOD (Does it work? / Little Test)
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		XmlController xc = new XmlController();
 		Sheet sheet = new Sheet();
 		xc.Write(sheet, "test.xml");
 	}
+	
+	/**
+	 * READ METHOD
+	 * @param filename
+	 * @return
+	 */
 	public static Sheet Read(String filename) 
 	{		
+		// get the rows and columns from the Sheet object
+		int rows = Sheet.getRows();
+		int columns = Sheet.getColumns();	
+		
 		Sheet sheet = new Sheet();
 		
 		try
 		{
+			
+			// prepare for reading into objects
 			File xmlFile = new File(filename);
 			DocumentBuilderFactory sheetDocBuildFac = DocumentBuilderFactory.newInstance();
 			DocumentBuilder sheetDocBuild = sheetDocBuildFac.newDocumentBuilder();
 			Document sheetDoc = sheetDocBuild.parse(xmlFile);
 			
 			
+			// read into object
+			//int i = 0;
+			//for (int j = 0; j < rows; j++)
+			//{
+			//	
+			//}
 		} 
-		catch (SAXException | IOException e)
+		catch (IOException e)
 		{
 			e.printStackTrace();
 		} 
+		catch (SAXException e)
+		{
+			e.printStackTrace();
+		}
 		catch (ParserConfigurationException e)
 		{
 			e.printStackTrace();
@@ -61,10 +89,16 @@ public class XmlController
 		
 	}
 
+	/**
+	 * WRITE METHOD
+	 * @param sheetObject The data which will be written to the XML file
+	 * @param filename The XML file which to which will be written
+	 */
 	public void Write(Sheet sheetObject, String filename) 
 	{
 		try 
 		{
+			// Get the rows and columns from the Sheet object
 			int rows = Sheet.getRows();
 			int columns = Sheet.getColumns();			
 			
@@ -79,16 +113,19 @@ public class XmlController
 			int j = 0;
 			for (int i = 0; i < rows; i++)
 			{
-				//Initialize column counter j to 0
+				// Initialize column counter j to 0
 				j = 0;
-				//Create element <cell column="j" row="i"> and add cell as child to sheet
+				
+				// Create element <cell column="j" row="i"> and add cell as child to sheet
 				createCell(sheetObject, doc, sheetElement, i, j);
+				
 				for(j = 0; j < columns; j++)
 				{
-					//Create element <cell column="j" row="i"> and add cell as child to sheet
+					// Create element <cell column="j" row="i"> and add cell as child to sheet
 					createCell(sheetObject, doc, sheetElement, i, j);
 				}
 			}
+			
 			// write the content into xml file			
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File(filename));			
@@ -113,18 +150,38 @@ public class XmlController
 		}
 	}
 	
+	/**
+	 * CREATECELL METHOD
+	 * @param sheetObject Object which holds the information of the Cell objects
+	 * @param doc
+	 * @param sheetElement
+	 * @param i
+	 * @param j
+	 */
 	private void createCell(Sheet sheetObject, Document doc, Element sheetElement, int i, int j)
 	{
+		// row and column variables
 		int row = i+1;		//Java starts counting by 0
-		int column = j+1;	//Java starts counting by 0		
+		int column = j+1;	//Java starts counting by 0	
+		
+		// Create cell Element
 		Element cell = doc.createElement("cell");
+		
+		// Create String cellstr and set it empty
 		String cellstr = "";
-		cellstr += row;
+		
+		// Add row to cellstr
+		cellstr = cellstr + row;
 		cell.setAttribute("row", cellstr);		
+		
+		// Refill for column
 		cellstr = "";
-		cellstr += column;
+		cellstr = cellstr + column;
 		cell.setAttribute("column", cellstr);
+		
+		// Add the child "cell" to the sheetElement
 		sheetElement.appendChild(cell);
+		
 		Element content = doc.createElement("content");
 		content.appendChild(doc.createTextNode(sheetObject.getContent(row, column)));
 		cell.appendChild(content);
