@@ -45,11 +45,23 @@ public class Cell
 		this.content = content;
 	}
 	
+	
+	/**
+	 * toString method
+	 * 
+	 * Returns a string representation of the cell object
+	 */
 	public String toString()
 	{
 		return this.content;
 	}
 	
+	/**
+	 * Equals method
+	 * Checks if two cell object are equal
+	 * 
+	 * @return boolean returns true if the are equal
+	 */
 	public boolean equals(Object other)
 	{
 		if (other instanceof Cell)
