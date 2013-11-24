@@ -14,7 +14,7 @@ public class Cell
 	/**
 	 * Constructor for the cell class
 	 * 
-	 * @param content String String containing the content of the cell 
+	 * @param content String containing the content of the cell 
 	 */
 	public Cell(String content) 
 	{
@@ -58,9 +58,9 @@ public class Cell
 	
 	/**
 	 * Equals method
-	 * Checks if two cell object are equal
+	 * Checks if two cell objects are equal
 	 * 
-	 * @return boolean returns true if the are equal
+	 * @return boolean returns true if they are equal
 	 */
 	public boolean equals(Object other)
 	{

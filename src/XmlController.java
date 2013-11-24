@@ -122,17 +122,9 @@ public class XmlController
 			Element sheetElement = doc.createElement("sheet");
 			doc.appendChild(sheetElement);	 
 			
-			int j;
-			
 			for (int i = 0; i < columns; i++)
-			{
-				// Initialize column counter j to 0
-				j = 0;
-				
-				// Create element <cell column="j" row="i"> and add cell as child to sheet
-				createCell(sheetObject, doc, sheetElement, i, j);
-				
-				for(j = 0; j < rows; j++)
+			{				
+				for(int j = 0; j < rows; j++)
 				{
 					// Create element <cell column="j" row="i"> and add cell as child to sheet
 					createCell(sheetObject, doc, sheetElement, i, j);

@@ -94,5 +94,31 @@ public class Sheet
 	{
 		this.cells[column-1][row-1] = cell;
 	}
+	
+	/**
+	 * Equals method
+	 * Checks if two sheet objects are equal
+	 * 
+	 * @return boolean returns true if they are equal
+	 */
+	public boolean equals(Object other)
+	{
+		if(other instanceof Sheet)
+		{
+			Sheet that = (Sheet) other;
+			for(int x = 0; x < columns; x++)
+			{
+				for(int y = 0; y < rows; y++)
+				{
+					if(!this.cells[x][y].equals(that.cells[x][y]))
+					{
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 
 }
