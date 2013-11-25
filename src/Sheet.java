@@ -127,19 +127,20 @@ public class Sheet
 	* @return String returns a representation of the xml content with its values
 	*/
 	public String toString()
-	{
+    {
 
-		String returnString = "";   
-		for (int x = 0; x < getColumns(); x++) 
-		{
-			for (int y = 0; y < getColumns(); y++)
-			{
-				returnString = returnString + " " + cells[x][y].toString();
-			}
-			returnString = returnString +  "\n";
-		}
-                
-		return returnString;
-	}
+            String returnString = "";
+            for (int i = 0; i < getRows(); i++)
+            {
+                    for (int j = 0; j < getColumns(); j++)
+                    {                    	
+                            returnString = returnString + " " + cells[j][i].toString();
+                    	
+                    }
+                    returnString = returnString + "\n";
+            }
+            
+            return returnString;
+    }
 
 }

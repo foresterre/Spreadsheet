@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -61,8 +62,11 @@ public class XmlDriver
 			Document sheetDoc = sheetDocBuild.parse(xmlFile);
 			sheetDoc.getDocumentElement().normalize();
 			
+			// check duplicates array
+			ArrayList<String> check = new ArrayList<String>();
+			
 			// read xml file
-			NodeList nodeList = sheetDoc.getElementsByTagName("cell");
+			NodeList nodeList = sheetDoc.getElementsByTagName("CELL");
 			
 			for (int i = 0; i < nodeList.getLength(); i++) 
 			{
@@ -71,32 +75,32 @@ public class XmlDriver
 				if (node.getNodeType() == Node.ELEMENT_NODE)
 				{
 					Element element = (Element) node;
-					String content = element.getElementsByTagName("content").item(0).getTextContent();
+					String content = element.getTextContent().replaceAll("\n", "");
+					
 					Cell cell = new Cell(content);
 					
 					// Throw an exception if the xml file has to many columns
 					int x = Integer.parseInt(element.getAttribute("column"));
 					if (x > columns)
 					{
-						throw new FileCorruptException("The xml file has to many columns");
+						throw new FileCorruptException("The xml file has to many columns. Max is " + columns);
 					}
 					
 					// Throw an exception if the xml file has to many rows
 					int y = Integer.parseInt(element.getAttribute("row"));
 					if (y > rows)
 					{
-						throw new FileCorruptException("The xml file has to many rows");
+						throw new FileCorruptException("The xml file has to many rows. Max is " + rows);
 					}
-					sheet.setCell(cell, x, y);
 					
-					//DEBUG CODE
-					//System.out.println("Column: " + x);
-					//System.out.println("Row: " + y);
-					//System.out.println(cell.toString());
+					if (check.contains("" + x + "," + y)){
+						throw new FileCorruptException("XML contains duplicate cells");
+					}
+					
+					sheet.setCell(cell, x, y);
+					check.add("" + x + "," + y);
 				}
 			}
-			//DEBUG CODE
-			System.out.println(sheet.toString());
 		} 
 		catch (IOException e)
 		{
@@ -132,7 +136,7 @@ public class XmlDriver
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();			 
 		
 			Document doc = docBuilder.newDocument();
-			Element sheetElement = doc.createElement("sheet");
+			Element sheetElement = doc.createElement("SPREADSHEET");
 			doc.appendChild(sheetElement);	 
 			
 			for (int y = 0; y < rows; y++)
@@ -145,7 +149,7 @@ public class XmlDriver
 					
 					
 					// Create cell Element
-					Element cell = doc.createElement("cell");
+					Element cell = doc.createElement("CELL");
 					
 					// Create String cellstr and set it empty
 					String cellstr = "";
@@ -162,9 +166,7 @@ public class XmlDriver
 					// Add the child "cell" to the sheetElement
 					sheetElement.appendChild(cell);
 					
-					Element content = doc.createElement("content");
-					content.appendChild(doc.createTextNode(sheetObject.getCell(column, row).getFormula()));
-					cell.appendChild(content);
+					cell.setTextContent(sheetObject.getCell(column, row).getFormula());
 				}
 			}
 			

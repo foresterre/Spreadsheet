@@ -17,18 +17,8 @@ public class MainController {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		openFile("test.xml");
-		saveFileAs("test2.xml");
-		
-		//Debug test
-		try
-		{
-			XmlDriver.read("visual-test.xml");
-		}
-		catch (FileCorruptException e)
-		{
-			e.printStackTrace();
-		}
+		openFile("testRead.xml");
+		saveFileAs("testWrite.xml");
 	}
 	
 	/**
@@ -48,7 +38,7 @@ public class MainController {
 		} 
 		catch (FileCorruptException e)
 		{
-			System.err.println("The file requested is corrupt");
+			System.err.println(e.getMessage());
 		}
 		return succes;
 	}
