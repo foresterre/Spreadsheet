@@ -165,7 +165,7 @@ public class Cell
 	 */
 	public String toString()
 	{
-		return this.value;
+		return this.formula;
 	}
 	
 	/**

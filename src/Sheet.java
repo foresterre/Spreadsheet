@@ -130,11 +130,11 @@ public class Sheet
 	{
 
 		String returnString = "";   
-		for (int i = 0; i < getRows(); i++) 
+		for (int x = 0; x < getColumns(); x++) 
 		{
-			for (int j = 0; j < getColumns(); j++)
+			for (int y = 0; y < getColumns(); y++)
 			{
-				returnString = returnString + " " + cells[j][i].toString();
+				returnString = returnString + " " + cells[x][y].toString();
 			}
 			returnString = returnString +  "\n";
 		}
