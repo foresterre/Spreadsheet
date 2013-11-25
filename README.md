@@ -18,9 +18,9 @@ Zie Trello voor de assignments per persoon per (sub)taak
 
 | WEEK NR | TAAK                             | OPMERKING |
 |---------|----------------------------------|-----------|
-| Week 1  | Vormen Groepen                   |           |
-| Week 2  | Planning eerste versie           |           |
-| Week 3  | XML parser                       | DEMO 1    |
+| ~~Week 1~~  | ~~Vormen Groepen~~                   |           |
+| ~~Week 2~~  | ~~Planning eerste versie~~           |           |
+| ~~Week 3~~  | ~~XML parser~~                      | ~~DEMO 1~~    |
 | Week 4  | UML eerste versie                |           |
 | Week 5  |                                  |           |
 | Week 6  | Basis GUI + formules             | DEMO 2    |
