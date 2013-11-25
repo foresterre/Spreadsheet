@@ -52,7 +52,6 @@ public class Cell
 	public Cell(String content, int state, Color foreground, Color background) 
 	{
 		this.formula = content;
-		this.parse();
 		this.state = state;
 		this.foreground = foreground;
 		this.background = background;
@@ -153,10 +152,9 @@ public class Cell
 	/**
 	 * Method for parsing the formula of the cell
 	 */
-	public void parse()
+	public void parse(Sheet sheet)
 	{
-		this.value = this.formula;
-		//this.setValue(Formula.parseFormula(this.formula));
+		this.value = Formula.parseFormula(this.formula, sheet);
 	}
 	
 	

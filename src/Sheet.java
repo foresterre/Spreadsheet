@@ -9,12 +9,12 @@ public class Sheet
 	/**
 	 * Static variable containing the number of columns in the table
 	 */
-	static int columns = 10;
+	final static int columns = 10;
 	
 	/**
 	 * Static variable containing the number of rows in the table
 	 */
-	static int rows = 20;
+	final static int rows = 20;
 	
 	/**
 	 * Array containing the cells of the table 
@@ -81,6 +81,17 @@ public class Sheet
 	public void setCell(Cell cell, int column, int row)
 	{
 		this.cells[column-1][row-1] = cell;
+	}
+	
+	public void parse()
+	{
+		for(int x = 0; x < columns; x++)
+		{
+			for(int y = 0; y < rows; y++)
+			{
+				cells[x][y].parse(this);
+			}
+		}
 	}
 	
 	/**

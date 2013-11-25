@@ -110,7 +110,7 @@ public class XmlDriver
 		{
 			e.printStackTrace();
 		}
-		
+		sheet.parse();
 		return sheet;
 		
 	}
