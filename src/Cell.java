@@ -154,6 +154,7 @@ public class Cell
 	 */
 	public void parse(Sheet sheet)
 	{
+		// Fout: parseFormula methode bestaat niet
 		this.value = Formula.parseFormula(this.formula, sheet);
 	}
 	

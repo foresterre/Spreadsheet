@@ -5,5 +5,5 @@
  */
 public abstract class Formula 
 {
-	 abstract String parse(String formula);
+	abstract String parse(String formula);
 }

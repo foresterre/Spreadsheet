@@ -2,9 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class SpreadsheetGUI extends JFrame{
+public class SpreadsheetGUI extends JFrame
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpreadsheetGUI hallo = new SpreadsheetGUI();
 		hallo.start();
 
@@ -13,7 +15,8 @@ public class SpreadsheetGUI extends JFrame{
 	JTable table;
 	DefaultTableModel model;
 	
-	public void start(){
+	public void start()
+	{
 		
 	
 		
@@ -21,8 +24,12 @@ public class SpreadsheetGUI extends JFrame{
 		table = new JTable(model);
 		JScrollPane pane = new JScrollPane(table);
 		
-		for(int i = 0; i < Sheet.getColumns(); i++){
-			for(int j = 0; i < Sheet.getRows(); j++){
+		// Fout: getCell wordt statisch aangeroepen
+		
+		for(int i = 0; i < Sheet.getColumns(); i++)
+		{
+			for(int j = 0; i < Sheet.getRows(); j++)
+			{
 				table.setValueAt(Sheet.getCell(i, j).getFormula(), i, j);
 			}
 		}
