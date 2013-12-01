@@ -32,15 +32,17 @@ Zie Trello voor de assignments per persoon per (sub)taak
 
 ####Details per week te doen (In planning staan deadlines)
 
-#####Week 2:
+#####Week 4:
+
 
 TODO's Deze week:
-* XML parser
-* XML Lezen
-* XML Schrijven
-* Testen of het werkt
-* UML van onze XML Driver + Parser
-* 
+* UML
+* Verslag 'eerste versie' start
+* Formule parsing
+* Formules
+* Grafische User Interface 
+
+Wordt besproken in de vergadering te 2 december 2013
 
 Tools
 -----
@@ -50,11 +52,13 @@ Tools
 * Java SDK 1.7
 * [Astah Community Edition](http://astah.net/editions/community)
 
+
 ####Libraries:
-* -
+* DOM XML Parser
+* Swing
 
 
-####Web applicatie:
+####Web applicaties:
 * Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
 * Github: Dit project
 * [Set up Git, github artikel](https://help.github.com/articles/set-up-git)
