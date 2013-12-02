@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import sheetproject.spreadsheet.MainController;
 import sheetproject.spreadsheet.Sheet;
 
 public class SpreadsheetGUI extends JFrame
@@ -27,15 +28,14 @@ public class SpreadsheetGUI extends JFrame
 		table = new JTable(model);
 		JScrollPane pane = new JScrollPane(table);
 		
-		// Fout: getCell wordt statisch aangeroepen
+		MainController.openFile("xml/testRead.xml");
+		Sheet sheet = MainController.getSheet();
 		
 		for(int i = 0; i < Sheet.getColumns(); i++)
 		{
-			for(int j = 0; i < Sheet.getRows(); j++)
-			{
-				// FIX NEEDED
-				//!
-				table.setValueAt(Sheet.getCell(i, j).getFormula(), i, j);
+			for(int j = 0; j < Sheet.getRows(); j++)
+			{				
+				table.setValueAt(sheet.getCell(i+1, j+1).getFormula(), i, j);
 			}
 		}
 		
