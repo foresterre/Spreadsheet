@@ -22,12 +22,12 @@ import javax.swing.BorderFactory;
 
 
 
-public class Example extends JFrame {
+public class Gui extends JFrame {
 	public int x = 1;
 	private JPanel panel;
     private JTextArea area;
 
-    public Example() {
+    public Gui() {
         initUI();
     }
 
