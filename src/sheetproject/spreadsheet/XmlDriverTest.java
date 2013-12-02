@@ -9,7 +9,7 @@ public class XmlDriverTest {
 	@Test
 	public void testRead() throws FileCorruptException {
 		
-		Sheet sheet = XmlDriver.read("testRead.xml");
+		Sheet sheet = XmlDriver.read("xml/testRead.xml");
 		for (int i = 1; i < Sheet.getColumns(); i++) 
 		{
 			for (int j = 1; j < Sheet.getColumns(); j++) 
@@ -23,7 +23,7 @@ public class XmlDriverTest {
 	@Test(expected=FileCorruptException.class)
 	public void testReadFileCorrupt() throws FileCorruptException {
 		
-		Sheet sheet = XmlDriver.read("testReadCorrupt.xml");
+		Sheet sheet = XmlDriver.read("xml/testReadCorrupt.xml");
 		for (int i = 1; i < Sheet.getColumns(); i++) 
 		{
 			for (int j = 1; j < Sheet.getColumns(); j++) 
@@ -38,7 +38,7 @@ public class XmlDriverTest {
 	public void testWrite() {
 		XmlDriver xd = new XmlDriver();
 		Sheet sheet = new Sheet();
-		xd.write(sheet, "testWrite.xml");
+		xd.write(sheet, "xml/testWrite.xml");
 	}
 
 }

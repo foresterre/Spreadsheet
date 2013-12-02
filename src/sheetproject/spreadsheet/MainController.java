@@ -18,8 +18,8 @@ public class MainController {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		openFile("testRead.xml");
-		saveFileAs("testWrite.xml");
+		openFile("xml/testRead.xml");
+		saveFileAs("xml/testWrite.xml");
 	}
 	
 	/**
