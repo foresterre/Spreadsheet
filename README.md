@@ -58,6 +58,7 @@ Tools
 * Eclipse
 * Java SDK 1.7
 * [Astah Community Edition](http://astah.net/editions/community)
+* [Eclipse Emma](http://www.eclemma.org/installation.html)
 
 
 ####Libraries:
