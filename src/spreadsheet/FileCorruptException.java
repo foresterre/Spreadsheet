@@ -1,3 +1,4 @@
+package spreadsheet;
 /**
  * Exception thrown when a file is corrupt
  * 

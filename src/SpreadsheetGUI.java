@@ -1,6 +1,9 @@
 import java.awt.*;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import spreadsheet.Sheet;
 
 public class SpreadsheetGUI extends JFrame
 {

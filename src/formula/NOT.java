@@ -1,3 +1,5 @@
+package formula;
+
 
 public class NOT extends Formula 
 {

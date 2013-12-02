@@ -1,3 +1,5 @@
+package formula;
+
 
 public class PRODUCT extends Formula 
 {

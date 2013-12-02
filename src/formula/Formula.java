@@ -1,3 +1,4 @@
+package formula;
 /**
  * Abstract class for formulas
  * 

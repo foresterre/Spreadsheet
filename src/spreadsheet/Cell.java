@@ -1,4 +1,7 @@
+package spreadsheet;
 import java.awt.Color;
+
+import formula.Formula;
 
 /**
  * Class representing a cell in a spreadsheet table
