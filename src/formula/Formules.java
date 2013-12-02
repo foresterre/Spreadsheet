@@ -1,14 +1,17 @@
+package formula;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import spreadsheet.*;
 
 /**
  * Class with useful tools for formulas
  * 
  * @author m.olsthoorn
  */
-public class Formula {
+public class Formules {
 	
 	static Pattern plus = Pattern.compile("([0-9]+)\\s*\\+\\s*([0-9]+)");
 	static Pattern minus = Pattern.compile("([0-9]+)\\s*\\-\\s*([0-9]+)");

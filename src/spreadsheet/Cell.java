@@ -2,6 +2,7 @@ package spreadsheet;
 import java.awt.Color;
 
 import formula.Formula;
+import formula.Formules;
 
 /**
  * Class representing a cell in a spreadsheet table
@@ -158,7 +159,7 @@ public class Cell
 	public void parse(Sheet sheet)
 	{
 		// Fout: parseFormula methode bestaat niet
-		this.value = Formula.parseFormula(this.formula, sheet);
+		this.value = Formules.parseFormula(this.formula, sheet);
 	}
 	
 	
