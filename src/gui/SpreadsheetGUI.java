@@ -1,3 +1,4 @@
+package gui;
 import java.awt.*;
 
 import javax.swing.*;
@@ -22,7 +23,6 @@ public class SpreadsheetGUI extends JFrame
 	{
 		
 	
-		
 		model = new DefaultTableModel(Sheet.getColumns(), Sheet.getRows());
 		table = new JTable(model);
 		JScrollPane pane = new JScrollPane(table);
@@ -33,6 +33,8 @@ public class SpreadsheetGUI extends JFrame
 		{
 			for(int j = 0; i < Sheet.getRows(); j++)
 			{
+				// FIX NEEDED
+				//!
 				table.setValueAt(Sheet.getCell(i, j).getFormula(), i, j);
 			}
 		}
