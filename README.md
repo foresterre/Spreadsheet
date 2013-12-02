@@ -2,6 +2,13 @@ Project: Spreadsheet
 ====================
 
 
+ANOUNCEMENTS:
+------------
+
+UML eerste versie inleveren voor zondag!
+Op hoog niveau, met alle klassen, maar aleen de delangrijkste methoden.
+Ook toekomstvisie toevoegen.
+
 Planning
 --------
 
@@ -21,7 +28,7 @@ Zie Trello voor de assignments per persoon per (sub)taak
 | ~~Week 1~~  | ~~Vormen Groepen~~                   |           |
 | ~~Week 2~~  | ~~Planning eerste versie~~           |           |
 | ~~Week 3~~  | ~~XML parser~~                      | ~~DEMO 1~~    |
-| Week 4  | UML eerste versie                |           |
+| ~~Week 4~~  | UML eerste versie                |           |
 | Week 5  |                                  |           |
 | Week 6  | Basis GUI + formules             | DEMO 2    |
 | Week 7  | GUI compleet                     | DEMO 3    |
@@ -32,15 +39,17 @@ Zie Trello voor de assignments per persoon per (sub)taak
 
 ####Details per week te doen (In planning staan deadlines)
 
-#####Week 2:
+#####Week 4:
+
 
 TODO's Deze week:
-* XML parser
-* XML Lezen
-* XML Schrijven
-* Testen of het werkt
-* UML van onze XML Driver + Parser
-* 
+* UML
+* Verslag 'eerste versie' start
+* Formule parsing
+* Formules
+* Grafische User Interface 
+
+Wordt besproken in de vergadering te 2 december 2013
 
 Tools
 -----
@@ -50,11 +59,13 @@ Tools
 * Java SDK 1.7
 * [Astah Community Edition](http://astah.net/editions/community)
 
+
 ####Libraries:
-* -
+* DOM XML Parser
+* Swing
 
 
-####Web applicatie:
+####Web applicaties:
 * Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
 * Github: Dit project
 * [Set up Git, github artikel](https://help.github.com/articles/set-up-git)
