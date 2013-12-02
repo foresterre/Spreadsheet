@@ -2,6 +2,13 @@ Project: Spreadsheet
 ====================
 
 
+ANOUNCEMENTS:
+------------
+
+UML eerste versie inleveren voor zondag!
+Op hoog niveau, met alle klassen, maar aleen de delangrijkste methoden.
+Ook toekomstvisie toevoegen.
+
 Planning
 --------
 
@@ -21,7 +28,7 @@ Zie Trello voor de assignments per persoon per (sub)taak
 | ~~Week 1~~  | ~~Vormen Groepen~~                   |           |
 | ~~Week 2~~  | ~~Planning eerste versie~~           |           |
 | ~~Week 3~~  | ~~XML parser~~                      | ~~DEMO 1~~    |
-| Week 4  | UML eerste versie                |           |
+| ~~Week 4~~  | UML eerste versie                |           |
 | Week 5  |                                  |           |
 | Week 6  | Basis GUI + formules             | DEMO 2    |
 | Week 7  | GUI compleet                     | DEMO 3    |
@@ -51,6 +58,7 @@ Tools
 * Eclipse
 * Java SDK 1.7
 * [Astah Community Edition](http://astah.net/editions/community)
+* [Eclipse Emma](http://www.eclemma.org/installation.html)
 
 
 ####Libraries:
