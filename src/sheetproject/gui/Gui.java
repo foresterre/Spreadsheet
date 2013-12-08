@@ -19,6 +19,8 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 
+import sheetproject.spreadsheet.Sheet;
+
 
 
 public class Gui extends JFrame {
@@ -29,10 +31,12 @@ public class Gui extends JFrame {
     private DefaultTableModel DTM;
     private FocusListener focusListener;
 
-    public Gui() {
-    	
+    public Gui()
+    {
+    	// Create a new menubar
     	JMenuBar menubar = new JMenuBar();
         
+    	// Create a new table
         DTM = new DefaultTableModel(Sheet.getColumns(),Sheet.getRows());
 		this.table = new JTable(DTM);
 		
@@ -40,10 +44,12 @@ public class Gui extends JFrame {
 		add(pane);
 		table.changeSelection(0, 0, false, false);
 		
-    	this.focusListener = new FocusListener(){
+    	this.focusListener = new FocusListener()
+    	{
 
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void focusGained(FocusEvent arg0)
+			{
 				
 				String a1 = arg0.paramString();
 				
@@ -59,10 +65,11 @@ public class Gui extends JFrame {
 			}};
 			
 			this.table.addFocusListener(focusListener);
-        initUI();
-    }
+			initUI();
+    	}
 
-    public final void initUI() {
+    public final void initUI()
+    {
 
         JMenuBar menubar = new JMenuBar();
 		
@@ -74,22 +81,24 @@ public class Gui extends JFrame {
         JMenuItem fileNew = new JMenuItem("New");
         fileNew.setMnemonic(KeyEvent.VK_N);
         fileNew.setToolTipText("Make an new spreadsheet");
-        fileNew.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent event) {
-
-        		DTM = new DefaultTableModel(Sheet.getColumns(),Sheet.getRows());
-        		table = new JTable(DTM);
-        		
-        		JScrollPane pane = new JScrollPane(table);
-        		add(pane);
-        		
-                setTitle("New spreadsheet " + x);
-                x++;
-                setSize(new Dimension(1365, 767));
-                setDefaultCloseOperation(EXIT_ON_CLOSE);
-                setLocationRelativeTo(null);
-            
-        	}
+        fileNew.addActionListener(new ActionListener() 
+        {
+	        public void actionPerformed(ActionEvent event) 
+	        {
+	
+	        	DTM = new DefaultTableModel(Sheet.getColumns(),Sheet.getRows());
+	        	table = new JTable(DTM);
+	        		
+	        	JScrollPane pane = new JScrollPane(table);
+	        	add(pane);
+	        		
+	        	setTitle("New spreadsheet " + x);
+	           	x++;
+	           	setSize(new Dimension(1365, 767));
+	           	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	           	setLocationRelativeTo(null);
+	            
+	        }
         });
         
         
@@ -97,19 +106,23 @@ public class Gui extends JFrame {
         JMenuItem fileOpen = new JMenuItem("Open");
         fileNew.setMnemonic(KeyEvent.VK_O);
         fileOpen.setToolTipText("Open an spreadsheet");
-        fileOpen.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        fileOpen.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent event)
+            {
             	JFileChooser fileopen = new JFileChooser();
                 FileFilter filter = new FileNameExtensionFilter("c files", "c");
                 fileopen.addChoosableFileFilter(filter);
 
                 int ret = fileopen.showDialog(panel, "Open file");
 
-                if (ret == JFileChooser.APPROVE_OPTION) {
+                if (ret == JFileChooser.APPROVE_OPTION)
+                {
                     File file = fileopen.getSelectedFile();
                     String text = readFile(file);
                     area.setText(text);
-            }}
+                }
+            }
         });
         
         //menuitem 'Save'
@@ -119,15 +132,17 @@ public class Gui extends JFrame {
         
         //menuitem 'Save as...'
         JMenuItem fileSaveas = new JMenuItem("Save as...");
-        fileSave.setMnemonic(KeyEvent.VK_S);
+        fileSave.setMnemonic(KeyEvent.VK_A);
         fileSave.setToolTipText("Save spreadsheet as...");
 
         //menuitem 'Exit'
         JMenuItem fileExit = new JMenuItem("Exit");
         fileExit.setMnemonic(KeyEvent.VK_W);
         fileExit.setToolTipText("Exit application");
-        fileExit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        fileExit.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent event) 
+            {
                 System.exit(0);
             }
 
@@ -151,34 +166,42 @@ public class Gui extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
+    public static void main(String[] args)
+    {
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
                 Gui ex = new Gui();
                 ex.setVisible(true);
             }
         });
     }
     
-    public String readFile(File file) {
+    public String readFile(File file) 
+    {
 
         StringBuffer fileBuffer = null;
         String fileString = null;
         String line = null;
 
-        try {
+        try 
+        {
             FileReader in = new FileReader(file);
             BufferedReader brd = new BufferedReader(in);
             fileBuffer = new StringBuffer();
 
-            while ((line = brd.readLine()) != null) {
+            while ((line = brd.readLine()) != null) 
+            {
                 fileBuffer.append(line).append(
                         System.getProperty("line.separator"));
             }
 
             in.close();
             fileString = fileBuffer.toString();
-        } catch (IOException e) {
+        } 
+        catch (IOException e)
+        {
             return null;
         }
         return fileString;

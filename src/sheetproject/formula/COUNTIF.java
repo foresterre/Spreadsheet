@@ -10,5 +10,11 @@ public class COUNTIF extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	//not sure
+	public long execute()
+	{
+		return 0;
+	}
 
 }

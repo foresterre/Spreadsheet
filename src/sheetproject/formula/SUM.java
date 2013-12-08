@@ -11,9 +11,10 @@ public class SUM extends Formula
 		return "";
 	}
 	
-	public long sum(long numberA, long numberB)
+	public double execute(double numberA, double numberB)
 	{
 		return (numberA + numberB);
 	}
+	
 
 }

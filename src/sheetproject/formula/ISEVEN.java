@@ -11,7 +11,7 @@ public class ISEVEN extends Formula
 		return "";
 	}
 	
-	public boolean isEven(long numberA)
+	public boolean execute(double numberA)
 	{
 		if ((numberA % 2) == 0)
 		{

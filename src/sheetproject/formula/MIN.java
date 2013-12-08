@@ -10,5 +10,17 @@ public class MIN extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public double execute(double a, double b)
+	{
+		if (a < b)
+		{
+			return a;
+		}
+		else
+		{
+			return b;
+		}
+	}
 
 }

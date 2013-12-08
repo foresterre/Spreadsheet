@@ -10,4 +10,9 @@ public class COUNT extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public long execute()
+	{
+		return 0;
+	}
 }

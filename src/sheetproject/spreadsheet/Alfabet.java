@@ -2,7 +2,12 @@ package sheetproject.spreadsheet;
 /**
  * Class with useful tools for alfabet
  * 
- * @author m.olsthoorn
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
  */
 public class Alfabet {
 	

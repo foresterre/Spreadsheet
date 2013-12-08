@@ -10,5 +10,10 @@ public class POWER extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public double execute(double a, double b)
+	{
+		return Math.pow(a, b);
+	}
 
 }

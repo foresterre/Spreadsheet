@@ -10,5 +10,11 @@ public class COUNTA extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	// not sure what counta does
+	public void execute()
+	{
+		
+	}
 
 }

@@ -10,5 +10,11 @@ public class INT extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public int execute()
+	{
+		return 0;
+	}
+	
 
 }

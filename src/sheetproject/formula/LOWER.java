@@ -10,5 +10,17 @@ public class LOWER extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public boolean execute(double a, double b)
+	{
+		if (a < b)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 }

@@ -24,7 +24,12 @@ import org.xml.sax.SAXException;
 /**
  * Class for interfacing with a XML file
  * 
- * @author m.olsthoorn
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
  */
 public class XmlDriver
 {

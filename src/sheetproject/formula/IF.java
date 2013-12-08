@@ -10,5 +10,10 @@ public class IF extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public void execute()
+	{
+		
+	}
 
 }

@@ -10,5 +10,10 @@ public class OR extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public boolean execute()
+	{
+		return (Boolean) null;
+	}
 
 }

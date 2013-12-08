@@ -1,5 +1,17 @@
 package sheetproject.spreadsheet;
 
+
+/**
+ * Main Controller for the project
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ *
+ */
 public class MainController {
 	
 	/**

@@ -39,7 +39,7 @@ Zie Trello voor de assignments per persoon per (sub)taak
 
 ####Details per week te doen (In planning staan deadlines)
 
-#####Week 4:
+#####Week 5:
 
 
 TODO's Deze week:

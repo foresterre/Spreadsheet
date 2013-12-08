@@ -10,5 +10,11 @@ public class PROPER extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	// No idea what this function means
+	public double execute()
+	{
+		return 0.0;
+	}
 
 }

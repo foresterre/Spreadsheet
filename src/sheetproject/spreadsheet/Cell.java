@@ -7,7 +7,12 @@ import sheetproject.formula.Formules;
 /**
  * Class representing a cell in a spreadsheet table
  * 
- * @author m.olsthoorn
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
  */
 public class Cell 
 {

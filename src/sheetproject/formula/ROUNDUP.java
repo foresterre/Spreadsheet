@@ -10,5 +10,10 @@ public class ROUNDUP extends Formula
 		// TODO Auto-generated method stub
 		return "";
 	}
+	
+	public double execute()
+	{
+		return 0.0;
+	}
 
 }
