@@ -30,7 +30,7 @@ public class SpreadsheetGUI extends JFrame
 		{
 			for(int j = 0; i < Sheet.getRows(); j++)
 			{
-				table.setValueAt(Sheet.getCell(i, j).getFormula(), i, j);
+				//table.setValueAt(sheet.getCell(i, j).getFormula(), i, j);
 			}
 		}
 		

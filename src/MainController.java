@@ -18,7 +18,8 @@ public class MainController {
 	 */
 	public static void main(String[] args) {
 		openFile("testRead.xml");
-		saveFileAs("testWrite.xml");
+		System.out.println(sheet.toString());
+		//saveFileAs("testWrite.xml");
 	}
 	
 	/**

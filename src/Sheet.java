@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * Class representing a table of cells
  * 
@@ -17,25 +19,18 @@ public class Sheet
 	final static int rows = 20;
 	
 	/**
-	 * Array containing the cells of the table 
+	 * HashMap containing the cells of the table 
 	 */
-	private Cell[][] cells;
+	private HashMap<String, Cell> cells;
 	
 	/**
 	 * Constructor
 	 * 
-	 * Fills the array initially with empty cells
+	 * Constructs the HashMap
 	 */
 	public Sheet() 
 	{
-		cells = new Cell[columns][rows];
-		for(int x = 0; x < columns; x++)
-		{
-			for(int y = 0; y < rows; y++)
-			{
-				cells[x][y] = new Cell();
-			}
-		}
+		this.cells = new HashMap<String, Cell>();
 		
 	}
 	
@@ -68,8 +63,8 @@ public class Sheet
 	 */
 	public Cell getCell(int column, int row)
 	{		
-		return cells[column-1][row-1];
-	}
+		return this.cells.get(column + "," + row);
+	}	
 	
 	/**
 	 * Method that sets the cell
@@ -80,17 +75,17 @@ public class Sheet
 	 */
 	public void setCell(Cell cell, int column, int row)
 	{
-		this.cells[column-1][row-1] = cell;
+		this.cells.put(column + "," + row, cell);
 	}
 	
+	/**
+	 * Parses the cells
+	 */
 	public void parse()
 	{
-		for(int x = 0; x < columns; x++)
+		for(String key : this.cells.keySet())
 		{
-			for(int y = 0; y < rows; y++)
-			{
-				cells[x][y].parse(this);
-			}
+			this.cells.get(key).parse(this);
 		}
 	}
 	
@@ -105,14 +100,11 @@ public class Sheet
 		if(other instanceof Sheet)
 		{
 			Sheet that = (Sheet) other;
-			for(int x = 0; x < columns; x++)
+			for(String key : this.cells.keySet())
 			{
-				for(int y = 0; y < rows; y++)
+				if(!this.cells.get(key).equals(that.cells.get(key)))
 				{
-					if(!this.cells[x][y].equals(that.cells[x][y]))
-					{
-						return false;
-					}
+					return false;
 				}
 			}
 			return true;
@@ -130,14 +122,9 @@ public class Sheet
     {
 
             String returnString = "";
-            for (int i = 0; i < getRows(); i++)
-            {
-                    for (int j = 0; j < getColumns(); j++)
-                    {                    	
-                            returnString = returnString + " " + cells[j][i].toString();
-                    	
-                    }
-                    returnString = returnString + "\n";
+
+            for(String key : this.cells.keySet()) {
+            	returnString = returnString + " " + this.cells.get(key).toString();
             }
             
             return returnString;
