@@ -1,9 +1,9 @@
 package sheetproject.controller;
 
 import java.io.FileNotFoundException;
-
 import sheetproject.exception.FileCorruptException;
 import sheetproject.exception.NullObjectException;
+import sheetproject.gui.Gui;
 import sheetproject.spreadsheet.Sheet;
 import sheetproject.spreadsheet.XmlDriver;
 
@@ -27,6 +27,11 @@ public class MainController {
 	private static Sheet sheet;
 	
 	/**
+	 * variable containing the GUI
+	 */
+	private static Gui gui;
+	
+	/**
 	 * variable containing the name of the file
 	 */
 	private static String filename = "";
@@ -37,6 +42,8 @@ public class MainController {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		gui = new Gui(this);
+		
 		openFile("xml/testRead.xml");
 		saveFileAs("xml/testWriteOut.xml");
 	}
