@@ -2,6 +2,7 @@ package sheetproject.spreadsheet;
 
 import java.awt.Color;
 
+import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.formula.Formula;
 import sheetproject.formula.Formules;
 
@@ -19,7 +20,7 @@ public class Cell
 {
 
 	static final int UPTODATE = 0;
-	static final int EDITED    = 1;
+	static final int EDITED   = 1;
 	
 	/**
 	 * Variable containing the value of the cell
@@ -51,7 +52,8 @@ public class Cell
 	 * 
 	 * @param content String containing the content of the cell 
 	 */
-	public Cell() {
+	public Cell() 
+	{
 		this("", 0, Color.black, Color.white);
 	}
 	
@@ -72,7 +74,8 @@ public class Cell
 	 * 
 	 * @return the value
 	 */
-	public String getValue() {
+	public String getValue() 
+	{
 		return value;
 	}
 
@@ -81,7 +84,8 @@ public class Cell
 	 * 
 	 * @param value the value to set
 	 */
-	public void setValue(String value) {
+	public void setValue(String value) 
+	{
 		this.value = value;
 	}
 
@@ -110,7 +114,8 @@ public class Cell
 	 * 
 	 * @return the state
 	 */
-	public int getState() {
+	public int getState() 
+	{
 		return state;
 	}
 
@@ -119,7 +124,8 @@ public class Cell
 	 * 
 	 * @param state the state to set
 	 */
-	public void setState(int state) {
+	public void setState(int state) 
+	{
 		this.state = state;
 	}
 
@@ -128,7 +134,8 @@ public class Cell
 	 * 
 	 * @return the foreground
 	 */
-	public Color getForeground() {
+	public Color getForeground() 
+	{
 		return foreground;
 	}
 
@@ -137,7 +144,8 @@ public class Cell
 	 * 
 	 * @param foreground the foreground to set
 	 */
-	public void setForeground(Color foreground) {
+	public void setForeground(Color foreground) 
+	{
 		this.foreground = foreground;
 	}
 
@@ -146,7 +154,8 @@ public class Cell
 	 * 
 	 * @return the background
 	 */
-	public Color getBackground() {
+	public Color getBackground() 
+	{
 		return background;
 	}
 
@@ -155,14 +164,16 @@ public class Cell
 	 * 
 	 * @param background the background to set
 	 */
-	public void setBackground(Color background) {
+	public void setBackground(Color background) 
+	{
 		this.background = background;
 	}
 	
 	/**
 	 * Method for parsing the formula of the cell
+	 * @throws CharacterOutOfBoundsException 
 	 */
-	public void parse(Sheet sheet)
+	public void parse(Sheet sheet) throws CharacterOutOfBoundsException
 	{
 		// Fout: parseFormula methode bestaat niet
 		this.value = Formules.parseFormula(this.formula, sheet);

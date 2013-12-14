@@ -2,6 +2,7 @@ package sheetproject.spreadsheet;
 
 import java.util.HashMap;
 
+import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.NullObjectException;
 
 /**
@@ -120,15 +121,15 @@ public class Sheet
 			{
 				throw new IndexOutOfBoundsException("The column index is too low");
 			}
-			if (column > Sheet.getColumns())
+			else if (column > Sheet.getColumns())
 			{
 				throw new IndexOutOfBoundsException("The column index is too high");
 			}
-			if (row < 1)
+			else if (row < 1)
 			{
 				throw new IndexOutOfBoundsException("The row index is too low");
 			}
-			if (row > Sheet.getRows())
+			else if (row > Sheet.getRows())
 			{
 				throw new IndexOutOfBoundsException("The row index is too high");
 			}
@@ -143,8 +144,9 @@ public class Sheet
 	
 	/**
 	 * Parses the cells
+	 * @throws CharacterOutOfBoundsException 
 	 */
-	public void parse()
+	public void parse() throws CharacterOutOfBoundsException
 	{
 		for(String key : this.cells.keySet())
 		{
@@ -186,7 +188,8 @@ public class Sheet
 
             String returnString = "";
 
-            for(String key : this.cells.keySet()) {
+            for(String key : this.cells.keySet()) 
+            {
             	returnString = returnString + " " + this.cells.get(key).toString();
             }
             

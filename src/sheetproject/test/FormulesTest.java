@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.NullObjectException;
+import sheetproject.formula.Formules;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 
@@ -11,70 +14,70 @@ import sheetproject.spreadsheet.Sheet;
 public class FormulesTest {
 
 	@Test
-	public void testPlus() {
+	public void testPlus() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=6 + 9", sheet);
 		assertEquals("15", i);
 	}
 	
 	@Test
-	public void testPlus2() {
+	public void testPlus2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=6+9", sheet);
 		assertEquals("15", i);
 	}
 	
 	@Test
-	public void testPlus3() {
+	public void testPlus3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=6	+	9", sheet);
 		assertEquals("15", i);
 	}
 	
 	@Test
-	public void testMinus() {
+	public void testMinus() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=20 - 9", sheet);
 		assertEquals("11", i);
 	}
 	
 	@Test
-	public void testMinus2() {
+	public void testMinus2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=20-9", sheet);
 		assertEquals("11", i);
 	}
 	
 	@Test
-	public void testMinus3() {
+	public void testMinus3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=20	-	9", sheet);
 		assertEquals("11", i);
 	}
 	
 	@Test
-	public void testTimes() {
+	public void testTimes() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=4 * 5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
-	public void testTimes2() {
+	public void testTimes2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=4*5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
-	public void testTimes3() {
+	public void testTimes3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=4	*	5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
-	public void testProduct() {
+	public void testProduct() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("6");
 		Cell a2 = new Cell("4");
@@ -85,49 +88,49 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testDivide() {
+	public void testDivide() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=100 / 5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
-	public void testDivide2() {
+	public void testDivide2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=100/5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
-	public void testDivide3() {
+	public void testDivide3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=100	/	5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
-	public void testPower() {
+	public void testPower() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=2 ^ 3", sheet);
 		assertEquals("8", i);
 	}
 	
 	@Test
-	public void testPower2() {
+	public void testPower2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=2^3", sheet);
 		assertEquals("8", i);
 	}
 	
 	@Test
-	public void testPower3() {
+	public void testPower3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		String i = Formules.parseFormula("=2	^	3", sheet);
 		assertEquals("8", i);
 	}
 	
 	@Test
-	public void testPower4() {
+	public void testPower4() throws CharacterOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("6");
 		Cell a2 = new Cell("4");
@@ -138,7 +141,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testSqrt() {
+	public void testSqrt() throws CharacterOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("6");
 		sheet.setCell(a1, 1, 1);
@@ -147,7 +150,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testMin() {
+	public void testMin() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("6");
 		Cell a2 = new Cell("4");
@@ -159,7 +162,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testMin2() {
+	public void testMin2() throws CharacterOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		Cell a2 = new Cell("34");
@@ -171,7 +174,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testMax() {
+	public void testMax() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("6");
 		Cell a2 = new Cell("4");
@@ -183,7 +186,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testMax2() {
+	public void testMax2() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		Cell a2 = new Cell("34");
@@ -195,7 +198,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testIsNumber() {
+	public void testIsNumber() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		sheet.setCell(a1, 1, 1);
@@ -203,7 +206,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testIsNotNumber() {
+	public void testIsNotNumber() throws CharacterOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("A");
 		sheet.setCell(a1, 1, 1);
@@ -211,7 +214,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testIsEven() {
+	public void testIsEven() throws CharacterOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		sheet.setCell(a1, 1, 1);
@@ -219,7 +222,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testIsNotEven() {
+	public void testIsNotEven() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63");
 		sheet.setCell(a1, 1, 1);
@@ -227,7 +230,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testAverage() {
+	public void testAverage() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		Cell a2 = new Cell("34");
@@ -239,7 +242,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testRoundUp() {
+	public void testRoundUp() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63.3");
 		sheet.setCell(a1, 1, 1);
@@ -247,7 +250,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testRoundDown() {
+	public void testRoundDown() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63.7");
 		sheet.setCell(a1, 1, 1);
@@ -255,7 +258,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testSign() {
+	public void testSign() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63");
 		sheet.setCell(a1, 1, 1);
@@ -263,7 +266,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testSign2() {
+	public void testSign2() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("0");
 		sheet.setCell(a1, 1, 1);
@@ -271,7 +274,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testSign3() {
+	public void testSign3() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("-76");
 		sheet.setCell(a1, 1, 1);
@@ -279,7 +282,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testMod() {
+	public void testMod() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("6");
 		Cell a2 = new Cell("4");
@@ -290,7 +293,7 @@ public class FormulesTest {
 	}
 	
 	@Test
-	public void testMedian() {
+	public void testMedian() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		Cell a2 = new Cell("34");

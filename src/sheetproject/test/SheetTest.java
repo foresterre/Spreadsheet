@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -117,14 +118,14 @@ public class SheetTest {
 	}
 	
 	@Test
-	public void testParse() throws IndexOutOfBoundsException, NullObjectException
+	public void testParse() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException
 	{
 		Sheet a = new Sheet();
 		a.parse();
 	}
 	
 	@Test
-	public void testParse2() throws IndexOutOfBoundsException, NullObjectException
+	public void testParse2() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException
 	{
 		Sheet a = new Sheet();
 		Cell b = new Cell("test");
@@ -195,6 +196,26 @@ public class SheetTest {
 		a.setCell(c, 1, 1);
 		a.setCell(d, 1, 2);
 		assertEquals("test test2", a.toString());
+	}
+	
+	public void testToString3() throws IndexOutOfBoundsException, NullObjectException
+	{
+		Sheet a = new Sheet();
+		Cell c = new Cell("test");
+		Cell d = new Cell("test3");
+		a.setCell(c, 1, 1);
+		a.setCell(d, 1, 2);
+		assertNotEquals("test test2", a.toString());
+	}
+	
+	public void testToString4() throws IndexOutOfBoundsException, NullObjectException
+	{
+		Sheet a = new Sheet();
+		Cell c = new Cell("test");
+		Cell d = new Cell("test2");
+		a.setCell(c, 1, 1);
+		a.setCell(d, 1, 2);
+		assertNotEquals(null, a.toString());
 	}
 
 }

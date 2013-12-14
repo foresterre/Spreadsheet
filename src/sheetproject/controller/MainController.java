@@ -41,8 +41,9 @@ public class MainController {
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		gui = new Gui(this);
+	public static void main(String[] args) 
+	{
+		//gui = new Gui(this);
 		
 		openFile("xml/testRead.xml");
 		saveFileAs("xml/testWriteOut.xml");
