@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class SIGN extends Formula 
+public class Sign extends AbstractFormula 
 {
 	
 	@Override

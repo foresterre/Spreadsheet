@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.NullObjectException;
-import sheetproject.formula.Formules;
+import sheetproject.formula.FormulesList;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 
@@ -16,63 +16,63 @@ public class FormulesTest {
 	@Test
 	public void testPlus() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=6 + 9", sheet);
+		String i = FormulesList.parseFormula("=6 + 9", sheet);
 		assertEquals("15", i);
 	}
 	
 	@Test
 	public void testPlus2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=6+9", sheet);
+		String i = FormulesList.parseFormula("=6+9", sheet);
 		assertEquals("15", i);
 	}
 	
 	@Test
 	public void testPlus3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=6	+	9", sheet);
+		String i = FormulesList.parseFormula("=6	+	9", sheet);
 		assertEquals("15", i);
 	}
 	
 	@Test
 	public void testMinus() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=20 - 9", sheet);
+		String i = FormulesList.parseFormula("=20 - 9", sheet);
 		assertEquals("11", i);
 	}
 	
 	@Test
 	public void testMinus2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=20-9", sheet);
+		String i = FormulesList.parseFormula("=20-9", sheet);
 		assertEquals("11", i);
 	}
 	
 	@Test
 	public void testMinus3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=20	-	9", sheet);
+		String i = FormulesList.parseFormula("=20	-	9", sheet);
 		assertEquals("11", i);
 	}
 	
 	@Test
 	public void testTimes() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=4 * 5", sheet);
+		String i = FormulesList.parseFormula("=4 * 5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
 	public void testTimes2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=4*5", sheet);
+		String i = FormulesList.parseFormula("=4*5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
 	public void testTimes3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=4	*	5", sheet);
+		String i = FormulesList.parseFormula("=4	*	5", sheet);
 		assertEquals("20", i);
 	}
 	
@@ -83,49 +83,49 @@ public class FormulesTest {
 		Cell a2 = new Cell("4");
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
-		String i = Formules.parseFormula("=PRODUCT(A1,A2)", sheet);
+		String i = FormulesList.parseFormula("=PRODUCT(A1,A2)", sheet);
 		assertEquals("24", i);
 	}
 	
 	@Test
 	public void testDivide() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=100 / 5", sheet);
+		String i = FormulesList.parseFormula("=100 / 5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
 	public void testDivide2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=100/5", sheet);
+		String i = FormulesList.parseFormula("=100/5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
 	public void testDivide3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=100	/	5", sheet);
+		String i = FormulesList.parseFormula("=100	/	5", sheet);
 		assertEquals("20", i);
 	}
 	
 	@Test
 	public void testPower() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=2 ^ 3", sheet);
+		String i = FormulesList.parseFormula("=2 ^ 3", sheet);
 		assertEquals("8", i);
 	}
 	
 	@Test
 	public void testPower2() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=2^3", sheet);
+		String i = FormulesList.parseFormula("=2^3", sheet);
 		assertEquals("8", i);
 	}
 	
 	@Test
 	public void testPower3() throws CharacterOutOfBoundsException {
 		Sheet sheet = new Sheet();
-		String i = Formules.parseFormula("=2	^	3", sheet);
+		String i = FormulesList.parseFormula("=2	^	3", sheet);
 		assertEquals("8", i);
 	}
 	
@@ -136,7 +136,7 @@ public class FormulesTest {
 		Cell a2 = new Cell("4");
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
-		String i = Formules.parseFormula("=POWER(A1,A2)", sheet);
+		String i = FormulesList.parseFormula("=POWER(A1,A2)", sheet);
 		assertEquals("1296", i);
 	}
 	
@@ -145,7 +145,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("6");
 		sheet.setCell(a1, 1, 1);
-		String i = Formules.parseFormula("=SQRT(A1)", sheet);
+		String i = FormulesList.parseFormula("=SQRT(A1)", sheet);
 		assertEquals("36", i);
 	}
 	
@@ -158,7 +158,7 @@ public class FormulesTest {
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
 		sheet.setCell(a3, 1, 3);
-		assertEquals("4", Formules.parseFormula("=MIN(A1:A3)", sheet));
+		assertEquals("4", FormulesList.parseFormula("=MIN(A1:A3)", sheet));
 	}
 	
 	@Test
@@ -170,7 +170,7 @@ public class FormulesTest {
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
 		sheet.setCell(a3, 1, 3);
-		assertEquals("34", Formules.parseFormula("=MIN(A1 : A3)", sheet));
+		assertEquals("34", FormulesList.parseFormula("=MIN(A1 : A3)", sheet));
 	}
 	
 	@Test
@@ -182,7 +182,7 @@ public class FormulesTest {
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
 		sheet.setCell(a3, 1, 3);
-		assertEquals("8", Formules.parseFormula("=MAX( A1:A3 )", sheet));
+		assertEquals("8", FormulesList.parseFormula("=MAX( A1:A3 )", sheet));
 	}
 	
 	@Test
@@ -194,7 +194,7 @@ public class FormulesTest {
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
 		sheet.setCell(a3, 1, 3);
-		assertEquals("10008", Formules.parseFormula("=MAX( A1 : A3 )", sheet));
+		assertEquals("10008", FormulesList.parseFormula("=MAX( A1 : A3 )", sheet));
 	}
 	
 	@Test
@@ -202,7 +202,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("TRUE", Formules.parseFormula("=ISNUMBER( A1 )", sheet));
+		assertEquals("TRUE", FormulesList.parseFormula("=ISNUMBER( A1 )", sheet));
 	}
 	
 	@Test
@@ -210,7 +210,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("A");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("FALSE", Formules.parseFormula("=ISNUMBER( A1 )", sheet));
+		assertEquals("FALSE", FormulesList.parseFormula("=ISNUMBER( A1 )", sheet));
 	}
 	
 	@Test
@@ -218,7 +218,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("64");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("TRUE", Formules.parseFormula("=ISEVEN( A1 )", sheet));
+		assertEquals("TRUE", FormulesList.parseFormula("=ISEVEN( A1 )", sheet));
 	}
 	
 	@Test
@@ -226,7 +226,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("FALSE", Formules.parseFormula("=ISEVEN( A1 )", sheet));
+		assertEquals("FALSE", FormulesList.parseFormula("=ISEVEN( A1 )", sheet));
 	}
 	
 	@Test
@@ -238,7 +238,7 @@ public class FormulesTest {
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
 		sheet.setCell(a3, 1, 3);
-		assertEquals("40", Formules.parseFormula("=AVERAGE( A1 : A3 )", sheet));
+		assertEquals("40", FormulesList.parseFormula("=AVERAGE( A1 : A3 )", sheet));
 	}
 	
 	@Test
@@ -246,7 +246,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63.3");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("64.0", Formules.parseFormula("=ROUNDUP( A1 )", sheet));
+		assertEquals("64.0", FormulesList.parseFormula("=ROUNDUP( A1 )", sheet));
 	}
 	
 	@Test
@@ -254,7 +254,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63.7");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("63.0", Formules.parseFormula("=ROUNDDOWN( A1 )", sheet));
+		assertEquals("63.0", FormulesList.parseFormula("=ROUNDDOWN( A1 )", sheet));
 	}
 	
 	@Test
@@ -262,7 +262,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("63");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("1", Formules.parseFormula("=SIGN( A1 )", sheet));
+		assertEquals("1", FormulesList.parseFormula("=SIGN( A1 )", sheet));
 	}
 	
 	@Test
@@ -270,7 +270,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("0");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("0", Formules.parseFormula("=SIGN( A1 )", sheet));
+		assertEquals("0", FormulesList.parseFormula("=SIGN( A1 )", sheet));
 	}
 	
 	@Test
@@ -278,7 +278,7 @@ public class FormulesTest {
 		Sheet sheet = new Sheet();
 		Cell a1 = new Cell("-76");
 		sheet.setCell(a1, 1, 1);
-		assertEquals("-1", Formules.parseFormula("=SIGN( A1 )", sheet));
+		assertEquals("-1", FormulesList.parseFormula("=SIGN( A1 )", sheet));
 	}
 	
 	@Test
@@ -288,7 +288,7 @@ public class FormulesTest {
 		Cell a2 = new Cell("4");
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
-		String i = Formules.parseFormula("=MOD(A1,A2)", sheet);
+		String i = FormulesList.parseFormula("=MOD(A1,A2)", sheet);
 		assertEquals("2.0", i);
 	}
 	
@@ -301,7 +301,7 @@ public class FormulesTest {
 		sheet.setCell(a1, 1, 1);
 		sheet.setCell(a2, 1, 2);
 		sheet.setCell(a3, 1, 3);
-		assertEquals("34", Formules.parseFormula("=MEDIAN( A1 : A3 )", sheet));
+		assertEquals("34", FormulesList.parseFormula("=MEDIAN( A1 : A3 )", sheet));
 	}
 
 }

@@ -4,7 +4,7 @@ package sheetproject.formula;
  * 
  * @author r.borst
  */
-public abstract class Formula 
+public abstract class AbstractFormula 
 {
 	abstract String parse(String formula);
 }

@@ -14,7 +14,7 @@ import sheetproject.spreadsheet.*;
  * 
  * @author m.olsthoorn
  */
-public class Formules {
+public class FormulesList {
 	
 	static Pattern plus = Pattern.compile("([0-9]+)\\s*\\+\\s*([0-9]+)");
 	static Pattern minus = Pattern.compile("([0-9]+)\\s*\\-\\s*([0-9]+)");

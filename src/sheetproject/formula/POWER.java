@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class POWER extends Formula 
+public class Power extends AbstractFormula 
 {
 	
 	@Override

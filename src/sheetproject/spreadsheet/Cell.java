@@ -3,8 +3,8 @@ package sheetproject.spreadsheet;
 import java.awt.Color;
 
 import sheetproject.exception.CharacterOutOfBoundsException;
-import sheetproject.formula.Formula;
-import sheetproject.formula.Formules;
+import sheetproject.formula.AbstractFormula;
+import sheetproject.formula.FormulesList;
 
 /**
  * Class representing a cell in a spreadsheet table
@@ -176,7 +176,7 @@ public class Cell
 	public void parse(Sheet sheet) throws CharacterOutOfBoundsException
 	{
 		// Fout: parseFormula methode bestaat niet
-		this.value = Formules.parseFormula(this.formula, sheet);
+		this.value = FormulesList.parseFormula(this.formula, sheet);
 	}
 	
 	

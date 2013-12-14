@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class ISLOGICAL extends Formula 
+public class IsLogical extends AbstractFormula 
 {
 	
 	@Override
