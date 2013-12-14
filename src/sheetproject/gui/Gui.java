@@ -19,7 +19,8 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 
-import sheetproject.spreadsheet.Sheet;
+import sheetproject.controller.*;
+import sheetproject.spreadsheet.*;
 
 
 
@@ -31,7 +32,7 @@ public class Gui extends JFrame {
     private DefaultTableModel DTM;
     private FocusListener focusListener;
 
-    public Gui()
+    public Gui(MainController main)
     {
     	// Create a new menubar
     	JMenuBar menubar = new JMenuBar();
@@ -166,17 +167,17 @@ public class Gui extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args)
-    {
-        SwingUtilities.invokeLater(new Runnable() 
-        {
-            public void run() 
-            {
-                Gui ex = new Gui();
-                ex.setVisible(true);
-            }
-        });
-    }
+//    public static void main(String[] args)
+//    {
+//        SwingUtilities.invokeLater(new Runnable() 
+//        {
+//            public void run() 
+//            {
+//                Gui ex = new Gui();
+//                ex.setVisible(true);
+//            }
+//        });
+//    }
     
     public String readFile(File file) 
     {

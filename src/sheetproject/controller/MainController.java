@@ -43,7 +43,9 @@ public class MainController {
 	 */
 	public static void main(String[] args) 
 	{
-		//gui = new Gui(this);
+		MainController main = new MainController();
+		gui = new Gui(main);
+		gui.setVisible(true);
 		
 		openFile("xml/testRead.xml");
 		saveFileAs("xml/testWriteOut.xml");
