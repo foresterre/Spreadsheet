@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class ROUNDDOWN extends Formula 
+public class RoundDown extends AbstractFormula 
 {
 	
 	@Override

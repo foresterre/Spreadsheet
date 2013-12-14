@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class MAX extends Formula 
+public class Max extends AbstractFormula 
 {
 	
 	@Override

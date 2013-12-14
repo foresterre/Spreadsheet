@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class PRODUCT extends Formula 
+public class Product extends AbstractFormula 
 {
 	
 	@Override

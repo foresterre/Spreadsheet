@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class SQRT extends Formula 
+public class Sqrt extends AbstractFormula 
 {
 	
 	@Override

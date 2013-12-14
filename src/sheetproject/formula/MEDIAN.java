@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class MEDIAN extends Formula 
+public class Median extends AbstractFormula 
 {
 	
 	@Override

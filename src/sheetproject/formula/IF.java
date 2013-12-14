@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class IF extends Formula 
+public class If extends AbstractFormula 
 {
 	
 	@Override

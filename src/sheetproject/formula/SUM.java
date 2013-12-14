@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class SUM extends Formula 
+public class Sum extends AbstractFormula 
 {
 	
 	@Override

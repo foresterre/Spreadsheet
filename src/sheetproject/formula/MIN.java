@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class MIN extends Formula 
+public class Min extends AbstractFormula 
 {
 	
 	@Override

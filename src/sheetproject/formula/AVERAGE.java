@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class AVERAGE extends Formula 
+public class Average extends AbstractFormula 
 {
 	
 	@Override
