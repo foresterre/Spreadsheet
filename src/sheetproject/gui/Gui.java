@@ -135,7 +135,7 @@ public class Gui extends JFrame {
                 {
                 	File file = fileopen.getSelectedFile();
                  	String filename = file.getName();
-                 	MainController.openFile(filename);
+                 	MainController.openFile(file);
                     
                     for(String key : MainController.getSheet().getCells().keySet())
                     {

@@ -3,6 +3,7 @@ package sheetproject.spreadsheet;
 import java.util.HashMap;
 
 import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 
 /**
@@ -145,8 +146,9 @@ public class Sheet
 	/**
 	 * Parses the cells
 	 * @throws CharacterOutOfBoundsException 
+	 * @throws IllegalFormulaException 
 	 */
-	public void parse() throws CharacterOutOfBoundsException
+	public void parse() throws CharacterOutOfBoundsException, IllegalFormulaException
 	{
 		for(String key : this.cells.keySet())
 		{

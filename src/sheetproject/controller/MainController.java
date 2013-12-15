@@ -1,7 +1,11 @@
 package sheetproject.controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+
+import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.FileCorruptException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.gui.Gui;
 import sheetproject.spreadsheet.Sheet;
@@ -34,7 +38,7 @@ public class MainController {
 	/**
 	 * variable containing the name of the file
 	 */
-	private static String filename = "";
+	private static File filename;
 
 	/**
 	 * Application starting point
@@ -47,8 +51,8 @@ public class MainController {
 		gui = new Gui(main);
 		gui.setVisible(true);
 		
-		openFile("xml/testRead.xml");
-		saveFileAs("xml/testWriteOut.xml");
+		//openFile("xml/testRead.xml");
+		//saveFileAs("xml/testWriteOut.xml");
 	}
 	
 	/**
@@ -57,7 +61,7 @@ public class MainController {
 	 * @param filename The name of the file to read
 	 * @return boolean True if file reading succeeded
 	 */
-	public static boolean openFile(String filename)
+	public static boolean openFile(File filename)
 	{
 		boolean succes = false;
 		try
@@ -75,6 +79,12 @@ public class MainController {
 			System.err.println(e.getMessage());
 		} catch (FileNotFoundException e) {
 			System.err.println(e.getMessage());
+		} catch (CharacterOutOfBoundsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalFormulaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return succes;
 	}
@@ -93,19 +103,19 @@ public class MainController {
 	 * 
 	 * @return boolean True if file save succeeded
 	 */
-	public static boolean saveFile()
-	{
-		boolean success = false;
-		if (filename.equals(""))
-		{
-			System.err.println("You have not opened a file yet");
-		} else
-		{
-			success = saveFileAs(filename);
-		}
-		
-		return success;
-	}
+//	public static boolean saveFile()
+//	{
+//		boolean success = false;
+//		if (filename.equals(""))
+//		{
+//			System.err.println("You have not opened a file yet");
+//		} else
+//		{
+//			success = saveFileAs(filename);
+//		}
+//		
+//		return success;
+//	}
 	
 	/**
 	 * Method for saving current sheet to new file

@@ -22,7 +22,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.FileCorruptException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 
 /**
@@ -47,8 +49,10 @@ public class XmlDriver
 	 * @throws FileNotFoundException 
 	 * @throws NullObjectException 
 	 * @throws IndexOutOfBoundsException 
+	 * @throws CharacterOutOfBoundsException 
+	 * @throws IllegalFormulaException 
 	 */
-	public static Sheet read(String filename) throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public static Sheet read(File filename) throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{		
 		
 		// get the rows and columns from the Sheet object
@@ -61,7 +65,8 @@ public class XmlDriver
 		{
 			
 			// prepare for reading into objects
-			File xmlFile = new File(filename);
+			//File xmlFile = new File(filename);
+			File xmlFile = filename;
 			DocumentBuilderFactory sheetDocBuildFac = DocumentBuilderFactory.newInstance();
 			DocumentBuilder sheetDocBuild = sheetDocBuildFac.newDocumentBuilder();
 			Document sheetDoc = sheetDocBuild.parse(xmlFile);
@@ -152,7 +157,7 @@ public class XmlDriver
 		{
 			e.printStackTrace();
 		}
-		//sheet.parse();
+		sheet.parse();
 		return sheet;
 		
 	}
