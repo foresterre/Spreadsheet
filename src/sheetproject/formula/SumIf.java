@@ -20,7 +20,7 @@ public class SumIf extends AbstractFormula
 		return "";
 	}
 	
-	static Pattern sumIf = Pattern.compile("\\s*SUMIF\\(\\s*([A-Z])([0-9])\\s*:\\s*([A-Z])([0-9])\\s*\\:\\s*([A-Z])([0-9])\\s*\\)\\s*");
+	static Pattern sumIf = Pattern.compile("\\s*SUMIF\\(\\s*([A-Z])([0-9])\\s*,\\s*([A-Z])([0-9])\\s*\\:\\s*([A-Z])([0-9])\\s*\\)\\s*");
 	
 	
 	//TODO requires the if func

@@ -47,24 +47,10 @@ public class IsEven extends AbstractFormula
 			}
 			catch (Exception e)
 			{
-				res="NOT A NUMBER";
+				res = "NOT A NUMBER";
 			}
 		}
 		return res;
-	}
-	
-	
-	// TODEL
-	public boolean execute(double numberA)
-	{
-		if ((numberA % 2) == 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
 	}
 
 }
