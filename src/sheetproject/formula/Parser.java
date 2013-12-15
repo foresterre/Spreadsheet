@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import sheetproject.alfabet.Alfabet;
+import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.spreadsheet.*;
@@ -15,6 +17,7 @@ import sheetproject.spreadsheet.*;
 public class Parser {
 	
 	static Pattern format = Pattern.compile("(([A-Z]{2,10})\\((.*)\\))");
+	static Pattern format2 = Pattern.compile("\\s*([A-Z]{1,2})([0-9]{1,6})\\s*");
 	
 	private static String[] allowedFormulas = 
 	{
@@ -23,7 +26,7 @@ public class Parser {
 		"Product","Proper","Rounddown","Roundup","Sign","Sqrt","Sum","Sumif"
 	};
 	
-	public static String parse(String formula, Sheet data) throws IllegalFormulaException
+	public static String parse(String formula, Sheet data) throws IllegalFormulaException, CharacterOutOfBoundsException
 	{		
 
 		formula = formula.trim();
@@ -34,9 +37,10 @@ public class Parser {
 		return formula;
 	}
 	
-	static String evaluate(String formula, Sheet data) throws IllegalFormulaException
+	static String evaluate(String formula, Sheet data) throws IllegalFormulaException, CharacterOutOfBoundsException
 	{
 		Matcher m = format.matcher(formula);
+		Matcher m2 = format2.matcher(formula);
 		String res = formula;
 		
 		if(m.find())
@@ -58,7 +62,7 @@ public class Parser {
 					parameters[0] = formula;
 					parameters[1] = data;
 					Method method = c.getMethod("evaluate", methodParameters);
-					res = (String) method.invoke(null, parameters);
+					return (String) method.invoke(null, parameters);
 				}					
 				catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -85,6 +89,14 @@ public class Parser {
 				throw new IllegalFormulaException();
 			}
 		}
+		else if (m2.find())
+		{
+                int i = Alfabet.parseChar(m2.group(1));
+                int j = Integer.parseInt(m2.group(2));
+                String cellContent = data.getCell(i, j).getFormula();
+                cellContent = Parser.evaluate(cellContent, data);
+                return cellContent;
+		}
 		return res;
 	}
 	
@@ -100,7 +112,7 @@ public class Parser {
 		return false;
 	}
 	
-	public static void main(String[] args) throws IllegalFormulaException, IndexOutOfBoundsException, NullObjectException
+	public static void main(String[] args) throws IllegalFormulaException, IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException
 	{
 		Sheet sheet = new Sheet();
 		Cell a = new Cell("6");
@@ -108,7 +120,7 @@ public class Parser {
 		sheet.setCell(a, 1, 1);
 		sheet.setCell(b, 1, 2);
 		
-		String z = Parser.parse("=SUM(A1,SUM(SUM(8,A1),A2))", sheet);
+		String z = Parser.parse("=SUM(A2,SUM(SUM(8,A1),A2))", sheet);
 		System.out.println(z);
 	}
 	

@@ -1,66 +1,77 @@
 package sheetproject.formula;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import sheetproject.alfabet.Alfabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
-import sheetproject.spreadsheet.Cell;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class Average extends AbstractFormula 
+public class Average
 {
-	
-	@Override
-	public String parse(String formula) 
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	static Pattern average = Pattern.compile("\\s*AVERAGE\\(\\s*([A-Z])([0-9])\\s*:\\s*([A-Z])([0-9])\\s*\\)\\s*");
-	
-	public static String parse(String formula, Sheet sheet) throws CharacterOutOfBoundsException
-	{
-		String res = "";
-		res = formula.trim();
-		res = formula.substring(1);
-		
-		Matcher m13 = average.matcher(res);
-		
-		if (m13.find())
-		{
-			int i = Alfabet.parseChar(m13.group(1));
-			int j = Integer.parseInt(m13.group(2));
-			int k = Alfabet.parseChar(m13.group(3));
-			int l = Integer.parseInt(m13.group(4));
-			
-			ArrayList<Cell> list = new ArrayList<Cell>();
-			
-			if (i == k)
-			{
-				for (int q = j; q < l+1; q++)
-				{
-					list.add(sheet.getCell(i, q));
-				}
-			}
-			
-			int temp = 0;
-			
-			for (Cell c : list)
-			{
-				temp += Integer.parseInt(c.getFormula());
-			}
-			
-			temp = temp/list.size();
-			
-			res = Integer.toString(temp);
-		}
-		
-		return res;
-	
-	}
 
+        static Pattern sum = Pattern.compile("\\s*AVERAGE\\(\\s*([0-9]+|[A-Z][0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[A-Z][0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        static Pattern sum2 = Pattern.compile("\\s*([A-Z]{1,2})([0-9]{1,6})\\s*");
+        
+        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        {
+                String res = "";
+                
+                Matcher m = sum.matcher(formula);
+                if (m.find())
+                {
+                        String group1 = m.group(1);
+                        group1 = Parser.evaluate(group1, data);
+                        String group2 = m.group(2);
+                        group2 = Parser.evaluate(group2, data);
+                        
+                        Matcher m2 = sum2.matcher(group1);
+                        Matcher m3 = sum2.matcher(group2);
+                        
+                        int number1 = 0;
+                        try
+                        {
+                                number1 = Integer.parseInt(group1);
+                        }
+                        catch(Exception e)
+                        {
+                                
+                        }
+                        if (m2.find())
+                        {
+                        	String a = m2.group(0);
+                        	String ab = m2.group(1);
+                        	String abc = m2.group(2);
+                                int i = Alfabet.parseChar(m2.group(1));
+                                int j = Integer.parseInt(m2.group(2));
+                                String cellContent = data.getCell(i, j).getFormula();
+                                cellContent = Parser.evaluate(cellContent, data);
+                                number1 = Integer.parseInt(cellContent);
+                        }
+                        
+                        int number2 = 0;
+                        try
+                        {
+                                number2 = Integer.parseInt(group2);
+                        }
+                        catch(Exception e)
+                        {
+                                
+                        }
+                        if (m3.find())
+                        {
+                                int i = Alfabet.parseChar(m3.group(1));
+                                int j = Integer.parseInt(m3.group(2));
+                                String cellContent = data.getCell(i, j).getFormula();
+                                cellContent = Parser.evaluate(cellContent, data);
+                                number2 = Integer.parseInt(cellContent);
+                        }
+                        
+                        res = Integer.toString(number1 + number2);
+                        
+                }
+                return res;
+        }
 }
