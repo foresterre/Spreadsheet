@@ -119,9 +119,21 @@ public class Gui extends JFrame {
 
                 if (ret == JFileChooser.APPROVE_OPTION)
                 {
-                    File file = fileopen.getSelectedFile();
-                    String text = readFile(file);
-                    area.setText(text);
+                	File file = fileopen.getSelectedFile();
+                 	String filename = file.getName();
+                 	MainController.openFile(filename);
+                    
+                    for(String key : MainController.getSheet().getCells().keySet())
+                    {
+                    	String[] index = key.split(",");
+                    	int columnIndex = Integer.parseInt(index[0]);
+                    	int rowIndex = Integer.parseInt(index[1]);
+                    	
+                    	Cell cell = MainController.getSheet().getCells().get(key);
+                    	String value = cell.getValue();
+                    	
+                    	table.setValueAt(value, rowIndex, columnIndex); 	
+                    }
                 }
             }
         });
@@ -179,32 +191,32 @@ public class Gui extends JFrame {
 //        });
 //    }
     
-    public String readFile(File file) 
-    {
-
-        StringBuffer fileBuffer = null;
-        String fileString = null;
-        String line = null;
-
-        try 
-        {
-            FileReader in = new FileReader(file);
-            BufferedReader brd = new BufferedReader(in);
-            fileBuffer = new StringBuffer();
-
-            while ((line = brd.readLine()) != null) 
-            {
-                fileBuffer.append(line).append(
-                        System.getProperty("line.separator"));
-            }
-
-            in.close();
-            fileString = fileBuffer.toString();
-        } 
-        catch (IOException e)
-        {
-            return null;
-        }
-        return fileString;
-    }
+//    public String readFile(File file) 
+//    {
+//
+//        StringBuffer fileBuffer = null;
+//        String fileString = null;
+//        String line = null;
+//
+//        try 
+//        {
+//            FileReader in = new FileReader(file);
+//            BufferedReader brd = new BufferedReader(in);
+//            fileBuffer = new StringBuffer();
+//
+//            while ((line = brd.readLine()) != null) 
+//            {
+//                fileBuffer.append(line).append(
+//                        System.getProperty("line.separator"));
+//            }
+//
+//            in.close();
+//            fileString = fileBuffer.toString();
+//        } 
+//        catch (IOException e)
+//        {
+//            return null;
+//        }
+//        return fileString;
+//    }
 }
