@@ -1,7 +1,7 @@
 package sheetproject.formula;
 
 
-public class RoundUp extends AbstractFormula 
+public class CountIf extends AbstractFormula 
 {
 	
 	@Override
@@ -11,9 +11,11 @@ public class RoundUp extends AbstractFormula
 		return "";
 	}
 	
-	public double execute()
+	//TODO
+	// count the cells for which if is true
+	public long execute()
 	{
-		return 0.0;
+		return 0;
 	}
 
 }
