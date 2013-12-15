@@ -26,6 +26,8 @@ import sheetproject.spreadsheet.*;
 
 public class Gui extends JFrame {
 	public int x = 1;
+	public int currentlySelectedRow = 0;
+	public int currentlySelectedColumn = 0;
 	private JPanel panel;
     private JTextArea area;
     private JTable table;
@@ -43,8 +45,7 @@ public class Gui extends JFrame {
 		
 		JScrollPane pane = new JScrollPane(table);
 		add(pane);
-		table.changeSelection(0, 0, false, false);
-		
+
     	this.focusListener = new FocusListener()
     	{
 
@@ -53,16 +54,20 @@ public class Gui extends JFrame {
 			{
 				
 				String a1 = arg0.paramString();
+			
 				
-				int a = table.getSelectedRow();
-				int a2 = table.getSelectedColumn();
-				System.out.println(a);
-				System.out.println(a2);
+				currentlySelectedRow = table.getSelectedRow();
+				currentlySelectedColumn = table.getSelectedColumn();
+				System.out.println(currentlySelectedRow);
+				System.out.println(currentlySelectedColumn);
+			
 			}
 			
 
 			@Override
 			public void focusLost(FocusEvent arg0) {
+				String valuex = (String) table.getValueAt(currentlySelectedRow, currentlySelectedColumn);
+				System.out.println("The value of Cell (" + currentlySelectedRow + ", " + currentlySelectedColumn + ") is " + valuex + ".");
 			}};
 			
 			this.table.addFocusListener(focusListener);
