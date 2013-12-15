@@ -142,6 +142,35 @@ public class Gui extends JFrame {
         JMenuItem fileSave = new JMenuItem("Save");
         fileSave.setMnemonic(KeyEvent.VK_S);
         fileSave.setToolTipText("Save spreadsheet");
+        fileSave.addActionListener(new ActionListener()
+        {
+
+			
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser filesave = new JFileChooser();
+                FileFilter filter = new FileNameExtensionFilter("c files", "c");
+                filesave.addChoosableFileFilter(filter);
+
+                int ret = filesave.showDialog(panel, "Save file");
+                
+                if (ret == JFileChooser.APPROVE_OPTION)
+                {
+                	for(int i = 0; i < Sheet.getRows(); i++)
+                	{
+                		for(int j = 0; j < Sheet.getColumns(); j++)
+                		{
+                			String key = i + "," + j;
+                			Cell value = (Cell) table.getModel().getValueAt(i, j);
+                			
+                			MainController.getSheet().getCells().put(key, value);
+                		}
+                	}
+                }
+				
+			}
+        	
+        	
+        });
         
         //menuitem 'Save as...'
         JMenuItem fileSaveas = new JMenuItem("Save as...");
