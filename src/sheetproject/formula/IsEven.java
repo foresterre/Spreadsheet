@@ -3,54 +3,45 @@ package sheetproject.formula;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sheetproject.alfabet.Alfabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class IsEven extends AbstractFormula 
+public class Iseven
 {
-	
-	@Override
-	public String parse(String formula) 
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	static Pattern isEven = Pattern.compile("\\s*ISEVEN\\(\\s*([A-Z])([0-9])\\s*\\)\\s*");
 
-	public static String parse(String formula, Sheet sheet) throws CharacterOutOfBoundsException
-	{
-		String res = "";
-		res = formula.trim();
-		res = formula.substring(1);
-		
-		Matcher m11 = isEven.matcher(res);
-		
-		if (m11.find())
-		{
-			res = "UNDEFINED";
-			int i = Alfabet.parseChar(m11.group(1));
-			int j = Integer.parseInt(m11.group(2));
-			try
-			{
-				int res2 = Integer.parseInt(sheet.getCell(i, j).getFormula());
-				if ( (res2 & 1) == 0 )
-				{
-					res = "TRUE";
-				}
-				else
-				{
-					res = "FALSE";
-				}
-			}
-			catch (Exception e)
-			{
-				res = "NOT A NUMBER";
-			}
-		}
-		return res;
-	}
-
+        static Pattern formulaPattern = Pattern.compile("\\s*ISEVEN\\(\\s*([0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        
+        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        {
+        	String res = "NOT A INTEGER";
+            
+            Matcher m = formulaPattern.matcher(formula);
+            if (m.find())
+            {
+                    String group1 = m.group(1);
+                    group1 = Parser.evaluate(group1, data);
+                          
+                    int temp = 0;
+                    try
+                    {
+                            temp += Integer.parseInt(group1);
+                    }
+                    catch(Exception e)
+                    {
+                            
+                    }
+                    
+                    if ((temp & 1) == 0)
+                    {
+                    	return "TRUE";
+                    }
+                    else
+                    {
+                    	return "FALSE";
+                    }
+            }
+            return res;
+        }
 }

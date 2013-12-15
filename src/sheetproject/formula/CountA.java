@@ -1,27 +1,57 @@
 package sheetproject.formula;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class CountA extends AbstractFormula 
+public class Counta
 {
-	
-	@Override
-	public String parse(String formula)
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	// TO be determined
-	// count all cells
-	public static String parse(String formula, Sheet sheet) throws CharacterOutOfBoundsException
-	{
-		String res = "";
-		res = formula.trim();
-		res = formula.substring(1);
-		return res;
-	}
 
+        static Pattern formulaPattern = Pattern.compile("\\s*COUNTA\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        
+        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        {
+                String res = "";
+                
+                Matcher m = formulaPattern.matcher(formula);
+                if (m.find())
+                {
+                        String group1 = m.group(1);
+                        group1 = Parser.evaluate(group1, data);
+                        String group2 = m.group(2);
+                        group2 = Parser.evaluate(group2, data);
+                              
+                        int temp = 0;
+                        try
+                        {
+                                if (!group1.equals(""))
+                                {
+                                	temp ++;
+                                }
+                                
+                        }
+                        catch(Exception e)
+                        {
+                                
+                        }
+                        
+                        try
+                        {
+                        	if (!group2.equals(""))
+                            {
+                            	temp ++;
+                            }
+                        }
+                        catch(Exception e)
+                        {
+                                
+                        }
+                        
+                        res = Integer.toString(temp);   
+                }
+                return res;
+        }
 }

@@ -3,58 +3,51 @@ package sheetproject.formula;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sheetproject.alfabet.Alfabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class Proper extends AbstractFormula 
+public class Proper
 {
-	
-	@Override
-	public String parse(String formula)
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	static Pattern proper = Pattern.compile("\\s*PROPER\\(\\s*([A-Z])([0-9])\\s*\\)\\s*");
 
-	public static String parse(String formula, Sheet sheet) throws CharacterOutOfBoundsException
-	{
-		String res = "";
-		res = formula.trim();
-		res = formula.substring(1);
-		
-		Matcher m11 = proper.matcher(res);
-		
-		
-		if (m11.find())
-		{
-			res = "UNDEFINED";
-			int i = Alfabet.parseChar(m11.group(1));
-			int j = Integer.parseInt(m11.group(2));
-			try
-			{
-				String res2 = sheet.getCell(i, j).getFormula();
-			    
-				StringBuffer sb1 = new StringBuffer();  
-			    String[] res3 = res2.split(" ");  
-			       
-			    for(int k = 0; k < res3.length; k++)
-			    {
-			    	sb1.append(res3[k].substring(0, 1).toUpperCase());
-			    	sb1.append(res3[k].substring(1).toLowerCase());
-			    }
-			       
-			    res = sb1.toString();  
-			}
-			catch (Exception e)
-			{
-				res = "WARNING";
-			}
-		}
-		return res;
-	}
-
+        static Pattern formulaPattern = Pattern.compile("\\s*PROPER\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z\\s]+)\\s*\\)\\s*");
+        
+        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        {
+        	String res = "";
+            
+            Matcher m = formulaPattern.matcher(formula);
+            if (m.find())
+            {
+                    String group1 = m.group(1);
+                    group1 = Parser.evaluate(group1, data);
+                    
+                    String[] strings = group1.split("\\s+");
+                    
+                    for(int i = 0; i < strings.length; i++)
+                    {
+                    	String string = strings[i];
+                    	
+                    	if (string.length() > 1)
+                    	{
+	                    	string = string.toLowerCase();
+	                    	if (i == strings.length -1)
+	                    	{
+	                    		res += Character.toUpperCase(string.charAt(0)) + string.substring(1);
+	                    	}
+	                    	else
+	                    	{
+	                    		res += Character.toUpperCase(string.charAt(0)) + string.substring(1) + " ";
+	                    	}
+                    	}
+                    	else
+                    	{
+                    		string = string.toLowerCase();
+	            			res += Character.toUpperCase(string.charAt(0));
+                    	}
+                    }
+            }
+            return res;
+        }
 }

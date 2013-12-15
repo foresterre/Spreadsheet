@@ -1,62 +1,51 @@
 package sheetproject.formula;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sheetproject.alfabet.Alfabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
-import sheetproject.spreadsheet.Cell;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class Median extends AbstractFormula 
+public class Median
 {
-	
-	@Override
-	public String parse(String formula)
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	static Pattern median = Pattern.compile("\\s*MEDIAN\\(\\s*([A-Z])([0-9])\\s*:\\s*([A-Z])([0-9])\\s*\\)\\s*");
 
-	public static String parse(String formula, Sheet sheet) throws CharacterOutOfBoundsException
-	{
-		String res = "";
-		res = formula.trim();
-		res = formula.substring(1);
-		
-		Matcher m18 = median.matcher(res);
-		if (m18.find())
-		{
-			int i = Alfabet.parseChar(m18.group(1));
-			int j = Integer.parseInt(m18.group(2));
-			int k = Alfabet.parseChar(m18.group(3));
-			int l = Integer.parseInt(m18.group(4));
-			
-			ArrayList<Cell> list = new ArrayList<Cell>();
-			
-			if (i == k)
-			{
-				for (int q = j; q < l+1; q++)
-				{
-					list.add(sheet.getCell(i, q));
-				}
-			}
-			
-			int middle = list.size()/2;
-		    if (list.size()%2 == 1) 
-		    {
-		    	res =  (list.get(middle).getFormula());
-		    } 
-		    else 
-		    {
-		        res =  Double.toString((Integer.parseInt(list.get(middle-1).getFormula()) + Integer.parseInt(list.get(middle).getFormula())) / 2.0);
-		    }
-		}
-		return res;
-	}
-
+        static Pattern formulaPattern = Pattern.compile("\\s*MEDIAN\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        
+        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        {
+        	String res = "";
+            
+            Matcher m = formulaPattern.matcher(formula);
+            if (m.find())
+            {
+                    String group1 = m.group(1);
+                    group1 = Parser.evaluate(group1, data);
+                    String group2 = m.group(2);
+                    group2 = Parser.evaluate(group2, data);
+                    
+                    double temp = 0;
+                    try
+                    {
+                            temp += Double.parseDouble(group1);
+                    }
+                    catch(Exception e)
+                    {
+                            
+                    }
+                    
+                    try
+                    {
+                            temp += Double.parseDouble(group2);
+                    }
+                    catch(Exception e)
+                    {
+                            
+                    }
+    				
+    				return Double.toString(temp / 2.0); 
+            }
+            return res;
+        }
 }

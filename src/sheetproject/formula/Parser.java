@@ -116,11 +116,11 @@ public class Parser {
 	{
 		Sheet sheet = new Sheet();
 		Cell a = new Cell("6");
-		Cell b = new Cell("5");
+		Cell b = new Cell("");
 		sheet.setCell(a, 1, 1);
 		sheet.setCell(b, 1, 2);
 		
-		String z = Parser.parse("=SUM(A2,SUM(SUM(8,A1),A2))", sheet);
+		String z = Parser.parse("=IF(6=6,1,0)", sheet);
 		System.out.println(z);
 	}
 	

@@ -1,53 +1,58 @@
 package sheetproject.formula;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sheetproject.alfabet.Alfabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
-import sheetproject.spreadsheet.Cell;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class RoundDown extends AbstractFormula 
+public class Rounddown
 {
-	
-	@Override
-	public String parse(String formula)
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	static Pattern roundDown = Pattern.compile("\\s*ROUNDDOWN\\(\\s*([A-Z])([0-9])\\s*\\)\\s*");
-	
-	public static String parse(String formula, Sheet sheet) throws CharacterOutOfBoundsException
-	{
-		String res = "";
-		res = formula.trim();
-		res = formula.substring(1);
-		
-		Matcher m15 = roundDown.matcher(res);
-		if (m15.find())
-		{
-			int i = Alfabet.parseChar(m15.group(1));
-			int j = Integer.parseInt(m15.group(2));
-			try
-			{
-				double res2 = Double.parseDouble(sheet.getCell(i, j).getFormula());
-				res2 = Math.floor(res2);
-				res = Double.toString(res2);
-				
-			}
-			catch (Exception e)
-			{
-				res="NOT A NUMBER";
-			}
-		}
-		
-		return res;
-	
-	}
 
+        static Pattern formulaPattern = Pattern.compile("\\s*ROUNDDOWN\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        
+        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        {
+                String res = "";
+                
+                Matcher m = formulaPattern.matcher(formula);
+                if (m.find())
+                {
+                        String group1 = m.group(1);
+                        group1 = Parser.evaluate(group1, data);
+                        String group2 = m.group(2);
+                        group2 = Parser.evaluate(group2, data);
+                        
+                        double temp1 = 0;
+                        try
+                        {
+                                temp1 = Double.parseDouble(group1);
+                        }
+                        catch(Exception e)
+                        {
+                                
+                        }
+                        
+                        double temp2 = 0;
+                        try
+                        {
+                                temp2 = Double.parseDouble(group2);
+                        }
+                        catch(Exception e)
+                        {
+                                
+                        }
+                        
+                        
+                        if (temp2 < 0) throw new IllegalArgumentException();
+                        
+                        BigDecimal bd = new BigDecimal(temp1);
+                        bd = bd.setScale((int) temp2, BigDecimal.ROUND_HALF_DOWN);
+                        return Double.toString(bd.doubleValue());
+                }
+                return res;
+        }
 }

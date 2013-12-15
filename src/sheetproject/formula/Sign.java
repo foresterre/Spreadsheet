@@ -1,63 +1,50 @@
 package sheetproject.formula;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sheetproject.alfabet.Alfabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
-import sheetproject.spreadsheet.Cell;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class Sign extends AbstractFormula 
+public class Sign
 {
-	
-	@Override
-	public String parse(String formula)
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	static Pattern sign = Pattern.compile("\\s*SIGN\\(\\s*([A-Z])([0-9])\\s*\\)\\s*");
-	
-	public static String parse(String formula, Sheet sheet) throws CharacterOutOfBoundsException
-	{
-		String res = "";
-		res = formula.trim();
-		res = formula.substring(1);
-		
-		Matcher m16 = sign.matcher(res);
-		if (m16.find())
-		{
-			int i = Alfabet.parseChar(m16.group(1));
-			int j = Integer.parseInt(m16.group(2));
-			try
-			{
-				int res2 = Integer.parseInt(sheet.getCell(i, j).getFormula());
-				int res3 = 0;
-				if (res2 > 0)
-				{
-					res3 = 1;
-				}
-				else if (res2 == 0 ) 
-				{
-					res3 = 0;
-				} else if (res2 < 0)
-				{
-					res3 = -1;
-				}
-				res = Integer.toString(res3);
-			}
-			catch (Exception e)
-			{
-				res="NOT A NUMBER";
-			}
-		}
-		
-		return res;
-	
-	}
 
+        static Pattern formulaPattern = Pattern.compile("\\s*SIGN\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        
+        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        {
+        	String res = "NOT A NUMBER";
+            
+            Matcher m = formulaPattern.matcher(formula);
+            if (m.find())
+            {
+                    String group1 = m.group(1);
+                    group1 = Parser.evaluate(group1, data);
+                    
+                    try
+                    {
+                    	Double temp = Double.parseDouble(group1);
+                    	if (temp > 0)
+                    	{
+                    		return Integer.toString(1);
+                    	}
+                    	else if (temp < 0)
+                    	{
+                    		return Integer.toString(-1);
+                    	}
+                    	else
+                    	{
+                    		return Integer.toString(0);
+                    	}
+                    }
+                    catch(Exception e)
+                    {
+                    	return "NOT A NUMBER";
+                    }
+
+            }
+            return res;
+        }
 }
