@@ -26,8 +26,9 @@ import sheetproject.spreadsheet.*;
 
 public class Gui extends JFrame {
 	public int x = 1;
-	public int currentlySelectedRow = 0;
-	public int currentlySelectedColumn = 0;
+	public int currentlySelectedRow = 0; //default
+	public int currentlySelectedColumn = 0; //default
+	
 	private JPanel panel;
     private JTextArea area;
     private JTable table;
@@ -54,20 +55,28 @@ public class Gui extends JFrame {
 			{
 				
 				String a1 = arg0.paramString();
-			
+				
+				
+				//System.out.print(currentlySelectedRow + ", ");
+				//System.out.println(currentlySelectedColumn);
+				
+				if(currentlySelectedRow != -1 && currentlySelectedColumn != -1){
+				String valuex = (String) table.getValueAt(currentlySelectedRow, currentlySelectedColumn);
+				System.out.println("The value of Cell (" + currentlySelectedRow + ", " + currentlySelectedColumn + ") is " + valuex + ".");}
 				
 				currentlySelectedRow = table.getSelectedRow();
 				currentlySelectedColumn = table.getSelectedColumn();
-				System.out.println(currentlySelectedRow);
-				System.out.println(currentlySelectedColumn);
+				
+		//		System.out.print(currentlySelectedRow + ", ");
+	//			System.out.println(currentlySelectedColumn);
+
 			
 			}
 			
 
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				String valuex = (String) table.getValueAt(currentlySelectedRow, currentlySelectedColumn);
-				System.out.println("The value of Cell (" + currentlySelectedRow + ", " + currentlySelectedColumn + ") is " + valuex + ".");
+				
 			}};
 			
 			this.table.addFocusListener(focusListener);
@@ -147,35 +156,6 @@ public class Gui extends JFrame {
         JMenuItem fileSave = new JMenuItem("Save");
         fileSave.setMnemonic(KeyEvent.VK_S);
         fileSave.setToolTipText("Save spreadsheet");
-        fileSave.addActionListener(new ActionListener()
-        {
-
-			
-			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser filesave = new JFileChooser();
-                FileFilter filter = new FileNameExtensionFilter("c files", "c");
-                filesave.addChoosableFileFilter(filter);
-
-                int ret = filesave.showDialog(panel, "Save file");
-                
-                if (ret == JFileChooser.APPROVE_OPTION)
-                {
-                	for(int i = 0; i < Sheet.getRows(); i++)
-                	{
-                		for(int j = 0; j < Sheet.getColumns(); j++)
-                		{
-                			String key = i + "," + j;
-                			Cell value = (Cell) table.getModel().getValueAt(i, j);
-                			
-                			MainController.getSheet().getCells().put(key, value);
-                		}
-                	}
-                }
-				
-			}
-        	
-        	
-        });
         
         //menuitem 'Save as...'
         JMenuItem fileSaveas = new JMenuItem("Save as...");
