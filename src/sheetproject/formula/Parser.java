@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import sheetproject.exception.IllegalFormulaException;
 
-import sheetproject.spreadsheet.Sheet;
+import sheetproject.exception.IllegalFormulaException;
+import sheetproject.exception.NullObjectException;
+import sheetproject.spreadsheet.*;
 
 public class Parser {
 	
@@ -99,11 +100,16 @@ public class Parser {
 		return false;
 	}
 	
-	public static void main(String[] args) throws IllegalFormulaException
+	public static void main(String[] args) throws IllegalFormulaException, IndexOutOfBoundsException, NullObjectException
 	{
 		Sheet sheet = new Sheet();
-		String a = Parser.parse("=SUM(SUM(12,3),3)", sheet);
-		System.out.println(a);
+		Cell a = new Cell("6");
+		Cell b = new Cell("5");
+		sheet.setCell(a, 1, 1);
+		sheet.setCell(b, 1, 2);
+		
+		String z = Parser.parse("=SUM(A1,SUM(SUM(8,A1),A2))", sheet);
+		System.out.println(z);
 	}
 	
 	

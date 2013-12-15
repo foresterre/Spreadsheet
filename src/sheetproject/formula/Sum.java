@@ -41,8 +41,11 @@ public class Sum
                         }
                         if (m2.find())
                         {
-                                int i = Alfabet.parseChar(m.group(1));
-                                int j = Integer.parseInt(m.group(2));
+                        	String a = m2.group(0);
+                        	String ab = m2.group(1);
+                        	String abc = m2.group(2);
+                                int i = Alfabet.parseChar(m2.group(1));
+                                int j = Integer.parseInt(m2.group(2));
                                 String cellContent = data.getCell(i, j).getFormula();
                                 cellContent = Parser.evaluate(cellContent, data);
                                 number1 = Integer.parseInt(cellContent);
@@ -59,8 +62,8 @@ public class Sum
                         }
                         if (m3.find())
                         {
-                                int i = Alfabet.parseChar(m.group(1));
-                                int j = Integer.parseInt(m.group(2));
+                                int i = Alfabet.parseChar(m3.group(1));
+                                int j = Integer.parseInt(m3.group(2));
                                 String cellContent = data.getCell(i, j).getFormula();
                                 cellContent = Parser.evaluate(cellContent, data);
                                 number2 = Integer.parseInt(cellContent);
