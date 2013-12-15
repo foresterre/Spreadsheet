@@ -93,7 +93,7 @@ public class XmlDriver
 					}
 					catch(NumberFormatException e)
 					{
-						throw new FileCorruptException("The xml file has a entry with a too high column number. Max is " + Integer.MAX_VALUE);
+						throw new FileCorruptException("The xml file has a entry with a too high column number or is not a number. Max is " + Integer.MAX_VALUE);
 					}
 					
 					// Throw an exception if the xml file has a negative column number
@@ -115,7 +115,7 @@ public class XmlDriver
 					}
 					catch(NumberFormatException e)
 					{
-						throw new FileCorruptException("The xml file has a entry with a too high row number. Max is " + Integer.MAX_VALUE);
+						throw new FileCorruptException("The xml file has a entry with a too high row number or is not a number. Max is " + Integer.MAX_VALUE);
 					}
 					
 					// Throw an exception if the xml file has a negative row number
