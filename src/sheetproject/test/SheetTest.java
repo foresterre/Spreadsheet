@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -118,14 +119,14 @@ public class SheetTest {
 	}
 	
 	@Test
-	public void testParse() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException
+	public void testParse() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException, IllegalFormulaException
 	{
 		Sheet a = new Sheet();
 		a.parse();
 	}
 	
 	@Test
-	public void testParse2() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException
+	public void testParse2() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException, IllegalFormulaException
 	{
 		Sheet a = new Sheet();
 		Cell b = new Cell("test");

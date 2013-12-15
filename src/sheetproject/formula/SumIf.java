@@ -10,16 +10,9 @@ import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 
 
-public class SumIf extends AbstractFormula 
+public class Sumif
 {
-	
-	@Override
-	public String parse(String formula) 
-	{
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
+
 	static Pattern sumIf = Pattern.compile("\\s*SUMIF\\(\\s*([A-Z])([0-9])\\s*,\\s*([A-Z])([0-9])\\s*\\:\\s*([A-Z])([0-9])\\s*\\)\\s*");
 	
 	

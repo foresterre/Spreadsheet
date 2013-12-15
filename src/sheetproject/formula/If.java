@@ -14,7 +14,9 @@ import sheetproject.spreadsheet.Sheet;
 
 public class If
 {
-
+		
+		// TODO
+		// Eval staat standaard uit in jvm
         static Pattern formulaPattern = Pattern.compile("\\s*IF\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z0-9\\s=]+)\\s*,\\s*([a-zA-Z\\s0-9]+)\\s*,\\s*([a-zA-Z\\s0-9]+)\\s*\\)\\s*");
         
         public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
