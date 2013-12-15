@@ -3,7 +3,7 @@ package sheetproject.spreadsheet;
 import java.awt.Color;
 
 import sheetproject.exception.CharacterOutOfBoundsException;
-import sheetproject.formula.AbstractFormula;
+import sheetproject.formula.Formula;
 import sheetproject.formula.FormulesList;
 
 /**
