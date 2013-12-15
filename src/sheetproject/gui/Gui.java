@@ -146,7 +146,7 @@ public class Gui extends JFrame {
                     	Cell cell = MainController.getSheet().getCells().get(key);
                     	String value = cell.getValue();
                     	
-                    	table.setValueAt(value, rowIndex, columnIndex); 	
+                    	table.setValueAt(value, rowIndex -1, columnIndex -1); 	
                     }
                 }
             }
