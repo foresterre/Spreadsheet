@@ -10,81 +10,100 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.RowSorterEvent;
+import javax.swing.event.RowSorterListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
-import sheetproject.controller.*;
-import sheetproject.spreadsheet.*;
+import sheetproject.controller.MainController;
+import sheetproject.spreadsheet.Cell;
 
 
 
 public class Gui extends JFrame {
 	public int x = 1;
-	public int currentlySelectedRow = 0; //default
-	public int currentlySelectedColumn = 0; //default
-	
 	private JPanel panel;
     private JTextArea area;
     private JTable table;
-    private DefaultTableModel DTM;
     private FocusListener focusListener;
 
-    public Gui(MainController main)
-    {
-    	// Create a new menubar
+    public Gui() {
+    	
     	JMenuBar menubar = new JMenuBar();
-        
-    	// Create a new table
-        DTM = new DefaultTableModel(Sheet.getColumns(),Sheet.getRows());
-		this.table = new JTable(DTM);
-		
-		JScrollPane pane = new JScrollPane(table);
-		add(pane);
 
-    	this.focusListener = new FocusListener()
-    	{
+		table = new JTable(20, 20);
+        
+        TableRowSorter<TableModel> rowsorter = new TableRowSorter<TableModel>(table.getModel());
+        table.setRowSorter(rowsorter);
+        
+        AbstractTableModel model = new AbstractTableModel() {
+
+        	static final long serialVersionUID = 1L;
+        	
+            public int getColumnCount() {
+                return table.getColumnCount();
+            }
+
+            public Object getValueAt(int row, int column) {
+                return table.convertRowIndexToModel(row);
+            }
+
+            public int getRowCount() {
+                return table.getRowCount();
+            }
+        };
+        JTable Tablerow = new JTable(model);
+        Tablerow.setShowGrid(true);
+        Tablerow.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        Tablerow.setPreferredScrollableViewportSize(new Dimension(30, 0));
+        Tablerow.getColumnModel().getColumn(0).setPreferredWidth(30);
+ 
+
+ 
+		JScrollPane pane = new JScrollPane(table);
+		pane.setRowHeaderView(Tablerow);
+		add(pane);
+		table.changeSelection(0, 0, false, false);
+		
+		System.out.println(table.getSelectedRow() + table.getSelectedColumn());
+		
+    	/*this.focusListener = new FocusListener(){
 
 			@Override
-			public void focusGained(FocusEvent arg0)
-			{
+			public void focusGained(FocusEvent arg0) {
 				
 				String a1 = arg0.paramString();
 				
-				
-				//System.out.print(currentlySelectedRow + ", ");
-				//System.out.println(currentlySelectedColumn);
-				
-				if(currentlySelectedRow != -1 && currentlySelectedColumn != -1){
-				String valuex = (String) table.getValueAt(currentlySelectedRow, currentlySelectedColumn);
-				System.out.println("The value of Cell (" + currentlySelectedRow + ", " + currentlySelectedColumn + ") is " + valuex + ".");}
-				
-				currentlySelectedRow = table.getSelectedRow();
-				currentlySelectedColumn = table.getSelectedColumn();
-				
-		//		System.out.print(currentlySelectedRow + ", ");
-	//			System.out.println(currentlySelectedColumn);
-
-			
+				int a = table.getSelectedRow();
+				int a2 = table.getSelectedColumn();
+				System.out.println(a);
+				System.out.println(a2);
 			}
 			
 
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				
 			}};
 			
-			this.table.addFocusListener(focusListener);
-			initUI();
-    	}
+			this.table.addFocusListener(focusListener);*/
+        initUI();
+    }
 
-    public final void initUI()
-    {
+    public final void initUI() {
 
         JMenuBar menubar = new JMenuBar();
 		
@@ -96,24 +115,23 @@ public class Gui extends JFrame {
         JMenuItem fileNew = new JMenuItem("New");
         fileNew.setMnemonic(KeyEvent.VK_N);
         fileNew.setToolTipText("Make an new spreadsheet");
-        fileNew.addActionListener(new ActionListener() 
-        {
-	        public void actionPerformed(ActionEvent event) 
-	        {
-	
-	        	DTM = new DefaultTableModel(Sheet.getColumns(),Sheet.getRows());
-	        	table = new JTable(DTM);
-	        		
-	        	JScrollPane pane = new JScrollPane(table);
-	        	add(pane);
-	        		
-	        	setTitle("New spreadsheet " + x);
-	           	x++;
-	           	setSize(new Dimension(1365, 767));
-	           	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	           	setLocationRelativeTo(null);
-	            
-	        }
+        fileNew.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent event) {
+
+        		JTable table = new JTable(10, 6);
+                for (int i = 0; i < table.getRowCount(); i++) {
+                    table.setValueAt(i, i, 0);
+                }
+      
+        		JScrollPane pane = new JScrollPane(table);
+        		add(pane);
+        		
+                setTitle("New spreadsheet " + x);
+                x++;
+                setSize(new Dimension(1365, 767));
+                setDefaultCloseOperation(EXIT_ON_CLOSE);
+                setLocationRelativeTo(null);
+        	}
         });
         
         
@@ -125,7 +143,7 @@ public class Gui extends JFrame {
         {
             public void actionPerformed(ActionEvent event)
             {
-            	JFileChooser fileopen = new JFileChooser();
+                    JFileChooser fileopen = new JFileChooser();
                 FileFilter filter = new FileNameExtensionFilter("c files", "c");
                 fileopen.addChoosableFileFilter(filter);
 
@@ -133,20 +151,19 @@ public class Gui extends JFrame {
 
                 if (ret == JFileChooser.APPROVE_OPTION)
                 {
-                	File file = fileopen.getSelectedFile();
-                 	String filename = file.getName();
-                 	MainController.openFile(file);
+                        File file = fileopen.getSelectedFile();
+                         MainController.openFile(file);
                     
                     for(String key : MainController.getSheet().getCells().keySet())
                     {
-                    	String[] index = key.split(",");
-                    	int columnIndex = Integer.parseInt(index[0]);
-                    	int rowIndex = Integer.parseInt(index[1]);
-                    	
-                    	Cell cell = MainController.getSheet().getCells().get(key);
-                    	String value = cell.getValue();
-                    	
-                    	table.setValueAt(value, rowIndex -1, columnIndex -1); 	
+                            String[] index = key.split(",");
+                            int columnIndex = Integer.parseInt(index[0]);
+                            int rowIndex = Integer.parseInt(index[1]);
+                            
+                            Cell cell = MainController.getSheet().getCells().get(key);
+                            String value = cell.getValue();
+                            
+                            table.setValueAt(value, rowIndex -1, columnIndex -1);         
                     }
                 }
             }
@@ -159,17 +176,15 @@ public class Gui extends JFrame {
         
         //menuitem 'Save as...'
         JMenuItem fileSaveas = new JMenuItem("Save as...");
-        fileSave.setMnemonic(KeyEvent.VK_A);
+        fileSave.setMnemonic(KeyEvent.VK_S);
         fileSave.setToolTipText("Save spreadsheet as...");
 
         //menuitem 'Exit'
         JMenuItem fileExit = new JMenuItem("Exit");
         fileExit.setMnemonic(KeyEvent.VK_W);
         fileExit.setToolTipText("Exit application");
-        fileExit.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent event) 
-            {
+        fileExit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
                 System.exit(0);
             }
 
@@ -193,44 +208,36 @@ public class Gui extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-//    public static void main(String[] args)
-//    {
-//        SwingUtilities.invokeLater(new Runnable() 
-//        {
-//            public void run() 
-//            {
-//                Gui ex = new Gui();
-//                ex.setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                Gui ex = new Gui();
+                ex.setVisible(true);
+            }
+        });
+    }
     
-//    public String readFile(File file) 
-//    {
-//
-//        StringBuffer fileBuffer = null;
-//        String fileString = null;
-//        String line = null;
-//
-//        try 
-//        {
-//            FileReader in = new FileReader(file);
-//            BufferedReader brd = new BufferedReader(in);
-//            fileBuffer = new StringBuffer();
-//
-//            while ((line = brd.readLine()) != null) 
-//            {
-//                fileBuffer.append(line).append(
-//                        System.getProperty("line.separator"));
-//            }
-//
-//            in.close();
-//            fileString = fileBuffer.toString();
-//        } 
-//        catch (IOException e)
-//        {
-//            return null;
-//        }
-//        return fileString;
-//    }
+    public String readFile(File file) {
+
+        StringBuffer fileBuffer = null;
+        String fileString = null;
+        String line = null;
+
+        try {
+            FileReader in = new FileReader(file);
+            BufferedReader brd = new BufferedReader(in);
+            fileBuffer = new StringBuffer();
+
+            while ((line = brd.readLine()) != null) {
+                fileBuffer.append(line).append(
+                        System.getProperty("line.separator"));
+            }
+
+            in.close();
+            fileString = fileBuffer.toString();
+        } catch (IOException e) {
+            return null;
+        }
+        return fileString;
+    }
 }
