@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import sheetproject.controller.*;
 import sheetproject.spreadsheet.*;
+import sheetproject.exception.*;
 
 
 
@@ -146,7 +147,15 @@ public class Gui extends JFrame {
                     	Cell cell = MainController.getSheet().getCells().get(key);
                     	String value = cell.getValue();
                     	
-                    	table.setValueAt(value, rowIndex -1, columnIndex -1); 	
+                    	if(columnIndex < Sheet.getColumns() || rowIndex < Sheet.getRows())
+                    	{
+                    		table.setValueAt(value, rowIndex -1, columnIndex -1); 	
+                    	}
+                    	else
+                    	{
+                    		System.err.println("Error out of bounds");
+                    	}
+                    	
                     }
                 }
             }
