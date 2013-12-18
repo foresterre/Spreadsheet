@@ -18,6 +18,7 @@ public class XmlDriverTest {
 	@Test
 	public void testReadEmpty() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
 	{	
+		File f = new File("xml/testReadEmpty.xml");
 		Sheet sheet = XmlDriver.read("xml/testReadEmpty.xml");
 		assertEquals(0, sheet.getCells().size());
 	}
