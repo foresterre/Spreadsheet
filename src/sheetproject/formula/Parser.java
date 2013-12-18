@@ -114,11 +114,11 @@ public class Parser {
 	{
 		Sheet sheet = new Sheet();
 		Cell a = new Cell("6");
-		Cell b = new Cell("");
+		Cell b = new Cell("12");
 		sheet.setCell(a, 1, 1);
 		sheet.setCell(b, 1, 2);
 		
-		String z = Parser.parse("=IF(6=6,1,0)", sheet);
+		String z = Parser.parse("=SUM(6,PRODUCT(A1,A2))", sheet);
 		System.out.println(z);
 	}
 	

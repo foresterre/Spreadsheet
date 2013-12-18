@@ -7,7 +7,7 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.FileCorruptException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
-import sheetproject.gui.Gui;
+import sheetproject.view.View;
 import sheetproject.spreadsheet.Sheet;
 import sheetproject.spreadsheet.XmlDriver;
 
@@ -26,19 +26,24 @@ import sheetproject.spreadsheet.XmlDriver;
 public class MainController {
 	
 	/**
+	 * Debug variable
+	 */
+	public static boolean DEBUG = true; 
+	
+	/**
 	 * variable containing the sheet table
 	 */
-	private static Sheet sheet;
+	private Sheet sheet;
 	
 	/**
 	 * variable containing the GUI
 	 */
-	private static Gui gui;
+	private static View view;
 	
 	/**
 	 * variable containing the name of the file
 	 */
-	private static File filename;
+	private File filename;
 
 	/**
 	 * Application starting point
@@ -47,12 +52,20 @@ public class MainController {
 	 */
 	public static void main(String[] args) 
 	{
-		MainController main = new MainController();
-		gui = new Gui(main);
-		gui.setVisible(true);
 		
-		//openFile("xml/testRead.xml");
-		//saveFileAs("xml/testWriteOut.xml");
+		javax.swing.SwingUtilities.invokeLater(new Runnable() 
+		{
+			public void run()
+			{
+				MainController main = new MainController();
+				view = new View(main);
+			}
+		});
+		
+		if(MainController.DEBUG)
+		{
+			System.out.println("DEBUGGING MODE: ON");
+		}
 	}
 	
 	/**
@@ -61,30 +74,46 @@ public class MainController {
 	 * @param filename The name of the file to read
 	 * @return boolean True if file reading succeeded
 	 */
-	public static boolean openFile(File filename)
+	public boolean openFile(File filename)
 	{
 		boolean succes = false;
 		try
 		{
 			setSheet(XmlDriver.read(filename));
-			MainController.filename = filename;
+			this.filename = filename;
 			succes = true;
 		} 
 		catch (FileCorruptException e)
 		{
-			System.err.println(e.getMessage());
+			if(MainController.DEBUG)
+			{
+				System.err.println(e.getMessage());
+			}
 		} catch (IndexOutOfBoundsException e) {
-			System.err.println(e.getMessage());
+			if(MainController.DEBUG)
+			{
+				System.err.println(e.getMessage());
+			}	
 		} catch (NullObjectException e) {
-			System.err.println(e.getMessage());
+			if(MainController.DEBUG)
+			{
+				System.err.println(e.getMessage());
+			}	
 		} catch (FileNotFoundException e) {
-			System.err.println(e.getMessage());
+			if(MainController.DEBUG)
+			{
+				System.err.println(e.getMessage());
+			}	
 		} catch (CharacterOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(MainController.DEBUG)
+			{
+				System.err.println(e.getMessage());
+			}	
 		} catch (IllegalFormulaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(MainController.DEBUG)
+			{
+				System.err.println(e.getMessage());
+			}	
 		}
 		return succes;
 	}
@@ -93,7 +122,7 @@ public class MainController {
 	/**
 	 * Method for new file
 	 */
-	public static void newFile()
+	public void newFile()
 	{
 		setSheet(new Sheet());
 	}
@@ -103,19 +132,22 @@ public class MainController {
 	 * 
 	 * @return boolean True if file save succeeded
 	 */
-//	public static boolean saveFile()
-//	{
-//		boolean success = false;
-//		if (filename.equals(""))
-//		{
-//			System.err.println("You have not opened a file yet");
-//		} else
-//		{
-//			success = saveFileAs(filename);
-//		}
-//		
-//		return success;
-//	}
+	public boolean saveFile()
+	{
+		boolean success = false;
+		if (this.filename.equals(null))
+		{
+			if(MainController.DEBUG)
+			{
+				System.err.println("You have not opened a file yet");
+			}	
+		} else
+		{
+			success = saveFileAs(filename);
+		}
+		
+		return success;
+	}
 	
 	/**
 	 * Method for saving current sheet to new file
@@ -123,17 +155,20 @@ public class MainController {
 	 * @param filename Name of new file
 	 * @return boolean True if file write succeeded
 	 */
-	public static boolean saveFileAs(String filename)
+	public boolean saveFileAs(File filename)
 	{
 		boolean success = false;
 		try
 		{
 			XmlDriver driver = new XmlDriver();
-			driver.write(sheet, filename);
+			driver.write(this.sheet, filename);
 			success = true;
 		} catch(Exception e)
 		{
-			
+			if(MainController.DEBUG)
+			{
+				System.err.println(e.getStackTrace());
+			}	
 		}
 		return success;
 	}
@@ -141,15 +176,23 @@ public class MainController {
 	/**
 	 * @return the sheet
 	 */
-	public static Sheet getSheet() {
+	public Sheet getSheet() {
 		return sheet;
 	}
 
 	/**
 	 * @param sheet Sets a Sheet object to the MainController sheet 
 	 */
-	public static void setSheet(Sheet sheet) {
-		MainController.sheet = sheet;
+	public void setSheet(Sheet sheet) {
+		this.sheet = sheet;
+	}
+	
+	public File getFilename() {
+		return filename;
+	}
+
+	public void setFilename(File filename) {
+		this.filename = filename;
 	}
 
 }

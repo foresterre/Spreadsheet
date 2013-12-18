@@ -167,14 +167,10 @@ public class XmlDriver
 	 * @param sheetObject The data which will be written to the XML file
 	 * @param filename The XML file which to which will be written
 	 */
-	public void write(Sheet sheetObject, String filename) 
+	public void write(Sheet sheetObject, File filename) 
 	{
 		try 
-		{
-			// Get the rows and columns from the Sheet object
-			int columns = Sheet.getColumns();
-			int rows = Sheet.getRows();
-			
+		{			
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();			 
 		
@@ -206,7 +202,7 @@ public class XmlDriver
 			
 			// write the content into xml file			
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(filename));			
+			StreamResult result = new StreamResult(filename);			
 				
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");

@@ -31,14 +31,16 @@ public class If
                         String group2 = m.group(2);
                         String group3 = m.group(3);
                         
-                        ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
+                        ScriptEngine engine = new ScriptEngineManager().getEngineByName("Python");
                         
-                        if ()
+                        if (group1)
                         {
+                        	group2 = Parser.parse(group2, data);
                         	return group2;
                         }
                         else
                         {
+                        	group3 = Parser.parse(group3, data);
                         	return group3;
                         }
                         	

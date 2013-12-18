@@ -2,6 +2,8 @@ package sheetproject.spreadsheet;
 
 import java.util.HashMap;
 
+import javax.swing.table.AbstractTableModel;
+
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
@@ -16,18 +18,18 @@ import sheetproject.exception.NullObjectException;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-public class Sheet 
+public class Sheet extends AbstractTableModel
 {
 	
 	/**
 	 * Static variable containing the number of columns in the table
 	 */
-	final static int columns = 10;
+	final static int columns = 100;
 	
 	/**
 	 * Static variable containing the number of rows in the table
 	 */
-	final static int rows = 20;
+	final static int rows = 200;
 	
 	/**
 	 * HashMap containing the cells of the table 
@@ -197,5 +199,20 @@ public class Sheet
             
             return returnString;
     }
+
+	@Override
+	public int getColumnCount() {
+		return Sheet.getColumns();
+	}
+
+	@Override
+	public int getRowCount() {
+		return Sheet.getRows();
+	}
+
+	@Override
+	public Object getValueAt(int x, int y) {
+		return this.getCell(x + 1, y + 1);
+	}
 
 }
