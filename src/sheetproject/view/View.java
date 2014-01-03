@@ -55,6 +55,8 @@ public class View extends JFrame
 	
 	private JTextField selectionIndicator;
 	
+	private JTextField textField;
+	
 	public View(MainController controller)
 	{
 		// Set visibility to TRUE
@@ -162,7 +164,7 @@ public class View extends JFrame
         selectionIndicator.setPreferredSize(new Dimension(10, 24));
         this.toolbar.add(selectionIndicator);
         
-        JTextField textField = new JTextField();
+        textField = new JTextField();
         this.toolbar.add(textField);
         
         this.add(this.toolbar, BorderLayout.PAGE_START);
@@ -194,6 +196,11 @@ public class View extends JFrame
 				int selectedColumn = getTable().columnAtPoint(e.getPoint());
 				
 				selectionIndicator.setText("(" + selectedRow + ", " + selectedColumn + ")");
+				
+				
+					String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+					textField.setText(displayString);
+				
 			}
 		});
 		
