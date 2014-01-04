@@ -13,6 +13,7 @@ import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.MessageFormat;
 
+
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -27,6 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -56,6 +59,8 @@ public class View extends JFrame
 	private JTextField selectionIndicator;
 	
 	private JTextField textField;
+	
+	
 	
 	public View(MainController controller)
 	{
@@ -189,21 +194,34 @@ public class View extends JFrame
 		this.getTable().setCellSelectionEnabled(true);
 		
 		this.getTable().addMouseListener(new MouseAdapter(){
-			
-			@Override
-			public void mouseClicked(MouseEvent e){
-				int selectedRow = getTable().rowAtPoint(e.getPoint());
-				int selectedColumn = getTable().columnAtPoint(e.getPoint());
-				
-				selectionIndicator.setText("(" + selectedRow + ", " + selectedColumn + ")");
-				
-				
-					String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
-					textField.setText(displayString);
-				
-			}
+            
+            @Override
+            public void mouseClicked(MouseEvent e){
+               int selectedRow = getTable().rowAtPoint(e.getPoint());
+                    int selectedColumn = getTable().columnAtPoint(e.getPoint());
+                    
+                    selectionIndicator.setText("(" + selectedRow + ", " + selectedColumn + ")");
+                    
+                    String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+                    textField.setText(displayString);
+                    
+            	}
 		});
 		
+		this.getTable().getModel().addTableModelListener(new TableModelListener(){
+
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				int selectedRow = e.getFirstRow();
+				int selectedColumn = e.getColumn();
+				
+				String changedValue = (String) getTable().getValueAt(selectedRow, selectedColumn);
+				System.out.println(changedValue);
+				getController().getSheet().getCell(selectedColumn, selectedRow).setValue(changedValue);
+			}
+			
+		});
+
 		// Setup row number table
 		TableRowSorter<TableModel> rowsorter = new TableRowSorter<TableModel>(getTable().getModel());
 		this.getTable().setRowSorter(rowsorter);
@@ -342,7 +360,9 @@ class FileOpen implements ActionListener
 	        	}
 	        }
 	        
-	        this.view.changeTitle(tempFileName);     
+	        this.view.changeTitle(tempFileName);
+	        
+	        
             
             for(String key : controller.getSheet().getCells().keySet())
             {
