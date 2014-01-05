@@ -19,8 +19,8 @@ import sheetproject.formula.Parser;
 public class Cell 
 {
 
-	static final int UPTODATE = 0;
-	static final int EDITED   = 1;
+	public static final int UPTODATE = 0;
+	public static final int EDITED   = 1;
 	
 	/**
 	 * Variable containing the value of the cell

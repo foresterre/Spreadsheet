@@ -8,6 +8,7 @@ import sheetproject.exception.FileCorruptException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.view.View;
+import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 import sheetproject.spreadsheet.XmlDriver;
 
@@ -124,7 +125,8 @@ public class MainController {
 	 */
 	public void newFile()
 	{
-		setSheet(new Sheet());
+		this.setSheet(new Sheet());
+		this.filename = null;
 	}
 	
 	/**
@@ -135,7 +137,7 @@ public class MainController {
 	public boolean saveFile()
 	{
 		boolean success = false;
-		if (this.filename.equals(null))
+		if (this.filename == null)
 		{
 			if(MainController.DEBUG)
 			{
@@ -144,6 +146,15 @@ public class MainController {
 		} else
 		{
 			success = saveFileAs(filename);
+		}
+		
+		if(success)
+		{
+			for(String key : this.getSheet().getCells().keySet())
+            {
+                    Cell cell = this.getSheet().getCells().get(key);
+                    cell.setState(Cell.UPTODATE);     
+            }
 		}
 		
 		return success;
@@ -170,6 +181,16 @@ public class MainController {
 				System.err.println(e.getStackTrace());
 			}	
 		}
+		
+		if(success)
+		{
+			for(String key : this.getSheet().getCells().keySet())
+            {
+                    Cell cell = this.getSheet().getCells().get(key);
+                    cell.setState(Cell.UPTODATE);     
+            }
+		}
+		
 		return success;
 	}
 

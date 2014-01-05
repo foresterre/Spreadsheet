@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.MessageFormat;
@@ -21,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -40,6 +44,7 @@ import javax.swing.table.TableRowSorter;
 import sheetproject.controller.MainController;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
+import sheetproject.exception.NullObjectException;
 import sheetproject.exception.NumberOutOfBoundsException;
 import sheetproject.alfabet.Alfabet;
 import sheetproject.spreadsheet.Cell;
@@ -66,7 +71,9 @@ public class View extends JFrame
 	
 	private JTextField textField;
 	
+	private JScrollPane scrollPane;
 	
+	int newDocument = 0;
 	
 	public View(MainController controller)
 	{
@@ -74,8 +81,9 @@ public class View extends JFrame
 		this.setVisible(true);
 		
 		// Set default closing action
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new FileExit(this));
+	
 		// Make application maximized
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);  
 		
@@ -91,7 +99,11 @@ public class View extends JFrame
 		this.setIconImage(titleIcon);
 		
 		this.setupLayout();
+		this.getController().newFile();
 		this.setupTable();
+		this.changeTitle("New Spreadsheet");
+		this.newDocument++;
+		
 	}
 	
 	public void setupLayout()
@@ -144,13 +156,7 @@ public class View extends JFrame
         fileExit.setMnemonic(KeyEvent.VK_Q);
         fileExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
         fileExit.setToolTipText("Exit Application");
-        fileExit.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-        	
-        });
+        fileExit.addActionListener(new FileExit(this));
  
         // Add menu items to file menu bar item
         file.add(fileNew);
@@ -191,6 +197,7 @@ public class View extends JFrame
 	
 	public void setupTable()
 	{
+		
 		// Setup default table
 		DefaultTableModel dtm = new DefaultTableModel(Sheet.getRows(),Sheet.getColumns());
 		
@@ -238,11 +245,29 @@ public class View extends JFrame
 				int selectedRow = e.getFirstRow();
 				
 				String changedValue = (String) getTable().getValueAt(selectedRow, selectedColumn);
-				getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).setFormula(changedValue);
+				
+				try
+				{
+					Cell cell = getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1);
+					cell.setFormula(changedValue);
+					cell.setState(Cell.EDITED);
+				}
+				catch(NullPointerException e1)
+				{
+					if (!changedValue.equals(""))
+					{
+						try {
+							Cell newCell = new Cell(changedValue);
+							newCell.setState(Cell.EDITED);
+							getController().getSheet().setCell(newCell, selectedColumn + 1, selectedRow + 1);
+						} catch (IndexOutOfBoundsException | NullObjectException e2) {
+						}
+					}
+				}
+				
 				try {
 					getController().getSheet().parse();
-				} catch (CharacterOutOfBoundsException
-						| IllegalFormulaException e1) {
+				} catch (CharacterOutOfBoundsException | IllegalFormulaException e1) {
 				}
 			}
 			
@@ -273,10 +298,6 @@ public class View extends JFrame
             }
 		};
 		
-		
-		
-		
-		
 		JTable Tablerow = new JTable(model);
 		Tablerow.setShowGrid(true);
 		Tablerow.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -291,11 +312,38 @@ public class View extends JFrame
 		
 		 
 		// Add both tables to the scroll pane
-		JScrollPane scrollPane = new JScrollPane(getTable());
+		this.scrollPane = new JScrollPane(getTable());
 		scrollPane.setRowHeaderView(Tablerow);
 		
 		
         this.add(scrollPane, BorderLayout.CENTER);
+	}
+	
+	public void clearTable()
+	{
+		MainController controller = this.getController();
+		for(String key : controller.getSheet().getCells().keySet())
+        {
+                String[] index = key.split(",");
+                int columnIndex = Integer.parseInt(index[0]);
+                int rowIndex = Integer.parseInt(index[1]);
+                
+                this.getTable().setValueAt("", rowIndex -1, columnIndex -1);         
+        }
+	}
+	
+	public boolean isTableChanged()
+	{
+		MainController controller = this.getController();
+		for(String key : controller.getSheet().getCells().keySet())
+        {              
+                Cell cell = controller.getSheet().getCells().get(key);
+                if (cell.getState() == Cell.EDITED)
+                {
+                	return true;
+                }
+        }
+		return false;
 	}
 	
 	public void changeTitle(String title)
@@ -337,6 +385,14 @@ public class View extends JFrame
 		this.statusLabel.setText(status);
 	}
 
+	public String getApplicationTitle() {
+		return applicationTitle;
+	}
+
+	public void setApplicationTitle(String applicationTitle) {
+		this.applicationTitle = applicationTitle;
+	}
+
 	public MainController getController() {
 		return controller;
 	}
@@ -364,8 +420,77 @@ class FileNew implements ActionListener
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		if (!this.view.isTableChanged())
+		{
+			this.function();
+		}
+		else
+		{
+			String fileName = "";
+			if(this.view.getController().getFilename() == null)
+			{
+				if (this.view.newDocument - 1 == 0)
+				{
+					fileName = "New Spreadsheet";
+				}
+				else
+				{
+					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
+				}
+			}
+			else
+			{
+				fileName = this.view.getController().getFilename().getName();
+			}
+			
+			Object[] options = 
+			{
+					"Save",
+					"Don't Save",
+					"Cancel"
+            };
+			
+			int n = JOptionPane.showOptionDialog(
+				this.view,
+			    "Want to save your changes to " + fileName + "?",
+			    this.view.getApplicationTitle(),
+			    JOptionPane.YES_NO_CANCEL_OPTION,
+			    JOptionPane.QUESTION_MESSAGE,
+			    null,
+			    options,
+			    options[2]
+			 );
+			
+			if(n == 0)
+			{
+				new FileSave(this.view).actionPerformed(e);
+				this.function();
+			}
+			else if(n == 1)
+			{
+				this.function();
+			}
+			else if (n == 2)
+			{
+			}
+		}
+	}
+	
+	public void function()
+	{
+		this.view.clearTable();
 		this.view.getController().newFile();
-		this.view.setupTable();
+		
+		if (this.view.newDocument == 0)
+		{
+			this.view.changeTitle("New Spreadsheet");
+			this.view.newDocument++;
+		}
+		else
+		{
+			this.view.changeTitle("New Spreadsheet" + this.view.newDocument);
+			this.view.newDocument++;
+		}
 	}
 }
 
@@ -379,6 +504,65 @@ class FileOpen implements ActionListener
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		
+		if (!this.view.isTableChanged())
+		{
+			this.function();
+		}
+		else
+		{
+			String fileName = "";
+			if(this.view.getController().getFilename() == null)
+			{
+				if (this.view.newDocument - 1 == 0)
+				{
+					fileName = "New Spreadsheet";
+				}
+				else
+				{
+					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
+				}
+			}
+			else
+			{
+				fileName = this.view.getController().getFilename().getName();
+			}
+			
+			Object[] options = 
+			{
+					"Save",
+					"Don't Save",
+					"Cancel"
+            };
+			
+			int n = JOptionPane.showOptionDialog(
+				this.view,
+			    "Want to save your changes to " + fileName + "?",
+			    this.view.getApplicationTitle(),
+			    JOptionPane.YES_NO_CANCEL_OPTION,
+			    JOptionPane.QUESTION_MESSAGE,
+			    null,
+			    options,
+			    options[2]
+			 );
+			
+			if(n == 0)
+			{
+				new FileSave(this.view).actionPerformed(e);
+				this.function();
+			}
+			else if(n == 1)
+			{
+				this.function();
+			}
+			else if (n == 2)
+			{
+			}
+		}
+	}
+	
+	public void function()
+	{
 		JFileChooser fileOpen = new JFileChooser();
 		fileOpen.setFileFilter(new OpenFileFilter(".scarlet"));
 		
@@ -387,6 +571,8 @@ class FileOpen implements ActionListener
 		if (ret == JFileChooser.APPROVE_OPTION)
         {
 			MainController controller = view.getController();
+			
+			this.view.clearTable();
 			
 	        File file = fileOpen.getSelectedFile();
 	        controller.openFile(file);
@@ -435,7 +621,7 @@ class FileSave implements ActionListener
 		
 		if(this.view.getController().getFilename() == null)
 		{
-			new FileSaveAs(this.view);
+			new FileSaveAs(this.view).actionPerformed(e);
 		}
 		else
 		{
@@ -501,8 +687,92 @@ class FilePrint implements ActionListener
 		    	System.err.println("User cancelled printing");
 		    }
 		} catch (PrinterException ex) {
-		    System.err.format("Cannot print %s%n", ex.getMessage());
+			if(MainController.DEBUG)
+			{
+				System.err.format("Cannot print %s%n", ex.getMessage());
+			}
 		}
+	}
+}
+
+class FileExit extends WindowAdapter implements ActionListener
+{
+	private View view;
+	
+	public FileExit(View view)
+	{
+		this.view = view;
+	}
+	
+    public void windowClosing(WindowEvent e) {
+        this.check();
+    }
+	
+	public void actionPerformed(ActionEvent e) {
+		this.check();
+	}
+	
+	public void check()
+	{
+		if (!this.view.isTableChanged())
+		{
+			this.function();
+		}
+		else
+		{
+			String fileName = "";
+			if(this.view.getController().getFilename() == null)
+			{
+				if (this.view.newDocument - 1 == 0)
+				{
+					fileName = "New Spreadsheet";
+				}
+				else
+				{
+					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
+				}
+			}
+			else
+			{
+				fileName = this.view.getController().getFilename().getName();
+			}
+			
+			Object[] options = 
+			{
+					"Save",
+					"Don't Save",
+					"Cancel"
+            };
+			
+			int n = JOptionPane.showOptionDialog(
+				this.view,
+			    "Want to save your changes to " + fileName + "?",
+			    this.view.getApplicationTitle(),
+			    JOptionPane.YES_NO_CANCEL_OPTION,
+			    JOptionPane.QUESTION_MESSAGE,
+			    null,
+			    options,
+			    options[2]
+			 );
+			
+			if(n == 0)
+			{
+				new FileSave(this.view).actionPerformed(null);
+				this.function();
+			}
+			else if(n == 1)
+			{
+				this.function();
+			}
+			else if (n == 2)
+			{
+			}
+		}
+	}
+	
+	public void function()
+	{
+		System.exit(0);
 	}
 }
 
