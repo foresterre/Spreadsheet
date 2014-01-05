@@ -176,7 +176,6 @@ public class Cell
 	 */
 	public void parse(Sheet sheet) throws CharacterOutOfBoundsException, IllegalFormulaException
 	{
-		// Fout: parseFormula methode bestaat niet
 		this.value = Parser.parse(this.formula, sheet);
 	}
 	

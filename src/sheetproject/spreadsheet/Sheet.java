@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.swing.table.AbstractTableModel;
 
+import sheetproject.controller.MainController;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
@@ -214,5 +215,27 @@ public class Sheet extends AbstractTableModel
 	public Object getValueAt(int x, int y) {
 		return this.getCell(x + 1, y + 1);
 	}
+	
+	@Override
+	public boolean isCellEditable(int row, int col) {
+		return true;
+    }
 
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+        try {
+			this.setCell((Cell) value, col, row);
+		} catch (IndexOutOfBoundsException | NullObjectException e) {
+			if(MainController.DEBUG)
+			{
+				e.printStackTrace();
+			}
+		}
+        fireTableCellUpdated(row, col);
+    }
+	
+	@Override
+	public Class getColumnClass(int c) {
+        return getValueAt(0, c).getClass();
+    }
 }

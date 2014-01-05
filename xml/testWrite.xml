@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <SPREADSHEET>
-    <CELL column="1" row="1">test</CELL>
-    <CELL column="1" row="2">test</CELL>
-    <CELL column="1" row="3">test</CELL>
+    <CELL backgroundColor="-1" column="1" foregroundColor="-16777216" row="1">test</CELL>
+    <CELL backgroundColor="-1" column="1" foregroundColor="-16777216" row="2">test</CELL>
+    <CELL backgroundColor="-1" column="1" foregroundColor="-16777216" row="3">test</CELL>
 </SPREADSHEET>

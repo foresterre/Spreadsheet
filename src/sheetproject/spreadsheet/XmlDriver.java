@@ -1,5 +1,6 @@
 package sheetproject.spreadsheet;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -135,6 +136,12 @@ public class XmlDriver
 						throw new FileCorruptException("The xml file has to many rows. Max is " + rows);
 					}
 					
+					// Colors
+					int colorForeground = Integer.parseInt(element.getAttribute("foregroundColor"));
+					cell.setForeground(new Color(colorForeground));
+					int colorBackground = Integer.parseInt(element.getAttribute("backgroundColor"));
+					cell.setBackground(new Color(colorBackground));
+					
 					// Check for duplicates
 					if (check.contains(x + "," + y)){
 						throw new FileCorruptException("XML contains duplicate cells");
@@ -180,6 +187,8 @@ public class XmlDriver
 			
 			for (String key : sheetObject.getCells().keySet())
 			{
+				// Create Shortcut
+				Cell item = sheetObject.getCells().get(key);
 
 				// Create cell Element
 				Element cell = doc.createElement("CELL");
@@ -194,8 +203,14 @@ public class XmlDriver
 				cell.setAttribute("column", coords[0]);
 				
 				// Set content
-				cell.setTextContent(sheetObject.getCells().get(key).getFormula());
-						
+				cell.setTextContent(item.getFormula());
+				
+				// Set colors
+				String colorForeground = Integer.toString(item.getForeground().getRGB());
+				cell.setAttribute("foregroundColor", colorForeground);
+				String colorBackground = Integer.toString(item.getBackground().getRGB());
+				cell.setAttribute("backgroundColor", colorBackground);
+				
 				// Add the child "cell" to the sheetElement
 				sheetElement.appendChild(cell);
 			}

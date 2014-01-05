@@ -2,11 +2,14 @@ package sheetproject.test;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.junit.Test;
 
+import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.FileCorruptException;
+import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -16,80 +19,91 @@ import sheetproject.spreadsheet.XmlDriver;
 public class XmlDriverTest {
 
 	@Test
-	public void testReadEmpty() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadEmpty() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
 		File f = new File("xml/testReadEmpty.xml");
-		Sheet sheet = XmlDriver.read("xml/testReadEmpty.xml");
+		Sheet sheet = XmlDriver.read(f);
 		assertEquals(0, sheet.getCells().size());
 	}
 	
 	@Test(expected=FileCorruptException.class)
-	public void testReadFileCorruptTooHighColumnNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadFileCorruptTooHighColumnNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadCorruptTooHighColumnNumber.xml");
+		File f = new File("xml/testReadCorruptTooHighColumnNumber.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 	
 	@Test(expected=FileCorruptException.class)
-	public void testReadFileCorruptNegativeColumnNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadFileCorruptNegativeColumnNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadCorruptNegativeColumnNumber.xml");
+		File f = new File("xml/testReadCorruptNegativeColumnNumber.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 	
 	@Test(expected=FileCorruptException.class)
-	public void testReadFileCorruptTooManyColumns() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadFileCorruptTooManyColumns() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadCorruptTooManyColumns.xml");
+		File f = new File("xml/testReadCorruptTooManyColumns.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 	
 	@Test(expected=FileCorruptException.class)
-	public void testReadFileCorruptTooHighRowNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadFileCorruptTooHighRowNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadCorruptTooHighRowNumber.xml");
+		File f = new File("xml/testReadCorruptTooHighRowNumber.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 	
 	@Test(expected=FileCorruptException.class)
-	public void testReadFileCorruptNegativeRowNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadFileCorruptNegativeRowNumber() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadCorruptNegativeRowNumber.xml");
+		File f = new File("xml/testReadCorruptNegativeRowNumber.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 	
 	@Test(expected=FileCorruptException.class)
-	public void testReadFileCorruptTooManyRows() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadFileCorruptTooManyRows() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadCorruptTooManyRows.xml");
+		File f = new File("xml/testReadCorruptTooManyRows.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 	
 	@Test
-	public void testRead() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testRead() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testRead.xml");
+		File f = new File("xml/testRead.xml");
+		Sheet sheet = XmlDriver.read(f);
 		assertEquals(200, sheet.getCells().size());
 	}
 	
 	@Test(expected=FileCorruptException.class)
-	public void testReadDuplicate() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException
+	public void testReadDuplicate() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadDuplicate.xml");
+		File f = new File("xml/testReadDuplicate.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 	
 	@Test(expected=FileNotFoundException.class)
-	public void testReadDoesNotExist() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException 
+	public void testReadDoesNotExist() throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException 
 	{	
-		Sheet sheet = XmlDriver.read("xml/testReadDoesNotExist.xml");
+		File f = new File("xml/testReadDoesNotExist.xml");
+		Sheet sheet = XmlDriver.read(f);
 	}
 
 	@Test
-	public void testWriteEmpty() throws IndexOutOfBoundsException, FileNotFoundException, FileCorruptException, NullObjectException 
+	public void testWriteEmpty() throws IndexOutOfBoundsException, FileNotFoundException, FileCorruptException, NullObjectException, CharacterOutOfBoundsException, IllegalFormulaException 
 	{
+		File f = new File("xml/testWriteEmpty.xml");
 		XmlDriver xd = new XmlDriver();
 		Sheet sheet = new Sheet();
-		xd.write(sheet, "xml/testWriteEmpty.xml");
-		assertEquals(0, XmlDriver.read("xml/testWriteEmpty.xml").getCells().size());
+		xd.write(sheet, f);
+		assertEquals(0, XmlDriver.read(f).getCells().size());
 	}
 	
 	@Test
-	public void testWrite() throws IndexOutOfBoundsException, NullObjectException, FileNotFoundException, FileCorruptException 
+	public void testWrite() throws IndexOutOfBoundsException, NullObjectException, FileNotFoundException, FileCorruptException, CharacterOutOfBoundsException, IllegalFormulaException 
 	{
+		File f = new File("xml/testWrite.xml");
 		XmlDriver xd = new XmlDriver();
 		Sheet sheet = new Sheet();
 		Cell a = new Cell("test");
@@ -98,8 +112,8 @@ public class XmlDriverTest {
 		sheet.setCell(a, 1, 1);
 		sheet.setCell(b, 1, 2);
 		sheet.setCell(c, 1, 3);
-		xd.write(sheet, "xml/testWrite.xml");
-		assertEquals(3, XmlDriver.read("xml/testWrite.xml").getCells().size());
+		xd.write(sheet, f);
+		assertEquals(3, XmlDriver.read(f).getCells().size());
 	}
 
 }
