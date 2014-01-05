@@ -372,6 +372,34 @@ public class View extends JFrame
 		}
 	}
 	
+	public void showMessage(String message)
+	{
+		JOptionPane.showMessageDialog(
+				this,
+			    message
+		);
+	}
+	
+	public void showWarning(String message)
+	{
+		JOptionPane.showMessageDialog(
+				this,
+			    message,
+			    "Warning",
+			    JOptionPane.WARNING_MESSAGE
+		);
+	}
+	
+	public void showError(String message)
+	{
+		JOptionPane.showMessageDialog(
+				this,
+			    message,
+			    "Error",
+			    JOptionPane.ERROR_MESSAGE
+		);
+	}
+	
 	public void changeStatus(String status)
 	{
 		this.statusLabel.setText(status);

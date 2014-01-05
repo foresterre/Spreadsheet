@@ -70,6 +70,15 @@ public class MainController {
 	}
 	
 	/**
+	 * Method for new file
+	 */
+	public void newFile()
+	{
+		this.setSheet(new Sheet());
+		this.filename = null;
+	}
+	
+	/**
 	 * Method for opening file
 	 * 
 	 * @param filename The name of the file to read
@@ -117,16 +126,6 @@ public class MainController {
 			}	
 		}
 		return succes;
-	}
-	
-	
-	/**
-	 * Method for new file
-	 */
-	public void newFile()
-	{
-		this.setSheet(new Sheet());
-		this.filename = null;
 	}
 	
 	/**
