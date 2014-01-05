@@ -137,10 +137,25 @@ public class XmlDriver
 					}
 					
 					// Colors
+					try
+					{
 					int colorForeground = Integer.parseInt(element.getAttribute("foregroundColor"));
 					cell.setForeground(new Color(colorForeground));
+					}
+					catch(NumberFormatException e)
+					{
+						
+					}
+					
+					try
+					{
 					int colorBackground = Integer.parseInt(element.getAttribute("backgroundColor"));
 					cell.setBackground(new Color(colorBackground));
+					}
+					catch(NumberFormatException e)
+					{
+						
+					}
 					
 					// Check for duplicates
 					if (check.contains(x + "," + y)){

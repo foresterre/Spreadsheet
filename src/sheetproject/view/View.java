@@ -14,6 +14,8 @@ import java.io.File;
 import java.text.MessageFormat;
 
 
+
+
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -36,6 +38,10 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import sheetproject.controller.MainController;
+import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.IllegalFormulaException;
+import sheetproject.exception.NumberOutOfBoundsException;
+import sheetproject.alfabet.Alfabet;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 
@@ -193,17 +199,30 @@ public class View extends JFrame
 		this.getTable().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		this.getTable().setCellSelectionEnabled(true);
 		
-		this.getTable().addMouseListener(new MouseAdapter(){
+		this.getTable().addMouseListener(new MouseAdapter()
+		{
             
             @Override
             public void mouseClicked(MouseEvent e){
-               int selectedRow = getTable().rowAtPoint(e.getPoint());
                     int selectedColumn = getTable().columnAtPoint(e.getPoint());
+                    int selectedRow = getTable().rowAtPoint(e.getPoint());
                     
-                    selectionIndicator.setText("(" + selectedRow + ", " + selectedColumn + ")");
+                    try 
+                    {
+						selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
+					} catch (NumberOutOfBoundsException e1) 
+					{
+					}
                     
-                    String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
-                    textField.setText(displayString);
+                    //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+                    try 
+                    {
+                    	textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+                    }
+                    catch(NullPointerException e1)
+                    {
+                    	textField.setText("");
+                    }
                     
             	}
 		});
@@ -211,13 +230,18 @@ public class View extends JFrame
 		this.getTable().getModel().addTableModelListener(new TableModelListener(){
 
 			@Override
-			public void tableChanged(TableModelEvent e) {
-				int selectedRow = e.getFirstRow();
+			public void tableChanged(TableModelEvent e)
+			{
 				int selectedColumn = e.getColumn();
+				int selectedRow = e.getFirstRow();
 				
 				String changedValue = (String) getTable().getValueAt(selectedRow, selectedColumn);
-				System.out.println(changedValue);
-				getController().getSheet().getCell(selectedColumn, selectedRow).setValue(changedValue);
+				getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).setFormula(changedValue);
+				try {
+					getController().getSheet().parse();
+				} catch (CharacterOutOfBoundsException
+						| IllegalFormulaException e1) {
+				}
 			}
 			
 		});
@@ -226,19 +250,23 @@ public class View extends JFrame
 		TableRowSorter<TableModel> rowsorter = new TableRowSorter<TableModel>(getTable().getModel());
 		this.getTable().setRowSorter(rowsorter);
 		       
-		AbstractTableModel model = new AbstractTableModel() {
+		AbstractTableModel model = new AbstractTableModel() 
+		{
 		 
 			static final long serialVersionUID = 1L;
            
-            public int getColumnCount() {
+            public int getColumnCount() 
+            {
             	return getTable().getColumnCount();
             }
  
-            public Object getValueAt(int row, int column) {
+            public Object getValueAt(int row, int column) 
+            {
                 return getTable().convertRowIndexToModel(row);
             }
  
-            public int getRowCount() {
+            public int getRowCount() 
+            {
                 return getTable().getRowCount();
             }
 		};
