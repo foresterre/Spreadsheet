@@ -1,6 +1,7 @@
 package sheetproject.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -27,6 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
@@ -279,6 +281,7 @@ public class View extends JFrame
 		Tablerow.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		Tablerow.setPreferredScrollableViewportSize(new Dimension(30, 0));
 		Tablerow.getColumnModel().getColumn(0).setPreferredWidth(30);
+		Tablerow.setBackground(UIManager.getColor(getTable().getBackground()));
 		
 		 
 		// Add both tables to the scroll pane
