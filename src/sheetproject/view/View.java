@@ -32,6 +32,7 @@ import javax.swing.UIManager;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -282,6 +283,11 @@ public class View extends JFrame
 		Tablerow.setPreferredScrollableViewportSize(new Dimension(30, 0));
 		Tablerow.getColumnModel().getColumn(0).setPreferredWidth(30);
 		Tablerow.setBackground(UIManager.getColor(getTable().getBackground()));
+		
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+		dtcr.setHorizontalAlignment(JLabel.CENTER);
+		Tablerow.getColumnModel().getColumn(0).setCellRenderer(dtcr);
+		
 		
 		 
 		// Add both tables to the scroll pane
