@@ -23,7 +23,7 @@ Zie Trello voor de assignments per persoon per (sub)taak
 | ~~Week 3~~  | ~~XML parser~~                      | ~~DEMO 1~~    |
 | ~~Week 4~~  | ~~UML eerste versie~~                |           |
 | ~~Week 5~~  |                                  |           |
-| Week 6  | Basis GUI + formules             | DEMO 2    |
+| ~~Week 6~~  | ~~Basis GUI + formules~~             | ~~DEMO 2~~    |
 | Week 7  | GUI compleet                     | DEMO 3    |
 | Week 8  | UML af + klad versie eindverslag |           |
 | Week 9  | Laatste lootjes                  | DEMO 4    |
@@ -34,14 +34,6 @@ Zie Trello voor de assignments per persoon per (sub)taak
 
 #####Week 6:
 
-
-TODO's Deze week:
-* UML waar nodig
-* Verslag 'eerste versie' verder gaan
-* Formule parsing waar nodig, plus bug fixen en unit tests
-* Grafische User Interface linken met back-end
-
-Wordt besproken in de vergadering te 15 december 2013
 
 Tools
 -----
