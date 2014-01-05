@@ -261,7 +261,7 @@ public class View extends JFrame
  
             public Object getValueAt(int row, int column) 
             {
-                return getTable().convertRowIndexToModel(row + 1);
+                return Integer.toString(row + 1);
             }
  
             public int getRowCount() 
