@@ -13,9 +13,6 @@ import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.MessageFormat;
 
-
-
-
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -192,7 +189,9 @@ public class View extends JFrame
 	public void setupTable()
 	{
 		// Setup default table
-		this.setTable(new JTable(new DefaultTableModel(Sheet.getRows(),Sheet.getColumns())));
+		DefaultTableModel dtm = new DefaultTableModel(Sheet.getRows(),Sheet.getColumns());
+		
+		this.setTable(new JTable(dtm));
 		this.getTable().setShowGrid(true);
 		this.getTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		this.getTable().setFillsViewportHeight(true);
@@ -262,7 +261,7 @@ public class View extends JFrame
  
             public Object getValueAt(int row, int column) 
             {
-                return getTable().convertRowIndexToModel(row);
+                return getTable().convertRowIndexToModel(row + 1);
             }
  
             public int getRowCount() 
@@ -271,15 +270,22 @@ public class View extends JFrame
             }
 		};
 		
+		
+		
+		
+		
 		JTable Tablerow = new JTable(model);
 		Tablerow.setShowGrid(true);
 		Tablerow.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		Tablerow.setPreferredScrollableViewportSize(new Dimension(30, 0));
 		Tablerow.getColumnModel().getColumn(0).setPreferredWidth(30);
+		
 		 
 		// Add both tables to the scroll pane
 		JScrollPane scrollPane = new JScrollPane(getTable());
 		scrollPane.setRowHeaderView(Tablerow);
+		
+		
         this.add(scrollPane, BorderLayout.CENTER);
 	}
 	
