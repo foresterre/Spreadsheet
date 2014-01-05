@@ -7,9 +7,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.MessageFormat;
+
 
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
@@ -25,8 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
-import javax.swing.filechooser.FileFilter;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -52,6 +55,12 @@ public class View extends JFrame
 	private JPanel statusPanel;
 	
 	private JLabel statusLabel;
+	
+	private JTextField selectionIndicator;
+	
+	private JTextField textField;
+	
+	
 	
 	public View(MainController controller)
 	{
@@ -156,11 +165,11 @@ public class View extends JFrame
         this.toolbar.setFloatable(false);
         this.toolbar.setRollover(true);
         
-        JTextField selectionIndicator = new JTextField();
+        selectionIndicator = new JTextField();
         selectionIndicator.setPreferredSize(new Dimension(10, 24));
         this.toolbar.add(selectionIndicator);
         
-        JTextField textField = new JTextField();
+        textField = new JTextField();
         this.toolbar.add(textField);
         
         this.add(this.toolbar, BorderLayout.PAGE_START);
@@ -184,6 +193,35 @@ public class View extends JFrame
 		this.getTable().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		this.getTable().setCellSelectionEnabled(true);
 		
+		this.getTable().addMouseListener(new MouseAdapter(){
+            
+            @Override
+            public void mouseClicked(MouseEvent e){
+               int selectedRow = getTable().rowAtPoint(e.getPoint());
+                    int selectedColumn = getTable().columnAtPoint(e.getPoint());
+                    
+                    selectionIndicator.setText("(" + selectedRow + ", " + selectedColumn + ")");
+                    
+                    String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+                    textField.setText(displayString);
+                    
+            	}
+		});
+		
+		this.getTable().getModel().addTableModelListener(new TableModelListener(){
+
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				int selectedRow = e.getFirstRow();
+				int selectedColumn = e.getColumn();
+				
+				String changedValue = (String) getTable().getValueAt(selectedRow, selectedColumn);
+				System.out.println(changedValue);
+				getController().getSheet().getCell(selectedColumn, selectedRow).setValue(changedValue);
+			}
+			
+		});
+
 		// Setup row number table
 		TableRowSorter<TableModel> rowsorter = new TableRowSorter<TableModel>(getTable().getModel());
 		this.getTable().setRowSorter(rowsorter);
@@ -322,7 +360,9 @@ class FileOpen implements ActionListener
 	        	}
 	        }
 	        
-	        this.view.changeTitle(tempFileName);     
+	        this.view.changeTitle(tempFileName);
+	        
+	        
             
             for(String key : controller.getSheet().getCells().keySet())
             {
