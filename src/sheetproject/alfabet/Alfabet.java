@@ -4,7 +4,7 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.NumberOutOfBoundsException;
 
 /**
- * Class with useful tools for alfabet
+ * Class with useful tools for the alfabet
  * 
  * @author Robin Borst
  * @author Martijn Gribnau
@@ -19,9 +19,15 @@ public class Alfabet {
 	
 	public static String parseInt(int i) throws NumberOutOfBoundsException
 	{
-		if (i >= 1 && i <= 26 )
+		if (i >= 1 && i <= 26)
 		{
 			return list[i-1];
+		}
+		else if (i > 26 && i <= 701)
+		{
+			int k = i / 26;
+			int l = i - (k * 26);
+			return list[k-1] + list[l-1];
 		}
 		else
 		{
@@ -32,11 +38,19 @@ public class Alfabet {
 	public static int parseChar(String i) throws CharacterOutOfBoundsException
 	{
 		i = i.toUpperCase();
-		for (int j = 0; j < list.length; j++ )
+		for (int j = 0; j < list.length; j++)
 		{
 			if (list[j].equals(i))
 			{
 				return j + 1;
+			}
+			
+			for(int k = 0; k < list.length; k++)
+			{
+				if ((list[j] + list[k]).equals(i))
+				{
+					return (Alfabet.parseChar(list[j]) * 26) + k + 1;
+				}
 			}
 			
 		}

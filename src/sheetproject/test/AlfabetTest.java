@@ -32,13 +32,25 @@ public class AlfabetTest {
 	@Test(expected=NumberOutOfBoundsException.class)
 	public void testInt4() throws NumberOutOfBoundsException 
 	{
-		assertEquals("", Alfabet.parseInt(27));
+		assertEquals("", Alfabet.parseInt(100000));
 	}
 	
 	@Test(expected=NumberOutOfBoundsException.class)
 	public void testInt5() throws NumberOutOfBoundsException 
 	{
 		assertEquals("", Alfabet.parseInt(0));
+	}
+	
+	@Test
+	public void testInt6() throws NumberOutOfBoundsException 
+	{
+		assertEquals("AA", Alfabet.parseInt(27));
+	}
+	
+	@Test
+	public void testInt7() throws NumberOutOfBoundsException 
+	{
+		assertEquals("XX", Alfabet.parseInt(648));
 	}
 	
 	@Test
@@ -62,7 +74,7 @@ public class AlfabetTest {
 	@Test(expected=CharacterOutOfBoundsException.class)
 	public void testString4() throws CharacterOutOfBoundsException 
 	{
-		assertEquals(0, Alfabet.parseChar("AA"));
+		assertEquals(0, Alfabet.parseChar("AAAAAAA"));
 	}
 	
 	@Test
@@ -86,6 +98,18 @@ public class AlfabetTest {
 	@Test(expected=CharacterOutOfBoundsException.class)
 	public void testString8() throws CharacterOutOfBoundsException 
 	{
-		assertEquals(0, Alfabet.parseChar("zz"));
+		assertEquals(0, Alfabet.parseChar("zzzzzzzzz"));
+	}
+	
+	@Test
+	public void testString9() throws CharacterOutOfBoundsException 
+	{
+		assertEquals(27, Alfabet.parseChar("AA"));
+	}
+	
+	@Test
+	public void testString10() throws CharacterOutOfBoundsException 
+	{
+		assertEquals(648, Alfabet.parseChar("XX"));
 	}
 }
