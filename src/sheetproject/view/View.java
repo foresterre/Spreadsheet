@@ -195,6 +195,7 @@ public class View extends JFrame
         selectionIndicator = new JTextField();
         selectionIndicator.setPreferredSize(new Dimension(10, 24));
         selectionIndicator.setEditable(false);
+        selectionIndicator.setBackground(Color.WHITE);
         this.toolbar.add(selectionIndicator);
         
         textField = new JTextField();
