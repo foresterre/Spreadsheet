@@ -99,27 +99,37 @@ public class MainController {
 			{
 				System.err.println(e.getMessage());
 			}
-		} catch (IndexOutOfBoundsException e) {
+		} 
+		catch (IndexOutOfBoundsException e) 
+		{
 			if(MainController.DEBUG)
 			{
 				System.err.println(e.getMessage());
 			}	
-		} catch (NullObjectException e) {
+		} 
+		catch (NullObjectException e) 
+		{
 			if(MainController.DEBUG)
 			{
 				System.err.println(e.getMessage());
 			}	
-		} catch (FileNotFoundException e) {
+		} 
+		catch (FileNotFoundException e) 
+		{
 			if(MainController.DEBUG)
 			{
 				System.err.println(e.getMessage());
 			}	
-		} catch (CharacterOutOfBoundsException e) {
+		} 
+		catch (CharacterOutOfBoundsException e) 
+		{
 			if(MainController.DEBUG)
 			{
 				System.err.println(e.getMessage());
 			}	
-		} catch (IllegalFormulaException e) {
+		} 
+		catch (IllegalFormulaException e) 
+		{
 			if(MainController.DEBUG)
 			{
 				System.err.println(e.getMessage());
@@ -142,7 +152,8 @@ public class MainController {
 			{
 				System.err.println("You have not opened a file yet");
 			}	
-		} else
+		} 
+		else
 		{
 			success = saveFileAs(filename);
 		}
@@ -196,22 +207,26 @@ public class MainController {
 	/**
 	 * @return the sheet
 	 */
-	public Sheet getSheet() {
+	public Sheet getSheet() 
+	{
 		return sheet;
 	}
 
 	/**
 	 * @param sheet Sets a Sheet object to the MainController sheet 
 	 */
-	public void setSheet(Sheet sheet) {
+	public void setSheet(Sheet sheet) 
+	{
 		this.sheet = sheet;
 	}
 	
-	public File getFilename() {
+	public File getFilename() 
+	{
 		return filename;
 	}
 
-	public void setFilename(File filename) {
+	public void setFilename(File filename) 
+	{
 		this.filename = filename;
 	}
 
