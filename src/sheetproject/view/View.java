@@ -18,6 +18,7 @@ import java.io.File;
 import java.text.MessageFormat;
 
 import javax.swing.BoxLayout;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -77,6 +78,11 @@ public class View extends JFrame
 	
 	public View(MainController controller)
 	{
+		// Style
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		//JDialog.setDefaultLookAndFeelDecorated(true);
+		
+		
 		// Set visibility to TRUE
 		this.setVisible(true);
 		
@@ -118,7 +124,7 @@ public class View extends JFrame
         // Menu item 'New'
         JMenuItem fileNew = new JMenuItem("New");
         fileNew.setMnemonic(KeyEvent.VK_N);
-        fileNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.ALT_MASK));
+        fileNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
         fileNew.setToolTipText("New File");
         fileNew.addActionListener(new FileNew(this));
         
@@ -179,6 +185,7 @@ public class View extends JFrame
         
         selectionIndicator = new JTextField();
         selectionIndicator.setPreferredSize(new Dimension(10, 24));
+        selectionIndicator.setEditable(false);
         this.toolbar.add(selectionIndicator);
         
         textField = new JTextField();
