@@ -19,6 +19,7 @@ import java.io.File;
 import java.net.URI;
 import java.text.MessageFormat;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -195,9 +196,10 @@ public class View extends JFrame
         selectionIndicator = new JTextField();
     
         selectionIndicator.setEditable(false);
-        selectionIndicator.setMaximumSize(new Dimension(103, 24));
-        selectionIndicator.setPreferredSize(new Dimension(103,24));
+        selectionIndicator.setMaximumSize(new Dimension(103, 20));
+        selectionIndicator.setPreferredSize(new Dimension(103, 20));
         selectionIndicator.setBackground(Color.WHITE);
+        selectionIndicator.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 0, Color.GRAY));
         this.toolbar.add(selectionIndicator);
         
         textField = new JTextField();
