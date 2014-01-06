@@ -8,7 +8,7 @@ public class OpenFileFilter extends FileFilter
 	
 	private String fileExt = "";
 	
-    private String Ext = ".scarlet";
+    private String Ext = ".scarlett";
     private String Ext2 = ".xml";
 
     public OpenFileFilter() 
@@ -34,7 +34,7 @@ public class OpenFileFilter extends FileFilter
     {
         if(fileExt.equals(Ext))
         {
-            return  "Scarlet Files (*" + fileExt + ")";
+            return  "Scarlett Files (*" + fileExt + ")";
         }
         else if(fileExt.equals(Ext2))
         {

@@ -184,8 +184,10 @@ public class View extends JFrame
         this.toolbar.setRollover(true);
         
         selectionIndicator = new JTextField();
-        selectionIndicator.setPreferredSize(new Dimension(10, 24));
+        //selectionIndicator.setPreferredSize(new Dimension(10, 24));
         selectionIndicator.setEditable(false);
+        selectionIndicator.setMaximumSize(new Dimension(103, 24));
+        selectionIndicator.setPreferredSize(new Dimension(103,24));
         this.toolbar.add(selectionIndicator);
         
         textField = new JTextField();
@@ -227,7 +229,8 @@ public class View extends JFrame
                     try 
                     {
 						selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
-					} catch (NumberOutOfBoundsException e1) 
+					} 
+                    catch (NumberOutOfBoundsException e1) 
 					{
 					}
                     
@@ -681,7 +684,7 @@ class FileSaveAs implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fileSave = new JFileChooser();
-		fileSave.setFileFilter(new OpenFileFilter(".scarlet"));
+		fileSave.setFileFilter(new OpenFileFilter(".scarlett"));
 		
 		int ret = fileSave.showDialog(view, "Save As");
 		
@@ -718,7 +721,8 @@ class FilePrint implements ActionListener
 		this.view = view;
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
 		MessageFormat header = new MessageFormat("Page {0,number,integer}");
 		try 
 		{
@@ -806,6 +810,7 @@ class FileExit extends WindowAdapter implements ActionListener
 			}
 			else if (n == 2)
 			{
+				// Cancel
 			}
 		}
 	}
