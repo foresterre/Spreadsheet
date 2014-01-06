@@ -235,29 +235,30 @@ public class View extends JFrame
 		{
             
             @Override
-            public void mouseClicked(MouseEvent e){
-                    int selectedColumn = getTable().columnAtPoint(e.getPoint());
-                    int selectedRow = getTable().rowAtPoint(e.getPoint());
+            public void mouseClicked(MouseEvent e)
+            {
+            	int selectedColumn = getTable().columnAtPoint(e.getPoint());
+                int selectedRow = getTable().rowAtPoint(e.getPoint());
                     
-                    try 
-                    {
-						selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
-					} 
-                    catch (NumberOutOfBoundsException e1) 
-					{
-					}
+                try 
+                {
+					selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
+                } 
+                catch (NumberOutOfBoundsException e1) 
+                {
+				}
                     
-                    //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
-                    try 
-                    {
-                    	textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-                    }
-                    catch(NullPointerException e1)
-                    {
-                    	textField.setText("");
-                    }
+                //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+                try 
+                {
+                	textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+                }
+                catch(NullPointerException e1)
+                {
+                	textField.setText("");
+                }
                     
-            	}
+            }
 		});
 		
 		this.getTable().getModel().addTableModelListener(new TableModelListener(){
@@ -276,26 +277,33 @@ public class View extends JFrame
 					cell.setFormula(changedValue);
 					cell.setState(Cell.EDITED);
 					textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-					
-					
+						
 				}
 				catch(NullPointerException e1)
 				{
 					if (!changedValue.equals(""))
 					{
-						try {
+						try 
+						{
 							Cell newCell = new Cell(changedValue);
 							newCell.setState(Cell.EDITED);
 							getController().getSheet().setCell(newCell, selectedColumn + 1, selectedRow + 1);
 							textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-						} catch (IndexOutOfBoundsException | NullObjectException e2) {
+						} 
+						catch (IndexOutOfBoundsException | NullObjectException e2) 
+						{
+							// Throw exception
 						}
 					}
 				}
 				
-				try {
+				try 
+				{
 					getController().getSheet().parse();
-				} catch (CharacterOutOfBoundsException | IllegalFormulaException e1) {
+				} 
+				catch (CharacterOutOfBoundsException | IllegalFormulaException e1) 
+				{
+					// Throw exception
 				}
 			}
 			
