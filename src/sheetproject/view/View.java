@@ -197,7 +197,7 @@ public class View extends JFrame
         this.add(this.statusPanel, BorderLayout.SOUTH);
         this.statusPanel.setPreferredSize(new Dimension(this.getWidth(), 24));
         this.statusPanel.setLayout(new BoxLayout(this.statusPanel, BoxLayout.X_AXIS));
-        this.statusLabel = new JLabel("status");
+        this.statusLabel = new JLabel("Status");
         this.statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
         this.statusPanel.add(this.statusLabel);
 	}
@@ -214,6 +214,7 @@ public class View extends JFrame
 		this.getTable().setFillsViewportHeight(true);
 		this.getTable().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		this.getTable().setCellSelectionEnabled(true);
+		this.getTable().getTableHeader().setReorderingAllowed(false);
 		
 		this.getTable().addMouseListener(new MouseAdapter()
 		{
