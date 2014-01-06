@@ -251,6 +251,9 @@ public class View extends JFrame
 					Cell cell = getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1);
 					cell.setFormula(changedValue);
 					cell.setState(Cell.EDITED);
+					textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+					
+					
 				}
 				catch(NullPointerException e1)
 				{
@@ -260,6 +263,7 @@ public class View extends JFrame
 							Cell newCell = new Cell(changedValue);
 							newCell.setState(Cell.EDITED);
 							getController().getSheet().setCell(newCell, selectedColumn + 1, selectedRow + 1);
+							textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
 						} catch (IndexOutOfBoundsException | NullObjectException e2) {
 						}
 					}
