@@ -2,6 +2,7 @@ package sheetproject.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.print.PrinterException;
 import java.io.File;
+import java.net.URI;
 import java.text.MessageFormat;
 
 import javax.swing.BoxLayout;
@@ -163,8 +165,15 @@ public class View extends JFrame
         fileExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
         fileExit.setToolTipText("Exit Application");
         fileExit.addActionListener(new FileExit(this));
- 
+        
+        JMenuItem Wrecking = new JMenuItem("Wreck it");
+        Wrecking.setMnemonic(KeyEvent.VK_W);
+        Wrecking.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.ALT_MASK));
+        Wrecking.setToolTipText("Wreck it, boy");
+        Wrecking.addActionListener(new Wrecking());
+        
         // Add menu items to file menu bar item
+        file.add(Wrecking);
         file.add(fileNew);
         file.add(fileOpen);
         file.add(fileSave);
@@ -184,10 +193,11 @@ public class View extends JFrame
         this.toolbar.setRollover(true);
         
         selectionIndicator = new JTextField();
-        //selectionIndicator.setPreferredSize(new Dimension(10, 24));
+    
         selectionIndicator.setEditable(false);
         selectionIndicator.setMaximumSize(new Dimension(103, 24));
         selectionIndicator.setPreferredSize(new Dimension(103,24));
+        selectionIndicator.setBackground(Color.WHITE);
         this.toolbar.add(selectionIndicator);
         
         textField = new JTextField();
@@ -204,6 +214,9 @@ public class View extends JFrame
         this.statusPanel.add(this.statusLabel);
 	}
 	
+
+	
+
 	public void setupTable()
 	{
 		
@@ -650,7 +663,23 @@ class FileOpen implements ActionListener
         }
 	}
 }
+class Wrecking implements ActionListener
+{
+	public void actionPerformed(ActionEvent e)
+	{
+		try {
+			 // Create Desktop object
+			 Desktop d=Desktop.getDesktop();
 
+			 // Browse a URL, for example www.facebook.com
+			 d.browse(new URI("http://www.youtube.com/watch?v=My2FRPA3Gf8")); 
+			 // This open facebook.com in your default browser.
+			}
+			catch(Exception ex) {
+			       ex.printStackTrace();
+		}
+	}
+}
 class FileSave implements ActionListener
 {
 	private View view;
