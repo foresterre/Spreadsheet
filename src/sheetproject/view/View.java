@@ -167,14 +167,16 @@ public class View extends JFrame
         fileExit.setToolTipText("Exit Application");
         fileExit.addActionListener(new FileExit(this));
         
-        JMenuItem Wrecking = new JMenuItem("Wreck it");
-        Wrecking.setMnemonic(KeyEvent.VK_W);
-        Wrecking.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.ALT_MASK));
-        Wrecking.setToolTipText("Wreck it, boy");
-        Wrecking.addActionListener(new Wrecking());
+        // COMMENTING THESE OUT FOR BETTER PRESENTATION SCREENSHOTS + CLASS WRECKING() BELOW
+        // ALSO SET DEBUG TO ZERO (SAME REASON)
+        //JMenuItem Wrecking = new JMenuItem("Wreck it");
+        //Wrecking.setMnemonic(KeyEvent.VK_W);
+        //Wrecking.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.ALT_MASK));
+        //Wrecking.setToolTipText("Wreck it, boy");
+        //Wrecking.addActionListener(new Wrecking());
         
         // Add menu items to file menu bar item
-        file.add(Wrecking);
+        //file.add(Wrecking);
         file.add(fileNew);
         file.add(fileOpen);
         file.add(fileSave);
@@ -673,23 +675,24 @@ class FileOpen implements ActionListener
         }
 	}
 }
-class Wrecking implements ActionListener
-{
-	public void actionPerformed(ActionEvent e)
-	{
-		try {
-			 // Create Desktop object
-			 Desktop d=Desktop.getDesktop();
 
-			 // Browse a URL, for example www.facebook.com
-			 d.browse(new URI("http://www.youtube.com/watch?v=My2FRPA3Gf8")); 
-			 // This open facebook.com in your default browser.
-			}
-			catch(Exception ex) {
-			       ex.printStackTrace();
-		}
-	}
-}
+//class Wrecking implements ActionListener
+//{
+//	public void actionPerformed(ActionEvent e)
+//	{
+//		try {
+//			 // Create Desktop object
+//			 Desktop d=Desktop.getDesktop();
+//
+//			 // Browse an URL
+//			 d.browse(new URI("http://www.youtube.com/watch?v=My2FRPA3Gf8")); 
+//			}
+//			catch(Exception ex) {
+//			       ex.printStackTrace();
+//		}
+//	}
+//}
+
 class FileSave implements ActionListener
 {
 	private View view;

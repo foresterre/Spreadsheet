@@ -29,7 +29,7 @@ public class MainController {
 	/**
 	 * Debug variable
 	 */
-	public static boolean DEBUG = true; 
+	public static boolean DEBUG = false; 
 	
 	/**
 	 * variable containing the sheet table
