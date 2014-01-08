@@ -59,7 +59,7 @@ public class View extends JFrame
 	
 	private MainController controller;
 	
-	private String applicationTitle = "Scarlet";
+	private String applicationTitle = "Scarlett";
 	
 	private String applicationImageLocation = "applicationIcon-128x128.png";
 	
@@ -630,7 +630,7 @@ class FileOpen implements ActionListener
 	public void function()
 	{
 		JFileChooser fileOpen = new JFileChooser();
-		fileOpen.setFileFilter(new OpenFileFilter(".scarlet"));
+		fileOpen.setFileFilter(new OpenFileFilter(".scarlett"));
 		
 		int ret = fileOpen.showDialog(view, "Open");
 		
