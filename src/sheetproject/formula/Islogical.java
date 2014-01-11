@@ -23,7 +23,7 @@ public class Islogical
                     String group1 = m.group(1);
                     group1 = Parser.evaluate(group1, data);
                     
-                    if (group1.toUpperCase().equals("TRUE"))
+                    if (group1.toUpperCase().equals("TRUE") | group1.toUpperCase().equals("FALSE"))
                     {
                     	return "TRUE";
                     }

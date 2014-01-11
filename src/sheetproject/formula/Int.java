@@ -32,7 +32,7 @@ public class Int
                                 
                         }
                         
-                        res = Double.toString(Math.floor(temp));   
+                        res = Integer.toString((int) Math.floor(temp));   
                 }
                 return res;
         }

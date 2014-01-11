@@ -33,7 +33,7 @@ public class Sqrt
                             
                     }
                     
-                    return Double.toString(temp * temp);
+                    return Double.toString(Math.sqrt(temp));
             }
             return res;
         }

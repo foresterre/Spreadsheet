@@ -24,32 +24,15 @@ public class Counta
                         String group2 = m.group(2);
                         group2 = Parser.evaluate(group2, data);
                               
-                        int temp = 0;
-                        try
+                        int temp = 0;                        
+                        if (!group1.equals(""))
                         {
-                                if (!group1.equals(""))
-                                {
-                                	temp ++;
-                                }
-                                
+                        	temp ++;
                         }
-                        catch(Exception e)
-                        {
-                                
-                        }
-                        
-                        try
-                        {
-                        	if (!group2.equals(""))
-                            {
-                            	temp ++;
-                            }
-                        }
-                        catch(Exception e)
-                        {
-                                
-                        }
-                        
+	                	if (!group2.equals(""))
+	                    {
+	                    	temp ++;
+	                    }                           
                         res = Integer.toString(temp);   
                 }
                 return res;

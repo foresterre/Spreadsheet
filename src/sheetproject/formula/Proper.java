@@ -32,19 +32,16 @@ public class Proper
                     	if (string.length() > 1)
                     	{
 	                    	string = string.toLowerCase();
-	                    	if (i == strings.length -1)
-	                    	{
-	                    		res += Character.toUpperCase(string.charAt(0)) + string.substring(1);
-	                    	}
-	                    	else
-	                    	{
-	                    		res += Character.toUpperCase(string.charAt(0)) + string.substring(1) + " ";
-	                    	}
+	                    	res += Character.toUpperCase(string.charAt(0)) + string.substring(1);	                    		                    	
                     	}
                     	else
                     	{
                     		string = string.toLowerCase();
 	            			res += Character.toUpperCase(string.charAt(0));
+                    	}
+                    	if (i != strings.length -1)
+                    	{
+                    		res += " ";
                     	}
                     }
             }

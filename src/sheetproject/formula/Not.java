@@ -30,7 +30,7 @@ public class Not
                     else if (group1.toUpperCase().equals("FALSE"))
                     {
                     	return "TRUE";
-                    }
+                    }                    
             }
             return res;
         }

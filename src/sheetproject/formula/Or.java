@@ -28,7 +28,7 @@ public class Or
                         {
                         	return "FALSE";
                         }
-                        else
+                        else if (group1.toUpperCase().equals("TRUE") || group2.toUpperCase().equals("TRUE"))
                         {
                         	return "TRUE";
                         }

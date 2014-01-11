@@ -12,7 +12,7 @@ import sheetproject.spreadsheet.Sheet;
 public class Rounddown
 {
 
-        static Pattern formulaPattern = Pattern.compile("\\s*ROUNDDOWN\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        static Pattern formulaPattern = Pattern.compile("\\s*ROUNDDOWN\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
         
         public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
         {
@@ -36,21 +36,18 @@ public class Rounddown
                                 
                         }
                         
-                        double temp2 = 0;
+                        int temp2 = 0;
                         try
                         {
-                                temp2 = Double.parseDouble(group2);
+                                temp2 = Integer.parseInt(group2);
                         }
                         catch(Exception e)
                         {
                                 
-                        }
-                        
-                        
-                        if (temp2 < 0) throw new IllegalArgumentException();
-                        
+                        }                                              
+                                
                         BigDecimal bd = new BigDecimal(temp1);
-                        bd = bd.setScale((int) temp2, BigDecimal.ROUND_HALF_DOWN);
+                        bd = bd.setScale(temp2, BigDecimal.ROUND_DOWN);
                         return Double.toString(bd.doubleValue());
                 }
                 return res;

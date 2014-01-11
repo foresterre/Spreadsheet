@@ -10,7 +10,7 @@ import sheetproject.spreadsheet.Sheet;
 public class Mod
 {
 
-        static Pattern formulaPattern = Pattern.compile("\\s*MOD\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
+        static Pattern formulaPattern = Pattern.compile("\\s*MOD\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
         
         public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
         {
@@ -31,7 +31,7 @@ public class Mod
                         }
                         catch(Exception e)
                         {
-                                
+                            return "NOT A NUMBER";    
                         }
                         double temp2 = 0;
                         try
@@ -40,10 +40,22 @@ public class Mod
                         }
                         catch(Exception e)
                         {
-                                
+                        	return "NOT A NUMBER";      
                         }
                         
-                        res = Double.toString(temp1 % temp2);      
+                        if (temp2 == 0)
+                        {
+                        	return "DIVIDING BY ZERO";
+                        }
+                        
+                        double doubleres = temp1 % temp2;
+                        
+                        if((temp1 < 0 ^ temp2 < 0) && (temp1 % temp2 != 0))
+                        {
+                        	doubleres += temp2;
+                        }                       
+                        
+                        res = Double.toString(doubleres);      
                 }
                 return res;
         }
