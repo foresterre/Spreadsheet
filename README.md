@@ -45,9 +45,20 @@ Tools
 * [Eclipse Emma](http://www.eclemma.org/installation.html)
 
 
-####Libraries:
+####Libraries & JARs:
 * DOM XML Parser
 * Swing
+* Jython 2.5.3
+
+Voor Jython:
+* Add jython to the classpath
+* java -cp "./;jython-2.5.3.jar" jythonEx
+OR 
+* Eclipse
+* Alt+Enter with focus on Spreadsheet( =Project properties)
+* Java Build Path
+* Add Jar 
+* Add jython-2.5.3.jar (In project root)
 
 
 ####Web applicaties:
