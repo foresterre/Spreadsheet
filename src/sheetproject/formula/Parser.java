@@ -108,29 +108,6 @@ public class Parser {
 			}
 		}
 		return false;
-	}
-	
-	public static void main(String[] args) throws IllegalFormulaException, IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException
-	{
-		/*Sheet sheet = new Sheet();
-		Cell a = new Cell("6");
-		Cell b = new Cell("12");
-		sheet.setCell(a, 1, 1);
-		sheet.setCell(b, 1, 2);
-		
-		String z = Parser.parse("=SUM(6,PRODUCT(A1,A2))", sheet);
-		System.out.println(z);*/
-		Sheet data = new Sheet();
-		try {
-			System.out.println(Parser.parse("=SUM(1,2)", data));
-		} catch (IllegalFormulaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CharacterOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
+	}	
 	
 }
