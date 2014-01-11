@@ -21,6 +21,12 @@ public class SqrtTest {
 	}
 	
 	@Test
+	public void testConstructor() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertNotNull(new Sqrt());		
+	}
+	
+	@Test
 	public void testEvaluatePositive() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
 		assertEquals(Sqrt.evaluate("=SQRT(4)", data), "2.0");		

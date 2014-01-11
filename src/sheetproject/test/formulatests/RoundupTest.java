@@ -8,6 +8,7 @@ import org.junit.Test;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
+import sheetproject.formula.Isnumber;
 import sheetproject.formula.Rounddown;
 import sheetproject.formula.Roundup;
 import sheetproject.spreadsheet.Cell;
@@ -19,6 +20,12 @@ public class RoundupTest {
 	@Before
 	public void setUp(){
 		data = new Sheet();
+	}
+	
+	@Test
+	public void testConstructor() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertNotNull(new Roundup());		
 	}
 	
 	@Test

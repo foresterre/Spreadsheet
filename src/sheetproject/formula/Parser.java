@@ -35,7 +35,7 @@ public class Parser {
 		return formula;
 	}
 	
-	static String evaluate(String formula, Sheet data) throws IllegalFormulaException, CharacterOutOfBoundsException
+	public static String evaluate(String formula, Sheet data) throws IllegalFormulaException, CharacterOutOfBoundsException
 	{
 		Matcher m = format.matcher(formula);
 		Matcher m2 = format2.matcher(formula);

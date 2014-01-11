@@ -21,6 +21,12 @@ public class SignTest {
 	}
 	
 	@Test
+	public void testConstructor() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertNotNull(new Sign());		
+	}
+	
+	@Test
 	public void testEvaluatePositive1() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
 		assertEquals(Sign.evaluate("=SIGN(4)", data), "1");		

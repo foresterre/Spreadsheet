@@ -21,6 +21,12 @@ public class AverageTest {
 	}
 	
 	@Test
+	public void testConstructor() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertNotNull(new Average());		
+	}
+	
+	@Test
 	public void testEvaluatePositive() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{			
 		assertEquals(Average.evaluate("=AVERAGE(4,7)", data), "5.5");		

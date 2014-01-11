@@ -8,6 +8,7 @@ import org.junit.Test;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
+import sheetproject.formula.Isnumber;
 import sheetproject.formula.Max;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -18,6 +19,12 @@ public class MaxTest {
 	@Before
 	public void setUp(){
 		data = new Sheet();
+	}
+	
+	@Test
+	public void testConstructor() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertNotNull(new Max());		
 	}
 	
 	@Test

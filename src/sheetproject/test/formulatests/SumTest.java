@@ -21,6 +21,12 @@ public class SumTest {
 	}
 	
 	@Test
+	public void testConstructor() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertNotNull(new Sum());		
+	}
+	
+	@Test
 	public void testEvaluatePositive() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
 		assertEquals(Sum.evaluate("=SUM(2, 4)", data), "6.0");		
