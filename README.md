@@ -55,9 +55,9 @@ Voor Jython:
 * java -cp "./;jython-2.5.3.jar" jythonEx
 
 
-OF (prefereer deze methode, voorkomt problemen):
-* Eclipse
-* Alt+Enter with focus on Spreadsheet( =Project properties)
+OF (prefereer deze methode, voorkomt problemen), voer in stappen uit:
+* Ga naar Eclipse
+* Alt+Enter with focus on Spreadsheet( = Rechtsklik -> Project properties op het Spreadsheet project)
 * Java Build Path
 * Add Jar 
 * Add jython-2.5.3.jar (In project root)
