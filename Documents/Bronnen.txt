@@ -1,0 +1,8 @@
+Kan helpen voor het verslag (Keuzes)
+
+ScriptEngine:
+http://stackoverflow.com/questions/1016128/where-is-java-scripting-engine-used
+	
+	Python (Dus ook jython), documentatie en een tutorial:
+	http://learnpythonthehardway.org/book/ex27.html
+	http://docs.python.org/2/
