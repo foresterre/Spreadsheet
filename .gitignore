@@ -1,7 +1,8 @@
 # Directories #
 /build/
 /bin/
-target/
+/target/
+/cachedir/
  
 # OS Files #
 .DS_Store
