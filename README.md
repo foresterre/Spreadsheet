@@ -51,9 +51,11 @@ Tools
 * Jython 2.5.3
 
 Voor Jython:
-* Add jython to the classpath
+* Voeg jython toe  aan het classpath door:
 * java -cp "./;jython-2.5.3.jar" jythonEx
-OR 
+
+
+OF (prefereer deze methode, voorkomt problemen):
 * Eclipse
 * Alt+Enter with focus on Spreadsheet( =Project properties)
 * Java Build Path
