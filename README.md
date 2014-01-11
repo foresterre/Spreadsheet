@@ -24,7 +24,7 @@ Zie Trello voor de assignments per persoon per (sub)taak
 | ~~Week 4~~  | ~~UML eerste versie~~                |           |
 | ~~Week 5~~  |                                  |           |
 | ~~Week 6~~  | ~~Basis GUI + formules~~             | ~~DEMO 2~~    |
-| Week 7  | GUI compleet                     | DEMO 3    |
+| ~~Week 7~~  | ~~GUI compleet~~                     | ~~DEMO 3~~    |
 | Week 8  | UML af + klad versie eindverslag |           |
 | Week 9  | Laatste lootjes                  | DEMO 4    |
 | Week 10 | FINAL                            |           |
@@ -45,9 +45,22 @@ Tools
 * [Eclipse Emma](http://www.eclemma.org/installation.html)
 
 
-####Libraries:
+####Libraries & JARs:
 * DOM XML Parser
 * Swing
+* Jython 2.5.3
+
+Voor Jython:
+* Voeg jython toe  aan het classpath door:
+* java -cp "./;jython-2.5.3.jar" jythonEx
+
+
+OF (prefereer deze methode, voorkomt problemen), voer in stappen uit:
+* Ga naar Eclipse
+* Alt+Enter with focus on Spreadsheet( = Rechtsklik -> Project properties op het Spreadsheet project)
+* Java Build Path
+* Add Jar 
+* Add jython-2.5.3.jar (In project root)
 
 
 ####Web applicaties:
