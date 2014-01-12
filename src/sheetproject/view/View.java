@@ -888,9 +888,13 @@ class TableUpdate implements TableModelListener
 			try
 			{
 				Cell cell = this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1);
-				cell.setFormula(changedValue);
-				cell.setState(Cell.EDITED);
-				this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+				
+				if (!cell.getValue().equals(changedValue))
+				{
+					cell.setFormula(changedValue);
+					cell.setState(Cell.EDITED);
+					this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+				}
 					
 			}
 			catch(NullPointerException e1)
@@ -925,31 +929,3 @@ class TableUpdate implements TableModelListener
 	
 }
 
-//class SharedListSelectionHandler implements ListSelectionListener {
-//    public void valueChanged(ListSelectionEvent e) { 
-//        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-//
-//        int firstIndex = e.getFirstIndex();
-//        int lastIndex = e.getLastIndex();
-//        boolean isAdjusting = e.getValueIsAdjusting(); 
-//        output.append("Event for indexes "
-//                      + firstIndex + " - " + lastIndex
-//                      + "; isAdjusting is " + isAdjusting
-//                      + "; selected indexes:");
-//
-//        if (lsm.isSelectionEmpty()) {
-//            output.append(" <none>");
-//        } else {
-//            // Find out which indexes are selected.
-//            int minIndex = lsm.getMinSelectionIndex();
-//            int maxIndex = lsm.getMaxSelectionIndex();
-//            for (int i = minIndex; i <= maxIndex; i++) {
-//                if (lsm.isSelectedIndex(i)) {
-//                    output.append(" " + i);
-//                }
-//            }
-//        }
-//        output.append(newline);
-//        output.setCaretPosition(output.getDocument().getLength());
-//    }
-//}
