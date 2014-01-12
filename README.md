@@ -55,7 +55,12 @@ Tools
 ####Web applicaties:
 * ~~Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)~~
 * Github: Dit project + Issues
-* [Set up Git, github artikel](https://help.github.com/articles/set-up-git)
+
+####Communicatie:
+* Face-to-face
+* Whatsapp
+* Dit github project
+* ...
 
 
 Overige details
