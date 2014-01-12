@@ -581,7 +581,7 @@ class FileOpen implements ActionListener
 			
 			int n = JOptionPane.showOptionDialog(
 				this.view,
-			    "Want to save your changes to " + fileName + "?",
+			    "Do you want to save your changes to " + fileName + "?",
 			    this.view.getApplicationTitle(),
 			    JOptionPane.YES_NO_CANCEL_OPTION,
 			    JOptionPane.QUESTION_MESSAGE,
@@ -682,38 +682,40 @@ class FileSave implements ActionListener
 class FileSaveAs implements ActionListener
 {
 	private View view;
-	
+        
 	public FileSaveAs(View view)
 	{
 		this.view = view;
 	}
-	
-	public void actionPerformed(ActionEvent e) {
+        
+	public void actionPerformed(ActionEvent e) 
+	{
 		JFileChooser fileSave = new JFileChooser();
 		fileSave.setFileFilter(new OpenFileFilter(".scar"));
-		
+                
 		int ret = fileSave.showDialog(view, "Save As");
-		
+		                
 		if (ret == JFileChooser.APPROVE_OPTION)
-        {
+		{
 			MainController controller = view.getController();
-			
-	        File file = fileSave.getSelectedFile();
-	        controller.saveFileAs(file);
-	        
-	        String[] fileName = file.getName().split("\\.");
-	        String tempFileName = fileName[0];
-	        
-	        for (int i = 1; i < fileName.length; i++)
-	        {
-	        	
-	        	if (i != fileName.length - 1)
-	        	{
-	        		tempFileName += fileName[i];
-	        	}
-	        }
-	        
-	        this.view.changeTitle(tempFileName);
+              
+			File file = new File(fileSave.getSelectedFile().toString() + ".scar");
+			//File file = fileSave.getSelectedFile();
+			controller.saveFileAs(file);
+        
+			String[] fileName = file.getName().split("\\.");
+			String tempFileName = fileName[0];
+        
+			for (int i = 1; i < fileName.length; i++)
+			{
+                 
+                 if (i != fileName.length - 1)
+                 {
+                         tempFileName += fileName[i];
+                 }
+			}
+        
+			this.view.changeTitle(tempFileName);
         }
 	}
 }
@@ -736,7 +738,9 @@ class FilePrint implements ActionListener
 		    {
 		    	System.err.println("User cancelled printing");
 		    }
-		} catch (PrinterException ex) {
+		} 
+		catch (PrinterException ex) 
+		{
 			if(MainController.DEBUG)
 			{
 				System.err.format("Cannot print %s%n", ex.getMessage());
@@ -796,7 +800,7 @@ class FileExit extends WindowAdapter implements ActionListener
 			
 			int n = JOptionPane.showOptionDialog(
 				this.view,
-			    "Want to save your changes to " + fileName + "?",
+			    "Do you want to save your changes to " + fileName + "?",
 			    this.view.getApplicationTitle(),
 			    JOptionPane.YES_NO_CANCEL_OPTION,
 			    JOptionPane.QUESTION_MESSAGE,
