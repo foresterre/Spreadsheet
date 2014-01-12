@@ -24,84 +24,21 @@ public class If
 	
 	static Pattern formulaPattern = Pattern.compile("\\s*IF\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z0-9\\s=]+)\\s*,\\s*([a-zA-Z\\s0-9]+)\\s*,\\s*([a-zA-Z\\s0-9]+)\\s*\\)\\s*");
 	
-	static String keep[];
-	public static void evalConditionJ(String cond)
+
+	public static void evalConditionJava(String cond)
 	{
+		Pattern conditionPattern = Pattern.compile("\\s*IF\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*(<|<=|=|!=|>=|>)\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z0-9]{1,20})\\s*, \\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z0-9]{1,20})\\s*)\\s*");
+		Matcher cMatch = conditionPattern.matcher(cond);
+
+		String part1 = cMatch.group(1);
+		String part2 = cMatch.group(2);
+		String part3 = cMatch.group(3);
 		
-		// Not sure if I'm going to use || or else if's
-		if(cond.contains("<") )
-		{
-			// TODO: less than
-			// REGEX voor <
-			keep = cond.split("__REGEX__");
-			
-			double val1 = Double.parseDouble(keep[0]);
-			double val2 = Double.parseDouble(keep[2]);
-			
-			if (val1 < val2)
-			{
-				evalResult = true;
-			}
-			
-					
-		}
-		else if(cond.contains(">"))
-		{
-			// TODO: more than
-			keep = cond.split("__REGEX__");
-			
-			double val1 = Double.parseDouble(keep[0]);
-			double val2 = Double.parseDouble(keep[2]);
-			
-			if (val1 > val2)
-			{
-				evalResult = true;
-			}
-		}
-		else if(cond.contains("="))
-		{
-			// TODO: equal
-			keep = cond.split("__REGEX__");
-			
-			double val1 = Double.parseDouble(keep[0]);
-			double val2 = Double.parseDouble(keep[2]);
-			
-			if (val1 == val2)
-			{
-				evalResult = true;
-			}
-		}
-		else if(cond.contains("<="))
-		{
-			// TODO: less or equal
-			keep = cond.split("__REGEX__");
-			
-			double val1 = Double.parseDouble(keep[0]);
-			double val2 = Double.parseDouble(keep[2]);
-			
-			if (val1 <= val2)
-			{
-				evalResult = true;
-			}
-		}
-		else if(cond.contains(">="))
-		{
-			// TODO: more or equal
-			keep = cond.split("__REGEX__");
-			
-			double val1 = Double.parseDouble(keep[0]);
-			double val2 = Double.parseDouble(keep[2]);
-			
-			if (val1 >= val2)
-			{
-				evalResult = true;
-			}
-		}
-		else
-		{
-			// TODO: Unparseable
-			evalResult = false;
-		}
+		System.out.println(part1);
+		System.out.println(part2);
+		System.out.println(part3);
+
+
 	}
 	
 	public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
@@ -119,7 +56,7 @@ public class If
         	String group2 = m.group(2);
         	String group3 = m.group(3);
             
-        	evalConditionJ(group1);
+        	evalConditionJava(group1);
         	
         	if (evalResult == true)
         	{
@@ -148,15 +85,28 @@ public class If
 	{
         
         
-      Sheet sheet = new Sheet();
+		Sheet sheet = new Sheet();
 		Cell a = new Cell("6");
 		Cell b = new Cell("12");
 		sheet.setCell(a, 1, 1);
 		sheet.setCell(b, 1, 2);
 		
+//		String q = Parser.parse("=IF(A1=A2,2,3)", sheet);
+//		System.out.println(q);
+		Pattern conditionPattern = Pattern.compile("\\s*IF\\(\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*(<|<=|=|!=|>=|>)\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z0-9]{1,20})\\s*, \\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z0-9]{1,20})\\s*\\)\\s*");
+		Matcher cMatch = conditionPattern.matcher("IF(6=6,6,6)");
+
+		String part1 = cMatch.group(1);
+		String part2 = cMatch.group(2);
+		String part3 = cMatch.group(3);
+		String part4 = cMatch.group(4);
+		String part5 = cMatch.group(5);
 		
-		String q = Parser.parse("=IF(A1=A2,2,3)", sheet);
-		System.out.println(q);
+		System.out.println(part1);
+		System.out.println(part2);
+		System.out.println(part3);
+		System.out.println(part4);
+		System.out.println(part5);
     }
 	
 //  THE JYTHON WAY
