@@ -698,8 +698,17 @@ class FileSaveAs implements ActionListener
 		if (ret == JFileChooser.APPROVE_OPTION)
 		{
 			MainController controller = view.getController();
-              
-			File file = new File(fileSave.getSelectedFile().toString() + ".scar");
+            
+			File file;
+			
+			if (fileSave.getSelectedFile().toString().contains(".scar"))
+			{
+				file = fileSave.getSelectedFile();
+			}
+			else
+			{
+				file = new File(fileSave.getSelectedFile().toString() + ".scar");
+			}
 			//File file = fileSave.getSelectedFile();
 			controller.saveFileAs(file);
         
