@@ -14,8 +14,7 @@
 *.war
 *.ear
 *.db
-#Exception
-!jython-2.5.3.jar
+
  
 ######################
 # Windows
