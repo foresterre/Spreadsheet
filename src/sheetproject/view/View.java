@@ -608,7 +608,7 @@ class FileOpen implements ActionListener
 	public void function()
 	{		
 		JFileChooser fileOpen = new JFileChooser();
-		fileOpen.setFileFilter(new OpenFileFilter(".scarlett"));
+		fileOpen.setFileFilter(new OpenFileFilter(".scar"));
 		
 		int ret = fileOpen.showDialog(view, "Open");
 		
@@ -690,7 +690,7 @@ class FileSaveAs implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fileSave = new JFileChooser();
-		fileSave.setFileFilter(new OpenFileFilter(".scarlett"));
+		fileSave.setFileFilter(new OpenFileFilter(".scar"));
 		
 		int ret = fileSave.showDialog(view, "Save As");
 		
