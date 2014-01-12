@@ -48,23 +48,12 @@ Tools
 ####Libraries & JARs:
 * DOM XML Parser
 * Swing
-* Jython 2.5.3
+* ~~Jython 2.5.3~~
 
-Voor Jython:
-* Voeg jython toe  aan het classpath door:
-* java -cp "./;jython-2.5.3.jar" jythonEx
-
-
-OF (prefereer deze methode, voorkomt problemen), voer in stappen uit:
-* Ga naar Eclipse
-* Alt+Enter with focus on Spreadsheet( = Rechtsklik -> Project properties op het Spreadsheet project)
-* Java Build Path
-* Add Jar 
-* Add jython-2.5.3.jar (In project root)
 
 
 ####Web applicaties:
-* Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)
+* ~~Trello: [https://trello.com/b/i4NJq24S/spreadsheet-project](https://trello.com/b/i4NJq24S/spreadsheet-project)~~
 * Github: Dit project + Issues
 * [Set up Git, github artikel](https://help.github.com/articles/set-up-git)
 
