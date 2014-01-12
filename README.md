@@ -30,10 +30,6 @@ Zie Trello voor de assignments per persoon per (sub)taak
 | Week 10 | FINAL                            |           |
 
 
-####Details per week te doen (In planning staan deadlines)
-
-#####Week 6:
-
 
 Tools
 -----
