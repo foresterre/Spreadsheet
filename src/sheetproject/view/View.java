@@ -71,13 +71,15 @@ public class View extends JFrame
 	
 	private JLabel statusLabel;
 	
-	private JTextField selectionIndicator;
+	JTextField selectionIndicator;
 	
-	private JTextField textField;
+	JTextField textField;
 	
 	private JScrollPane scrollPane;
 	
 	int newDocument = 0;
+	
+	boolean openDocument = false;
 	
 	public View(MainController controller)
 	{
@@ -235,83 +237,38 @@ public class View extends JFrame
 		this.getTable().setCellSelectionEnabled(true);
 		this.getTable().getTableHeader().setReorderingAllowed(false);
 		
-		this.getTable().addMouseListener(new MouseAdapter()
-		{
-            
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-            	int selectedColumn = getTable().columnAtPoint(e.getPoint());
-                int selectedRow = getTable().rowAtPoint(e.getPoint());
-                    
-                try 
-                {
-					selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
-                } 
-                catch (NumberOutOfBoundsException e1) 
-                {
-				}
-                    
-                //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
-                try 
-                {
-                	textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-                }
-                catch(NullPointerException e1)
-                {
-                	textField.setText("");
-                }
-                    
-            }
-		});
+		this.getTable().addMouseListener(new TextFieldUpdate(this));
+//		this.getTable().addMouseListener(new MouseAdapter()
+//		{
+//            
+//            @Override
+//            public void mouseClicked(MouseEvent e)
+//            {
+//            	int selectedColumn = getTable().columnAtPoint(e.getPoint());
+//                int selectedRow = getTable().rowAtPoint(e.getPoint());
+//                    
+//                try 
+//                {
+//					selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
+//                } 
+//                catch (NumberOutOfBoundsException e1) 
+//                {
+//				}
+//                    
+//                //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+//                try 
+//                {
+//                	textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+//                }
+//                catch(NullPointerException e1)
+//                {
+//                	textField.setText("");
+//                }
+//                    
+//            }
+//		});
 		
-		this.getTable().getModel().addTableModelListener(new TableModelListener(){
-
-			@Override
-			public void tableChanged(TableModelEvent e)
-			{
-				int selectedColumn = e.getColumn();
-				int selectedRow = e.getFirstRow();
-				
-				String changedValue = (String) getTable().getValueAt(selectedRow, selectedColumn);
-				
-				try
-				{
-					Cell cell = getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1);
-					cell.setFormula(changedValue);
-					cell.setState(Cell.EDITED);
-					textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-						
-				}
-				catch(NullPointerException e1)
-				{
-					if (!changedValue.equals(""))
-					{
-						try 
-						{
-							Cell newCell = new Cell(changedValue);
-							newCell.setState(Cell.EDITED);
-							getController().getSheet().setCell(newCell, selectedColumn + 1, selectedRow + 1);
-							textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-						} 
-						catch (IndexOutOfBoundsException | NullObjectException e2) 
-						{
-							// Throw exception
-						}
-					}
-				}
-				
-				try 
-				{
-					getController().getSheet().parse();
-				} 
-				catch (CharacterOutOfBoundsException | IllegalFormulaException e1) 
-				{
-					// Throw exception
-				}
-			}
-			
-		});
+		this.getTable().getModel().addTableModelListener(new TableUpdate(this));
 
 		// Setup row number table
 		TableRowSorter<TableModel> rowsorter = new TableRowSorter<TableModel>(getTable().getModel());
@@ -370,6 +327,25 @@ public class View extends JFrame
                 
                 this.getTable().setValueAt("", rowIndex -1, columnIndex -1);         
         }
+	}
+	
+	public void reloadTable()
+	{
+		this.openDocument = true;
+        
+        for(String key : this.getController().getSheet().getCells().keySet())
+        {
+                String[] index = key.split(",");
+                int columnIndex = Integer.parseInt(index[0]);
+                int rowIndex = Integer.parseInt(index[1]);
+                
+                Cell cell = this.getController().getSheet().getCells().get(key);
+                String value = cell.getValue();
+                
+                this.getTable().setValueAt(value, rowIndex -1, columnIndex -1);         
+        }
+        
+        this.openDocument = false;
 	}
 	
 	public boolean isTableChanged()
@@ -605,7 +581,7 @@ class FileOpen implements ActionListener
 			
 			int n = JOptionPane.showOptionDialog(
 				this.view,
-			    "Want to save your changes to " + fileName + "?",
+			    "Do you want to save your changes to " + fileName + "?",
 			    this.view.getApplicationTitle(),
 			    JOptionPane.YES_NO_CANCEL_OPTION,
 			    JOptionPane.QUESTION_MESSAGE,
@@ -630,9 +606,9 @@ class FileOpen implements ActionListener
 	}
 	
 	public void function()
-	{
+	{		
 		JFileChooser fileOpen = new JFileChooser();
-		fileOpen.setFileFilter(new OpenFileFilter(".scarlett"));
+		fileOpen.setFileFilter(new OpenFileFilter(".scar"));
 		
 		int ret = fileOpen.showDialog(view, "Open");
 		
@@ -659,19 +635,7 @@ class FileOpen implements ActionListener
 	        
 	        this.view.changeTitle(tempFileName);
 	        
-	        
-            
-            for(String key : controller.getSheet().getCells().keySet())
-            {
-                    String[] index = key.split(",");
-                    int columnIndex = Integer.parseInt(index[0]);
-                    int rowIndex = Integer.parseInt(index[1]);
-                    
-                    Cell cell = controller.getSheet().getCells().get(key);
-                    String value = cell.getValue();
-                    
-                    this.view.getTable().setValueAt(value, rowIndex -1, columnIndex -1);         
-            }
+	        this.view.reloadTable();
         }
 	}
 }
@@ -718,38 +682,49 @@ class FileSave implements ActionListener
 class FileSaveAs implements ActionListener
 {
 	private View view;
-	
+        
 	public FileSaveAs(View view)
 	{
 		this.view = view;
 	}
-	
-	public void actionPerformed(ActionEvent e) {
+        
+	public void actionPerformed(ActionEvent e) 
+	{
 		JFileChooser fileSave = new JFileChooser();
-		fileSave.setFileFilter(new OpenFileFilter(".scarlett"));
-		
+		fileSave.setFileFilter(new OpenFileFilter(".scar"));
+                
 		int ret = fileSave.showDialog(view, "Save As");
-		
+		                
 		if (ret == JFileChooser.APPROVE_OPTION)
-        {
+		{
 			MainController controller = view.getController();
+            
+			File file;
 			
-	        File file = fileSave.getSelectedFile();
-	        controller.saveFileAs(file);
-	        
-	        String[] fileName = file.getName().split("\\.");
-	        String tempFileName = fileName[0];
-	        
-	        for (int i = 1; i < fileName.length; i++)
-	        {
-	        	
-	        	if (i != fileName.length - 1)
-	        	{
-	        		tempFileName += fileName[i];
-	        	}
-	        }
-	        
-	        this.view.changeTitle(tempFileName);
+			if (fileSave.getSelectedFile().toString().contains(".scar"))
+			{
+				file = fileSave.getSelectedFile();
+			}
+			else
+			{
+				file = new File(fileSave.getSelectedFile().toString() + ".scar");
+			}
+			//File file = fileSave.getSelectedFile();
+			controller.saveFileAs(file);
+        
+			String[] fileName = file.getName().split("\\.");
+			String tempFileName = fileName[0];
+        
+			for (int i = 1; i < fileName.length; i++)
+			{
+                 
+                 if (i != fileName.length - 1)
+                 {
+                         tempFileName += fileName[i];
+                 }
+			}
+        
+			this.view.changeTitle(tempFileName);
         }
 	}
 }
@@ -772,7 +747,9 @@ class FilePrint implements ActionListener
 		    {
 		    	System.err.println("User cancelled printing");
 		    }
-		} catch (PrinterException ex) {
+		} 
+		catch (PrinterException ex) 
+		{
 			if(MainController.DEBUG)
 			{
 				System.err.format("Cannot print %s%n", ex.getMessage());
@@ -832,7 +809,7 @@ class FileExit extends WindowAdapter implements ActionListener
 			
 			int n = JOptionPane.showOptionDialog(
 				this.view,
-			    "Want to save your changes to " + fileName + "?",
+			    "Do you want to save your changes to " + fileName + "?",
 			    this.view.getApplicationTitle(),
 			    JOptionPane.YES_NO_CANCEL_OPTION,
 			    JOptionPane.QUESTION_MESSAGE,
@@ -863,31 +840,105 @@ class FileExit extends WindowAdapter implements ActionListener
 	}
 }
 
-//class SharedListSelectionHandler implements ListSelectionListener {
-//    public void valueChanged(ListSelectionEvent e) { 
-//        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-//
-//        int firstIndex = e.getFirstIndex();
-//        int lastIndex = e.getLastIndex();
-//        boolean isAdjusting = e.getValueIsAdjusting(); 
-//        output.append("Event for indexes "
-//                      + firstIndex + " - " + lastIndex
-//                      + "; isAdjusting is " + isAdjusting
-//                      + "; selected indexes:");
-//
-//        if (lsm.isSelectionEmpty()) {
-//            output.append(" <none>");
-//        } else {
-//            // Find out which indexes are selected.
-//            int minIndex = lsm.getMinSelectionIndex();
-//            int maxIndex = lsm.getMaxSelectionIndex();
-//            for (int i = minIndex; i <= maxIndex; i++) {
-//                if (lsm.isSelectedIndex(i)) {
-//                    output.append(" " + i);
-//                }
-//            }
-//        }
-//        output.append(newline);
-//        output.setCaretPosition(output.getDocument().getLength());
-//    }
-//}
+class TextFieldUpdate extends MouseAdapter
+{
+	
+	private View view;
+	
+	public TextFieldUpdate(View view)
+	{
+		this.view = view;
+	}
+    
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+    	int selectedColumn = this.view.getTable().columnAtPoint(e.getPoint());
+        int selectedRow = this.view.getTable().rowAtPoint(e.getPoint());
+            
+        try 
+        {
+			this.view.selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
+        } 
+        catch (NumberOutOfBoundsException e1) 
+        {
+		}
+            
+        //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+        try 
+        {
+        	this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+        }
+        catch(NullPointerException e1)
+        {
+        	this.view.textField.setText("");
+        }
+            
+    }
+}
+
+class TableUpdate implements TableModelListener
+{
+	
+	private View view;
+	
+	public TableUpdate(View view)
+	{
+		this.view = view;
+	}
+
+	@Override
+	public void tableChanged(TableModelEvent e)
+	{
+		
+		if (this.view.openDocument == false)
+		{
+			int selectedColumn = e.getColumn();
+			int selectedRow = e.getFirstRow();
+			
+			String changedValue = (String) this.view.getTable().getValueAt(selectedRow, selectedColumn);
+			
+			try
+			{
+				Cell cell = this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1);
+				
+				if (!cell.getValue().equals(changedValue))
+				{
+					cell.setFormula(changedValue);
+					cell.setState(Cell.EDITED);
+					this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+				}
+					
+			}
+			catch(NullPointerException e1)
+			{
+				if (!changedValue.equals(""))
+				{
+					try 
+					{
+						Cell newCell = new Cell(changedValue);
+						newCell.setState(Cell.EDITED);
+						this.view.getController().getSheet().setCell(newCell, selectedColumn + 1, selectedRow + 1);
+						this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+					} 
+					catch (IndexOutOfBoundsException | NullObjectException e2) 
+					{
+						// Throw exception
+					}
+				}
+			}
+			
+			try 
+			{
+				this.view.getController().getSheet().parse();
+				this.view.reloadTable();
+			} 
+			catch (CharacterOutOfBoundsException | IllegalFormulaException e1) 
+			{
+				// Throw exception
+			}
+		}
+	}
+	
+}
+

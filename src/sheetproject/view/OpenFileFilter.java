@@ -8,7 +8,7 @@ public class OpenFileFilter extends FileFilter
 	
 	private String fileExt = "";
 	
-    private String Ext = ".scarlett";
+    private String Ext = ".scar";
     private String Ext2 = ".xml";
 
     public OpenFileFilter() 

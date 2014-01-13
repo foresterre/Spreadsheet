@@ -184,7 +184,8 @@ public class MainController {
 			XmlDriver driver = new XmlDriver();
 			driver.write(this.sheet, filename);
 			success = true;
-		} catch(Exception e)
+		} 
+		catch(Exception e)
 		{
 			if(MainController.DEBUG)
 			{
