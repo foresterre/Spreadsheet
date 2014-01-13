@@ -6,7 +6,11 @@ import java.awt.Color;
 
 import org.junit.Test;
 
+import sheetproject.exception.CharacterOutOfBoundsException;
+import sheetproject.exception.IllegalFormulaException;
+import sheetproject.exception.NullObjectException;
 import sheetproject.spreadsheet.Cell;
+import sheetproject.spreadsheet.Sheet;
 
 public class CellTest {
 
@@ -81,10 +85,13 @@ public class CellTest {
 	}
 	
 	@Test
-	public void testParse()
+	public void testParse() throws IndexOutOfBoundsException, NullObjectException, CharacterOutOfBoundsException, IllegalFormulaException
 	{
-		Cell a = new Cell("parse this");
-		assertEquals("parse this", a.getValue());
+		Sheet sheet = new Sheet();
+		Cell cell = new Cell("parse this");
+		sheet.setCell(cell, 1, 1);
+		cell.parse(sheet);
+		assertEquals("parse this", cell.getValue());
 	}
 	
 	@Test

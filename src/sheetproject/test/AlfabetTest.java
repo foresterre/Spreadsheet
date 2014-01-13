@@ -12,6 +12,12 @@ import sheetproject.exception.CharacterOutOfBoundsException;;
 public class AlfabetTest {
 
 	@Test
+	public void testConstructor() throws NumberOutOfBoundsException 
+	{
+		assertNotNull(new Alfabet());
+	}
+	
+	@Test
 	public void testInt() throws NumberOutOfBoundsException 
 	{
 		assertEquals("A", Alfabet.parseInt(1));

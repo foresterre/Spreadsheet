@@ -197,6 +197,10 @@ public class Sheet extends AbstractTableModel
             {
             	returnString = returnString + " " + this.cells.get(key).toString();
             }
+            if(returnString.length() > 1)
+            {
+            	returnString = returnString.substring(1);
+            }
             
             return returnString;
     }
