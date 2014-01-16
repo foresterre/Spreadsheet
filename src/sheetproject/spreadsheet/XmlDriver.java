@@ -53,7 +53,7 @@ public class XmlDriver
 	 * @throws CharacterOutOfBoundsException 
 	 * @throws IllegalFormulaException 
 	 */
-	public static Sheet read(String filename) throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
+	public static Sheet read(File filename) throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
 	{		
 		
 		// get the rows and columns from the Sheet object
@@ -65,12 +65,9 @@ public class XmlDriver
 		try
 		{
 			
-			// prepare for reading into objects
-			//File xmlFile = new File(filename);
-			File xmlFile = new File(filename);
 			DocumentBuilderFactory sheetDocBuildFac = DocumentBuilderFactory.newInstance();
 			DocumentBuilder sheetDocBuild = sheetDocBuildFac.newDocumentBuilder();
-			Document sheetDoc = sheetDocBuild.parse(xmlFile);
+			Document sheetDoc = sheetDocBuild.parse(filename);
 			sheetDoc.getDocumentElement().normalize();
 			
 			// check duplicates array
@@ -194,7 +191,7 @@ public class XmlDriver
 	 * @param sheetObject The data which will be written to the XML file
 	 * @param filename The XML file which to which will be written
 	 */
-	public void write(Sheet sheetObject, String filename) 
+	public static void write(Sheet sheetObject, File filename) 
 	{
 		try 
 		{			
@@ -237,8 +234,7 @@ public class XmlDriver
 			
 			// write the content into xml file			
 			DOMSource source = new DOMSource(doc);
-			File file = new File(filename);
-			StreamResult result = new StreamResult(file);			
+			StreamResult result = new StreamResult(filename);			
 				
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
