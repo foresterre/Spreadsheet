@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sheetproject.alfabet.Alfabet;
+import sheetproject.alphabet.Alphabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
@@ -88,7 +88,7 @@ public class Parser {
 		}
 		else if (m2.find())
 		{
-                int i = Alfabet.parseChar(m2.group(1));
+                int i = Alphabet.parseChar(m2.group(1));
                 int j = Integer.parseInt(m2.group(2));
                 String cellContent = data.getCell(i, j).getFormula();
                 cellContent = Parser.evaluate(cellContent, data);

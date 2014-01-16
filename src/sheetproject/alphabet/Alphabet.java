@@ -1,10 +1,10 @@
-package sheetproject.alfabet;
+package sheetproject.alphabet;
 
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.NumberOutOfBoundsException;
 
 /**
- * Class with useful tools for the alfabet
+ * Class with useful tools for the alphabet
  * 
  * @author Robin Borst
  * @author Martijn Gribnau
@@ -13,7 +13,7 @@ import sheetproject.exception.NumberOutOfBoundsException;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-public class Alfabet {
+public class Alphabet {
 	
 	private static String[] list = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}; 
 	
@@ -49,7 +49,7 @@ public class Alfabet {
 			{
 				if ((list[j] + list[k]).equals(i))
 				{
-					return (Alfabet.parseChar(list[j]) * 26) + k + 1;
+					return (Alphabet.parseChar(list[j]) * 26) + k + 1;
 				}
 			}
 			

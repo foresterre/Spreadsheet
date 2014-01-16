@@ -50,7 +50,7 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.exception.NumberOutOfBoundsException;
-import sheetproject.alfabet.Alfabet;
+import sheetproject.alphabet.Alphabet;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 
@@ -858,7 +858,7 @@ class TextFieldUpdate extends MouseAdapter
             
         try 
         {
-			this.view.selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
+			this.view.selectionIndicator.setText(Alphabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
         } 
         catch (NumberOutOfBoundsException e1) 
         {
