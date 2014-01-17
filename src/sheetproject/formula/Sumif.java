@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import sheetproject.alfabet.Alfabet;
+import sheetproject.alphabet.Alphabet;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;

@@ -109,18 +109,4 @@ public class Parser {
 		return false;
 	}
 	
-	public static void main(String[] args) throws IndexOutOfBoundsException, NullObjectException, IllegalFormulaException, CharacterOutOfBoundsException
-	{
-        
-        
-		Sheet sheet = new Sheet();
-		Cell a = new Cell("6");
-		Cell b = new Cell("12");
-		sheet.setCell(a, 1, 1);
-		sheet.setCell(b, 1, 2);
-		
-		String q = Parser.parse("=IF(6=5,2,3)", sheet);
-		System.out.println(q);
-    }
-	
 }
