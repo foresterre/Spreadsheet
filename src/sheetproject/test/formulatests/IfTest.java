@@ -167,7 +167,7 @@ public class IfTest {
 	@Test
 	public void testEvaluatePositiveNestedTrue2() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
 	{			
-		assertEquals(If.evaluate("=IF(3 = SUM(1,2), text 1, text 2)", data), "text 1");		
+		assertEquals(If.evaluate("=IF(3.0 = SUM(1,2), text 1, text 2)", data), "text 1");		
 	}
 	
 	@Test

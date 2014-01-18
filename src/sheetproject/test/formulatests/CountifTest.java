@@ -13,11 +13,11 @@ import sheetproject.exception.NullObjectException;
 import sheetproject.exception.NumberOutOfBoundsException;
 import sheetproject.formula.If;
 import sheetproject.formula.Max;
-import sheetproject.formula.Sumif;
+import sheetproject.formula.Countif;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 
-public class SumifTest {
+public class CountifTest {
 	Sheet data = null;
 	
 	@Before
@@ -37,63 +37,63 @@ public class SumifTest {
 	@Test
 	public void testConstructor() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{			
-		assertNotNull(new Sumif());		
+		assertNotNull(new Countif());		
 	}
 	
 	@Test
 	public void testPositiveOneColumn() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:A3, >2))", data), "12.0");
+		assertEquals(Countif.evaluate("=COUNTIF(A1:A3, >2))", data), "3");
 	}
 	
 	@Test
 	public void testPositiveTwoColumns() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:B3, >2))", data), "33.0");
+		assertEquals(Countif.evaluate("=COUNTIF(A1:B3, >2))", data), "6");
 	}
 	
 	@Test
 	public void testPositiveNotAllCellsMatch() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:B3, >5))", data), "21.0");
+		assertEquals(Countif.evaluate("=COUNTIF(A1:B3, >5))", data), "3");
 	}
 	
 	@Test
 	public void testPositiveText() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:C3, >5))", data), "21.0");
+		assertEquals(Countif.evaluate("=COUNTIF(A1:C3, >5))", data), "3");
 	}
 	
 	@Test
 	public void testEvaluateNegativeColumnMore() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException 
 	{			
-		assertEquals(Sumif.evaluate("=SUMIF(B1:A1, >5)", data), "");		
+		assertEquals(Countif.evaluate("=COUNTIF(B1:A1, >5)", data), "");		
 	}
 	
 	@Test
 	public void testEvaluateNegativeRowMore() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException 
 	{			
-		assertEquals(Sumif.evaluate("=SUMIF(A2:A1, >5)", data), "");		
+		assertEquals(Countif.evaluate("=COUNTIF(A2:A1, >5)", data), "");		
 	}
 	
 	@Test
 	public void testEvaluateNegativeBothMore() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException 
 	{			
-		assertEquals(Sumif.evaluate("=SUMIF(B2:A1, >5)", data), "");		
+		assertEquals(Countif.evaluate("=COUNTIF(B2:A1, >5)", data), "");		
 	}
 	
 	@Test
 	public void testEvaluateNegativeEmpty() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException 
 	{			
-		assertEquals(Sumif.evaluate("=SUMIF()", data), "");		
+		assertEquals(Countif.evaluate("=COUNTIF()", data), "");		
 	}
 	
 	@Test
 	public void testEvaluateNegativeLessArguments() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException 
 	{			
-		assertEquals(Sumif.evaluate("=SUMIF(text1)", data), "");		
+		assertEquals(Countif.evaluate("=COUNTIF(text1)", data), "");		
 	}
 	
 	@Test
 	public void testEvaluateNegativeMoreArguments() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException 
 	{			
-		assertEquals(Sumif.evaluate("=SUMIF(0 = 0, text1, text2)", data), "");		
+		assertEquals(Countif.evaluate("=COUNTIF(0 = 0, text1, text2)", data), "");		
 	}
 
 }

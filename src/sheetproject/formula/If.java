@@ -84,13 +84,13 @@ public class If
         		case "=":
         			try
         			{
-        				double a;
-        				double b;
+        				//double a;
+        				//double b;
         				
-        				a = Double.parseDouble(group1);
-        				b = Double.parseDouble(group3);
+        				//a = Double.parseDouble(group1);
+        				//b = Double.parseDouble(group3);
         				
-        				if (a==b)
+        				if (group1.equals(group3))
         				{
         					eval = true;
         				}
