@@ -207,6 +207,7 @@ public class View extends JFrame
         this.toolbar.add(selectionIndicator);
         
         textField = new JTextField();
+        textField.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GRAY));
         this.toolbar.add(textField);
         
         this.add(this.toolbar, BorderLayout.PAGE_START);
@@ -421,35 +422,43 @@ public class View extends JFrame
 		this.statusLabel.setText(status);
 	}
 	
-	public String getStatus() {
+	public String getStatus() 
+	{
 		return statusLabel.getText();
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(String status) 
+	{
 		this.statusLabel.setText(status);
 	}
 
-	public String getApplicationTitle() {
+	public String getApplicationTitle() 
+	{
 		return applicationTitle;
 	}
 
-	public void setApplicationTitle(String applicationTitle) {
+	public void setApplicationTitle(String applicationTitle) 
+	{
 		this.applicationTitle = applicationTitle;
 	}
 
-	public MainController getController() {
+	public MainController getController() 
+	{
 		return controller;
 	}
 
-	public void setController(MainController controller) {
+	public void setController(MainController controller) 
+	{
 		this.controller = controller;
 	}
 
-	public JTable getTable() {
+	public JTable getTable()
+	{
 		return table;
 	}
 
-	public void setTable(JTable table) {
+	public void setTable(JTable table) 
+	{
 		this.table = table;
 	}
 }
@@ -463,7 +472,8 @@ class FileNew implements ActionListener
 		this.view = view;
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
 		if (!this.view.isTableChanged())
 		{
 			this.function();
@@ -666,7 +676,8 @@ class FileSave implements ActionListener
 		this.view = view;
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
 		
 		if(this.view.getController().getFilename() == null)
 		{
@@ -767,11 +778,13 @@ class FileExit extends WindowAdapter implements ActionListener
 		this.view = view;
 	}
 	
-    public void windowClosing(WindowEvent e) {
+    public void windowClosing(WindowEvent e) 
+    {
         this.check();
     }
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
 		this.check();
 	}
 	
