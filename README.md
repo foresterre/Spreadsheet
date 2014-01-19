@@ -25,7 +25,7 @@ Zie Trello voor de assignments per persoon per (sub)taak
 | ~~Week 5~~  |                                  |           |
 | ~~Week 6~~  | ~~Basis GUI + formules~~             | ~~DEMO 2~~    |
 | ~~Week 7~~  | ~~GUI compleet~~                     | ~~DEMO 3~~    |
-| ~~Week 8  | UML af + klad versie eindverslag~~ |           |
+| ~~Week 8~~  | ~~UML af + klad versie eindverslag~~ |           |
 | Week 9  | Laatste lootjes                  | DEMO 4    |
 | Week 10 | FINAL                            |           |
 
