@@ -89,7 +89,7 @@ public class XmlDriver
 					int x;
 					int y;
 					
-					// Throw a exception when a entry has a too high column number
+					// Throw an exception when a entry has a too high column number
 					try
 					{
 						x = Integer.parseInt(element.getAttribute("column"));
