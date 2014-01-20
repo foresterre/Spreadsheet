@@ -105,7 +105,7 @@ public class XmlDriver
 						throw new FileCorruptException("The xml file has a negative column number");
 					}
 					
-					// Throw an exception if the xml file has to many columns
+					// Throw an exception if the xml file has too many columns
 					if (x > columns)
 					{
 						throw new FileCorruptException("The xml file has to many columns. Max is " + columns);
