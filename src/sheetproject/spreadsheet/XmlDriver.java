@@ -111,7 +111,7 @@ public class XmlDriver
 						throw new FileCorruptException("The xml file has to many columns. Max is " + columns);
 					}
 										
-					// Throw a exception when a entry has a too high row number
+					// Throw an exception when an entry has a too high row number
 					try
 					{
 						y = Integer.parseInt(element.getAttribute("row"));
@@ -127,7 +127,7 @@ public class XmlDriver
 						throw new FileCorruptException("The xml file has a negative row number");
 					}
 					
-					// Throw an exception if the xml file has to many rows
+					// Throw an exception if the xml file has too many rows
 					if (y > rows)
 					{
 						throw new FileCorruptException("The xml file has to many rows. Max is " + rows);
