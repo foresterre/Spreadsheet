@@ -56,7 +56,6 @@ public class Countif
         	{
         		for (int j = beginRow; j <= endRow; j++)
         		{
-        			System.out.println("IF(" + Alphabet.parseInt(i) + j + operator + group4 + ", true, false)");
         			if(If.evaluate("IF(" + Alphabet.parseInt(i) + j + operator + group4 + ", true, false)", data).equals("true"))
         			{
         				count++;  				
