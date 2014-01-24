@@ -7,6 +7,17 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
+/**
+ * Class that returns the opposite of a logical value.
+ * Arguments: formula, cell, letters
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class Not
 {

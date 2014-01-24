@@ -9,6 +9,17 @@ import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NumberOutOfBoundsException;
 import sheetproject.spreadsheet.Sheet;
 
+/**
+ * Class that returns the smallest of given values.
+ * Arguments: formula, number, cell OR range
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class Min
 {
@@ -73,39 +84,47 @@ public class Min
                 else
                 {
                 	String group2 = m.group(2);
-                	group1 = Parser.evaluate(group2, data);
+                	group2 = Parser.evaluate(group2, data);
                     String group3 = m.group(3);
-                    group2 = Parser.evaluate(group3, data);
+                    group3 = Parser.evaluate(group3, data);
                     
                     double min = Double.MAX_VALUE;
+                    boolean undefined = false;
     				
     				try
                     {
     						Double parsedValue = Double.parseDouble(group2);
-                            if (parsedValue < min)
-                            {
-                            	min = parsedValue;
-                            }
+    						min = parsedValue; 
                     }
                     catch(Exception e)
                     {
-                            
+                         undefined = true;   
                     }
                     
                     try
                     {
-                    		Double parsedValue = Double.parseDouble(group3);
-                            if (parsedValue < min)
-                            {
-                            	min = parsedValue;
-                            }
+                		Double parsedValue = Double.parseDouble(group3);
+                        if(!undefined)
+                        {
+	                		if (parsedValue < min)
+	                        {
+	                        	min = parsedValue;
+	                        }
+                        }
+                        else
+                        {
+                        	min = parsedValue;
+                        }
                     }
                     catch(Exception e)
                     {
-                            
+                        if(undefined)
+                        {
+                        	return "";   
+                        }
                     }
     				
-    				return Double.toString(min); 
+    				res = Double.toString(min); 
                 }
             }
             return res;

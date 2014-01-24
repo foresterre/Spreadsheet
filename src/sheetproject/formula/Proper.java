@@ -7,44 +7,60 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
+/**
+ * Class that returns all words with the first letter characterized and the rest to lower case.
+ * Arguments: formula, cell, text
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class Proper
 {
 
-        static Pattern formulaPattern = Pattern.compile("\\s*PROPER\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z\\s]+)\\s*\\)\\s*");
+    static Pattern formulaPattern = Pattern.compile("\\s*PROPER\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|\".{1,20}\")\\s*\\)\\s*");
+    
+    public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+    {
+    	String res = "";
         
-        public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException 
+        Matcher m = formulaPattern.matcher(formula);
+        if (m.find())
         {
-        	String res = "";
+            String group1 = m.group(1);
+            if (!(group1.startsWith("\""))) 
+    		{
+    			group1 = Parser.evaluate(group1, data);
+    		}             
+            group1 = group1.replaceAll("\"", "");
+           
             
-            Matcher m = formulaPattern.matcher(formula);
-            if (m.find())
+            String[] strings = group1.split("\\s+");
+            
+            for(int i = 0; i < strings.length; i++)
             {
-                    String group1 = m.group(1);
-                    group1 = Parser.evaluate(group1, data);
-                    
-                    String[] strings = group1.split("\\s+");
-                    
-                    for(int i = 0; i < strings.length; i++)
-                    {
-                    	String string = strings[i];
-                    	
-                    	if (string.length() > 1)
-                    	{
-	                    	string = string.toLowerCase();
-	                    	res += Character.toUpperCase(string.charAt(0)) + string.substring(1);	                    		                    	
-                    	}
-                    	else
-                    	{
-                    		string = string.toLowerCase();
-	            			res += Character.toUpperCase(string.charAt(0));
-                    	}
-                    	if (i != strings.length -1)
-                    	{
-                    		res += " ";
-                    	}
-                    }
+            	String string = strings[i];
+            	
+            	if (string.length() > 1)
+            	{
+                	string = string.toLowerCase();
+                	res += Character.toUpperCase(string.charAt(0)) + string.substring(1);	                    		                    	
+            	}
+            	else
+            	{
+            		string = string.toLowerCase();
+        			res += Character.toUpperCase(string.charAt(0));
+            	}
+            	if (i != strings.length -1)
+            	{
+            		res += " ";
+            	}
             }
-            return res;
         }
+        return res;
+    }
 }

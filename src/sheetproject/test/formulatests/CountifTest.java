@@ -11,8 +11,6 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.exception.NumberOutOfBoundsException;
-import sheetproject.formula.If;
-import sheetproject.formula.Max;
 import sheetproject.formula.Countif;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;

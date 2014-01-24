@@ -11,8 +11,6 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.exception.NumberOutOfBoundsException;
-import sheetproject.formula.If;
-import sheetproject.formula.Max;
 import sheetproject.formula.Sumif;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -42,22 +40,22 @@ public class SumifTest {
 	
 	@Test
 	public void testPositiveOneColumn() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:A3, >2))", data), "12.0");
+		assertEquals(Sumif.evaluate("=SUMIF(A1:A3, >2)", data), "12.0");
 	}
 	
 	@Test
 	public void testPositiveTwoColumns() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:B3, >2))", data), "33.0");
+		assertEquals(Sumif.evaluate("=SUMIF(A1:B3, >2)", data), "33.0");
 	}
 	
 	@Test
 	public void testPositiveNotAllCellsMatch() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:B3, >5))", data), "21.0");
+		assertEquals(Sumif.evaluate("=SUMIF(A1:B3, >5)", data), "21.0");
 	}
 	
 	@Test
 	public void testPositiveText() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException, IndexOutOfBoundsException, NullObjectException {	
-		assertEquals(Sumif.evaluate("=SUMIF(A1:C3, >5))", data), "21.0");
+		assertEquals(Sumif.evaluate("=SUMIF(A1:C3, >5)", data), "21.0");
 	}
 	
 	@Test

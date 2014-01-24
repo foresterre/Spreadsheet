@@ -8,7 +8,6 @@ import org.junit.Test;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
-import sheetproject.formula.Isnumber;
 import sheetproject.formula.Lower;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -30,7 +29,7 @@ public class LowerTest {
 	@Test
 	public void testEvaluatePositiveText() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
-		assertEquals(Lower.evaluate("=LOWER(TEXT)", data), "text");		
+		assertEquals(Lower.evaluate("=LOWER(\"TEXT\")", data), "text");		
 	}
 	
 	@Test
@@ -50,7 +49,13 @@ public class LowerTest {
 	@Test
 	public void testEvaluatePositiveNested() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{			
-		assertEquals(Lower.evaluate("=LOWER(LOWER(TEXT))", data), "text");		
+		assertEquals(Lower.evaluate("=LOWER(LOWER(\"TEXT\"))", data), "text");		
+	}
+	
+	@Test
+	public void testEvaluatePositiveQuotes() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertEquals(Lower.evaluate("=LOWER(\"LOWER(TEXT)\")", data), "lower(text)");		
 	}
 	
 	@Test

@@ -10,8 +10,6 @@ import org.junit.Test;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
-import sheetproject.formula.Isnumber;
-import sheetproject.formula.Max;
 import sheetproject.formula.If;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -112,6 +110,24 @@ public class IfTest {
 	public void testEvaluatePositiveGreaterEqualFalse() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
 	{			
 		assertEquals(If.evaluate("=IF(0 >= 1, text 1, text 2)", data), "text 2");		
+	}
+	
+	@Test
+	public void testEvaluatePositiveFormula1() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
+	{			
+		assertEquals(If.evaluate("=IF(1 >= 0, \"SUM(1,2)\", \"text 2\")", data), "SUM(1,2)");		
+	}
+	
+	@Test
+	public void testEvaluatePositiveFormula2() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
+	{			
+		assertEquals(If.evaluate("=IF(1 >= 0, SUM(1,2), \"text 2\")", data), "3.0");		
+	}
+	
+	@Test
+	public void testEvaluatePositiveFormula3() throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
+	{			
+		assertEquals(If.evaluate("=IF(0 >= 1, SUM(1,2), \"text 2\")", data), "text 2");		
 	}
 	
 	@Test

@@ -11,6 +11,17 @@ import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NumberOutOfBoundsException;
 import sheetproject.spreadsheet.Sheet;
 
+/**
+ * Class that counts the cells for which the condition is true.
+ * Arguments: formula, number, cell OR range
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class Countif
 {

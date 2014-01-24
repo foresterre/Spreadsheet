@@ -9,6 +9,17 @@ import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NumberOutOfBoundsException;
 import sheetproject.spreadsheet.Sheet;
 
+/**
+ * Class that takes the average of values.
+ * Arguments: formula, number, cell OR range
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class Average
 {

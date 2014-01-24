@@ -9,15 +9,20 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
-
+/**
+ * Class that counts the cells that contain numbers.
+ * Arguments: {formula, number, cell} operator {formula, number, cell}, value true, value false 
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class If
 { 	
-	// =IF(CONDITION, IF_TRUE, IF_FALSE)
-	
-	private static boolean evalResult = false;
-	
-	
 	static Pattern formulaPattern = Pattern.compile("\\s*IF\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*(<|<=|=|!=|>=|>)\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|\".{1,20}\"|[^,]{1,20})\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|\".{1,20}\"|[^,]{1,20})\\s*\\)\\s*");
 	
 	public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException 
@@ -40,137 +45,121 @@ public class If
         	
         	boolean eval = false;
         	
-        	switch (group2)
-        	{
-        		case "<":
-        			try
-        			{
-        				double a;
-        				double b;
-        				
-        				a = Double.parseDouble(group1);
-        				b = Double.parseDouble(group3);
-        				
-        				if (a<b)
-        				{
-        					eval = true;
-        				}
-        			}
-        			catch(Exception e)
-        			{
-        				
-        			}
-        			
-        			break;
-        		case "<=":
-        			try
-        			{
-        				double a;
-        				double b;
-        				
-        				a = Double.parseDouble(group1);
-        				b = Double.parseDouble(group3);
-        				
-        				if (a<b || a==b)
-        				{
-        					eval = true;
-        				}
-        			}
-        			catch(Exception e)
-        			{
-        				
-        			}
-        			
-        			break;
-        		case "=":
-        			try
-        			{
-        				//double a;
-        				//double b;
-        				
-        				//a = Double.parseDouble(group1);
-        				//b = Double.parseDouble(group3);
-        				
-        				if (group1.equals(group3))
-        				{
-        					eval = true;
-        				}
-        			}
-        			catch(Exception e)
-        			{
-        				
-        			}
-        			
-        			break;
-        		case "!=":
-        			try
-        			{
-        				double a;
-        				double b;
-        				
-        				a = Double.parseDouble(group1);
-        				b = Double.parseDouble(group3);
-        				
-        				if (a!=b)
-        				{
-        					eval = true;
-        				}
-        			}
-        			catch(Exception e)
-        			{
-        				
-        			}
-        			
-        			break;
-        		case ">=":
-        			try
-        			{
-        				double a;
-        				double b;
-        				
-        				a = Double.parseDouble(group1);
-        				b = Double.parseDouble(group3);
-        				
-        				if (a>b || a==b)
-        				{
-        					eval = true;
-        				}
-        			}
-        			catch(Exception e)
-        			{
-        				
-        			}
-        			
-        			break;
-        		case ">":
-        			try
-        			{
-        				double a;
-        				double b;
-        				
-        				a = Double.parseDouble(group1);
-        				b = Double.parseDouble(group3);
-        				
-        				if (a>b)
-        				{
-        					eval = true;
-        				}
-        			}
-        			catch(Exception e)
-        			{
-        				
-        			}
-        			
-        			break;
-        		default: break;
-        	}
+        	
+    		if(group2.equals("<"))
+    		{		
+    			try
+    			{
+    				double a;
+    				double b;
+    				
+    				a = Double.parseDouble(group1);
+    				b = Double.parseDouble(group3);
+    				
+    				if (a<b)
+    				{
+    					eval = true;
+    				}
+    			}
+    			catch(Exception e)
+    			{
+    				
+    			}        			
+    		}
+    		else if(group2.equals("<="))
+    		{
+    			try
+    			{
+    				double a;
+    				double b;
+    				
+    				a = Double.parseDouble(group1);
+    				b = Double.parseDouble(group3);
+    				
+    				if (a<b || a==b)
+    				{
+    					eval = true;
+    				}
+    			}
+    			catch(Exception e)
+    			{
+    				
+    			}
+    		}
+    		else if(group2.equals("="))
+    		{
+    			if (group1.equals(group3))
+				{
+					eval = true;
+				}       			
+    		}
+    		else if(group2.equals("!="))
+    		{
+    			try
+    			{
+    				double a;
+    				double b;
+    				
+    				a = Double.parseDouble(group1);
+    				b = Double.parseDouble(group3);
+    				
+    				if (a!=b)
+    				{
+    					eval = true;
+    				}
+    			}
+    			catch(Exception e)
+    			{
+    				
+    			}
+    		}
+    		else if(group2.equals(">="))
+    		{
+    			try
+    			{
+    				double a;
+    				double b;
+    				
+    				a = Double.parseDouble(group1);
+    				b = Double.parseDouble(group3);
+    				
+    				if (a>b || a==b)
+    				{
+    					eval = true;
+    				}
+    			}
+    			catch(Exception e)
+    			{
+    				
+    			}
+    		}
+    		else //if(group2.equals(">"))
+    		{
+    			try
+    			{
+    				double a;
+    				double b;
+    				
+    				a = Double.parseDouble(group1);
+    				b = Double.parseDouble(group3);
+    				
+    				if (a>b)
+    				{
+    					eval = true;
+    				}
+    			}
+    			catch(Exception e)
+    			{
+    				
+    			}
+    		}    		        	
         	
         	if (eval)
         	{
         		String group4 = m.group(4);
-        		if (group4.startsWith("\"") && group4.endsWith("\"")) 
-        		{
-        			return group4;
+        		if (group4.startsWith("\"")) 
+        		{        			
+        			return group4.replaceAll("\"", "");
         		} 
         		else 
         		{
@@ -182,9 +171,9 @@ public class If
         	else
         	{
         		String group5 = m.group(5);
-        		if (group5.startsWith("\"") && group5.endsWith("\"")) 
+        		if (group5.startsWith("\""))
         		{
-        			return group5;
+        			return group5.replaceAll("\"", "");
         		} 
         		else 
         		{

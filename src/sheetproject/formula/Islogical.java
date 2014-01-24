@@ -7,6 +7,17 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.spreadsheet.Sheet;
 
+/**
+ * Class that considers whether a value is logical or not.
+ * Arguments: formula, number, cell
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class Islogical
 {

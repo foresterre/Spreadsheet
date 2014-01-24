@@ -114,9 +114,9 @@ public class Parser {
 		Sheet data = new Sheet();
 		data.setCell(new Cell("6"), 1, 1);
 		data.setCell(new Cell("7"), 1, 2);
-		data.setCell(new Cell("8"), 1, 3);
+		data.setCell(new Cell(""), 1, 3);
 		data.setCell(new Cell("9"), 2, 1);
-		data.setCell(new Cell("10"), 2, 2);
+		data.setCell(new Cell("768"), 2, 2);
 		data.setCell(new Cell("11"), 2, 3);
 		String a = Parser.parse("=MEDIAN(A1:B3)", data);
 		System.out.println(a);

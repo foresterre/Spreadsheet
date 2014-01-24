@@ -10,6 +10,17 @@ import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NumberOutOfBoundsException;
 import sheetproject.spreadsheet.Sheet;
 
+/**
+ * Class that returns the median of given values (middle item of ordered list).
+ * Arguments: formula, number, cell OR range
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 
 public class Median
 {
@@ -68,12 +79,16 @@ public class Median
                 			}    
                 		}
                 	}
+                	double[] list2 = new double[count];
+                	for(int i = 0; i < count; i++){                		
+                		list2[i] = list[i];
+                	}
                 	
-                	Arrays.sort(list);
+                	Arrays.sort(list2);
                 	
                 	if (count%2 == 0)
                 	{
-                		res = Double.toString((list[(count/2)] + list[(count/2)-1])/2);
+                		res = Double.toString((list2[(count/2)] + list2[(count/2)-1])/2.0);
                 	} 
                 	else
                 	{

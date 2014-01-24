@@ -8,7 +8,6 @@ import org.junit.Test;
 import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
-import sheetproject.formula.Isnumber;
 import sheetproject.formula.Proper;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -30,25 +29,25 @@ public class ProperTest {
 	@Test
 	public void testEvaluatePositive1() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
-		assertEquals(Proper.evaluate("=PROPER(TEXT)", data), "Text");		
+		assertEquals(Proper.evaluate("=PROPER(\"TEXT\")", data), "Text");		
 	}
 	
 	@Test
 	public void testEvaluatePositive2() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
-		assertEquals(Proper.evaluate("=PROPER(text)", data), "Text");		
+		assertEquals(Proper.evaluate("=PROPER(\"text\")", data), "Text");		
 	}
 	
 	@Test
 	public void testEvaluatePositiveCharacter() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
-		assertEquals(Proper.evaluate("=PROPER(t)", data), "T");		
+		assertEquals(Proper.evaluate("=PROPER(\"t\")", data), "T");		
 	}
 	
 	@Test
 	public void testEvaluatePositiveSentence() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{		
-		assertEquals(Proper.evaluate("=PROPER(This IS a teXt)", data), "This Is A Text");		
+		assertEquals(Proper.evaluate("=PROPER(\"This IS a teXt\")", data), "This Is A Text");		
 	}
 	
 	@Test
@@ -65,6 +64,12 @@ public class ProperTest {
 	}
 	
 	@Test
+	public void testEvaluatePositiveNestedText() throws CharacterOutOfBoundsException, IllegalFormulaException 
+	{			
+		assertEquals(Proper.evaluate("=PROPER(\"ISLOGICAL(16)\")", data), "Islogical(16)");		
+	}
+	
+	@Test
 	public void testEvaluateNegativeNoPatternMatchEmpty() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{
 		assertEquals(Proper.evaluate("=PROPER()", data), "");
@@ -73,7 +78,7 @@ public class ProperTest {
 	@Test
 	public void testEvaluateNegativeNoPatternMatchMoreArguments() throws CharacterOutOfBoundsException, IllegalFormulaException 
 	{
-		assertEquals(Proper.evaluate("=PROPER(text,text)", data), "");
+		assertEquals(Proper.evaluate("=PROPER(A1,A1)", data), "");
 	}
 
 }
