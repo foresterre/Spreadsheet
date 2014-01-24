@@ -50,6 +50,7 @@ import sheetproject.exception.CharacterOutOfBoundsException;
 import sheetproject.exception.IllegalFormulaException;
 import sheetproject.exception.NullObjectException;
 import sheetproject.exception.NumberOutOfBoundsException;
+import sheetproject.formula.Parser;
 import sheetproject.alphabet.Alphabet;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
@@ -80,6 +81,7 @@ public class View extends JFrame
 	int newDocument = 0;
 	
 	boolean openDocument = false;
+	
 	
 	public View(MainController controller)
 	{
@@ -208,6 +210,7 @@ public class View extends JFrame
         
         textField = new JTextField();
         textField.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GRAY));
+        textField.addActionListener(new FormulaUpdate(this));
         this.toolbar.add(textField);
         
         this.add(this.toolbar, BorderLayout.PAGE_START);
@@ -866,12 +869,12 @@ class TextFieldUpdate extends MouseAdapter
     @Override
     public void mouseClicked(MouseEvent e)
     {
-    	int selectedColumn = this.view.getTable().columnAtPoint(e.getPoint());
-        int selectedRow = this.view.getTable().rowAtPoint(e.getPoint());
+    	int clickedColumn = this.view.getTable().columnAtPoint(e.getPoint());
+        int clickedRow = this.view.getTable().rowAtPoint(e.getPoint());
             
         try 
         {
-			this.view.selectionIndicator.setText(Alphabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
+			this.view.selectionIndicator.setText(Alphabet.parseInt(clickedColumn + 1) + (clickedRow + 1));
         } 
         catch (NumberOutOfBoundsException e1) 
         {
@@ -880,7 +883,7 @@ class TextFieldUpdate extends MouseAdapter
         //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
         try 
         {
-        	this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+        	this.view.textField.setText(this.view.getController().getSheet().getCell(clickedColumn + 1, clickedRow + 1).getFormula());
         }
         catch(NullPointerException e1)
         {
@@ -888,6 +891,8 @@ class TextFieldUpdate extends MouseAdapter
         }
             
     }
+
+	
 }
 
 class TableUpdate implements TableModelListener
@@ -952,6 +957,34 @@ class TableUpdate implements TableModelListener
 			}
 		}
 	}
+	
+}
+
+class FormulaUpdate implements ActionListener{
+
+	private View view;
+	
+	public FormulaUpdate(View view){
+		this.view = view;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (!(this.view.getTable().getSelectedColumn() == -1 || this.view.getTable().getSelectedRow() == -1)) {
+			int selectedColumn = this.view.getTable().getSelectedColumn();
+			int selectedRow = this.view.getTable().getSelectedRow();
+			String formula = this.view.textField.getText();
+			
+			this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).setFormula(formula);
+			this.view.getTable().setValueAt(formula, selectedRow, selectedColumn);
+			
+			
+		}
+		
+		
+		
+	}
+	
 	
 }
 
