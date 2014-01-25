@@ -2,27 +2,13 @@ package sheetproject.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.print.PrinterException;
-import java.io.File;
-import java.net.URI;
-import java.text.MessageFormat;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -37,8 +23,6 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -46,18 +30,14 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import sheetproject.controller.MainController;
-import sheetproject.exception.CharacterOutOfBoundsException;
-import sheetproject.exception.IllegalFormulaException;
-import sheetproject.exception.NullObjectException;
-import sheetproject.exception.NumberOutOfBoundsException;
-import sheetproject.formula.Parser;
-import sheetproject.alphabet.Alphabet;
 import sheetproject.spreadsheet.Cell;
 import sheetproject.spreadsheet.Sheet;
 
 public class View extends JFrame 
 {
 	
+	private static final long serialVersionUID = -771894500234558973L;
+
 	private MainController controller;
 	
 	private String applicationTitle = "Scarlett";
@@ -466,193 +446,194 @@ public class View extends JFrame
 	}
 }
 
-class FileNew implements ActionListener
-{
-	private View view;
-	
-	public FileNew(View view)
-	{
-		this.view = view;
-	}
-	
-	public void actionPerformed(ActionEvent e) 
-	{
-		if (!this.view.isTableChanged())
-		{
-			this.function();
-		}
-		else
-		{
-			String fileName = "";
-			if(this.view.getController().getFilename() == null)
-			{
-				if (this.view.newDocument - 1 == 0)
-				{
-					fileName = "New Spreadsheet";
-				}
-				else
-				{
-					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
-				}
-			}
-			else
-			{
-				fileName = this.view.getController().getFilename().getName();
-			}
-			
-			Object[] options = 
-			{
-					"Save",
-					"Don't Save",
-					"Cancel"
-            };
-			
-			int n = JOptionPane.showOptionDialog(
-				this.view,
-			    "Want to save your changes to " + fileName + "?",
-			    this.view.getApplicationTitle(),
-			    JOptionPane.YES_NO_CANCEL_OPTION,
-			    JOptionPane.QUESTION_MESSAGE,
-			    null,
-			    options,
-			    options[2]
-			 );
-			
-			if(n == 0)
-			{
-				new FileSave(this.view).actionPerformed(e);
-				this.function();
-			}
-			else if(n == 1)
-			{
-				this.function();
-			}
-			else if (n == 2)
-			{
-			}
-		}
-	}
-	
-	public void function()
-	{
-		this.view.clearTable();
-		this.view.getController().newFile();
-		
-		if (this.view.newDocument == 0)
-		{
-			this.view.changeTitle("New Spreadsheet");
-			this.view.newDocument++;
-		}
-		else
-		{
-			this.view.changeTitle("New Spreadsheet" + this.view.newDocument);
-			this.view.newDocument++;
-		}
-	}
-}
+//class FileNew implements ActionListener
+//{
+//	private View view;
+//	
+//	public FileNew(View view)
+//	{
+//		this.view = view;
+//	}
+//	
+//	public void actionPerformed(ActionEvent e) 
+//	{
+//		if (!this.view.isTableChanged())
+//		{
+//			this.function();
+//		}
+//		else
+//		{
+//			String fileName = "";
+//			if(this.view.getController().getFilename() == null)
+//			{
+//				if (this.view.newDocument - 1 == 0)
+//				{
+//					fileName = "New Spreadsheet";
+//				}
+//				else
+//				{
+//					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
+//				}
+//			}
+//			else
+//			{
+//				fileName = this.view.getController().getFilename().getName();
+//			}
+//			
+//			Object[] options = 
+//			{
+//					"Save",
+//					"Don't Save",
+//					"Cancel"
+//            };
+//			
+//			int n = JOptionPane.showOptionDialog(
+//				this.view,
+//			    "Want to save your changes to " + fileName + "?",
+//			    this.view.getApplicationTitle(),
+//			    JOptionPane.YES_NO_CANCEL_OPTION,
+//			    JOptionPane.QUESTION_MESSAGE,
+//			    null,
+//			    options,
+//			    options[2]
+//			 );
+//			
+//			if(n == 0)
+//			{
+//				new FileSave(this.view).actionPerformed(e);
+//				this.function();
+//			}
+//			else if(n == 1)
+//			{
+//				this.function();
+//			}
+//			else if (n == 2)
+//			{
+//			}
+//		}
+//	}
+//	
+//	public void function()
+//	{
+//		this.view.clearTable();
+//		this.view.getController().newFile();
+//		
+//		if (this.view.newDocument == 0)
+//		{
+//			this.view.changeTitle("New Spreadsheet");
+//			this.view.newDocument++;
+//		}
+//		else
+//		{
+//			this.view.changeTitle("New Spreadsheet" + this.view.newDocument);
+//			this.view.newDocument++;
+//		}
+//	}
+//}
 
-class FileOpen implements ActionListener
-{
-	private View view;
-	
-	public FileOpen(View view)
-	{
-		this.view = view;
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-		
-		if (!this.view.isTableChanged())
-		{
-			this.function();
-		}
-		else
-		{
-			String fileName = "";
-			if(this.view.getController().getFilename() == null)
-			{
-				if (this.view.newDocument - 1 == 0)
-				{
-					fileName = "New Spreadsheet";
-				}
-				else
-				{
-					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
-				}
-			}
-			else
-			{
-				fileName = this.view.getController().getFilename().getName();
-			}
-			
-			Object[] options = 
-			{
-					"Save",
-					"Don't Save",
-					"Cancel"
-            };
-			
-			int n = JOptionPane.showOptionDialog(
-				this.view,
-			    "Do you want to save your changes to " + fileName + "?",
-			    this.view.getApplicationTitle(),
-			    JOptionPane.YES_NO_CANCEL_OPTION,
-			    JOptionPane.QUESTION_MESSAGE,
-			    null,
-			    options,
-			    options[2]
-			 );
-			
-			if(n == 0)
-			{
-				new FileSave(this.view).actionPerformed(e);
-				this.function();
-			}
-			else if(n == 1)
-			{
-				this.function();
-			}
-			else if (n == 2)
-			{
-			}
-		}
-	}
-	
-	public void function()
-	{		
-		JFileChooser fileOpen = new JFileChooser();
-		fileOpen.setFileFilter(new OpenFileFilter(".scar"));
-		
-		int ret = fileOpen.showDialog(view, "Open");
-		
-		if (ret == JFileChooser.APPROVE_OPTION)
-        {
-			MainController controller = view.getController();
-			
-			this.view.clearTable();
-			
-	        File file = fileOpen.getSelectedFile();
-	        controller.openFile(file);
-	        
-	        String[] fileName = file.getName().split("\\.");
-	        String tempFileName = fileName[0];
-	        
-	        for (int i = 1; i < fileName.length; i++)
-	        {
-	        	
-	        	if (i != fileName.length - 1)
-	        	{
-	        		tempFileName += fileName[i];
-	        	}
-	        }
-	        
-	        this.view.changeTitle(tempFileName);
-	        
-	        this.view.reloadTable();
-        }
-	}
-}
+//class FileOpen implements ActionListener
+//{
+//	private View view;
+//	
+//	public FileOpen(View view)
+//	{
+//		this.view = view;
+//	}
+//	
+//	public void actionPerformed(ActionEvent e) {
+//		
+//		if (!this.view.isTableChanged())
+//		{
+//			this.function();
+//		}
+//		else
+//		{
+//			String fileName = "";
+//			if(this.view.getController().getFilename() == null)
+//			{
+//				if (this.view.newDocument - 1 == 0)
+//				{
+//					fileName = "New Spreadsheet";
+//				}
+//				else
+//				{
+//					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
+//				}
+//			}
+//			else
+//			{
+//				fileName = this.view.getController().getFilename().getName();
+//			}
+//			
+//			Object[] options = 
+//			{
+//					"Save",
+//					"Don't Save",
+//					"Cancel"
+//            };
+//			
+//			int n = JOptionPane.showOptionDialog(
+//				this.view,
+//			    "Do you want to save your changes to " + fileName + "?",
+//			    this.view.getApplicationTitle(),
+//			    JOptionPane.YES_NO_CANCEL_OPTION,
+//			    JOptionPane.QUESTION_MESSAGE,
+//			    null,
+//			    options,
+//			    options[2]
+//			 );
+//			
+//			if(n == 0)
+//			{
+//				new FileSave(this.view).actionPerformed(e);
+//				this.function();
+//			}
+//			else if(n == 1)
+//			{
+//				this.function();
+//			}
+//			else if (n == 2)
+//			{
+//			}
+//		}
+//	}
+//	
+//	public void function()
+//	{		
+//		JFileChooser fileOpen = new JFileChooser();
+//		fileOpen.setFileFilter(new OpenFileFilter(".scar"));
+//		
+//		int ret = fileOpen.showDialog(view, "Open");
+//		
+//		if (ret == JFileChooser.APPROVE_OPTION)
+//        {
+//			MainController controller = view.getController();
+//			
+//			this.view.clearTable();
+//			
+//	        File file = fileOpen.getSelectedFile();
+//	        controller.openFile(file);
+//	        
+//	        String[] fileName = file.getName().split("\\.");
+//	        String tempFileName = fileName[0];
+//	        
+//	        for (int i = 1; i < fileName.length; i++)
+//	        {
+//	        	
+//	        	if (i != fileName.length - 1)
+//	        	{
+//	        		tempFileName += fileName[i];
+//	        	}
+//	        }
+//	        
+//	        this.view.changeTitle(tempFileName);
+//	        
+//	        this.view.reloadTable();
+//        }
+//	}
+//}
 
+// DELETE
 //class Wrecking implements ActionListener
 //{
 //	public void actionPerformed(ActionEvent e)
@@ -669,322 +650,326 @@ class FileOpen implements ActionListener
 //		}
 //	}
 //}
+// END_DELETE
 
-class FileSave implements ActionListener
-{
-	private View view;
-	
-	public FileSave(View view)
-	{
-		this.view = view;
-	}
-	
-	public void actionPerformed(ActionEvent e) 
-	{
-		
-		if(this.view.getController().getFilename() == null)
-		{
-			new FileSaveAs(this.view).actionPerformed(e);
-		}
-		else
-		{
-			this.view.getController().saveFile();
-		}
-	}
-}
+//class FileSave implements ActionListener
+//{
+//	private View view;
+//	
+//	public FileSave(View view)
+//	{
+//		this.view = view;
+//	}
+//	
+//	public void actionPerformed(ActionEvent e) 
+//	{
+//		
+//		if(this.view.getController().getFilename() == null)
+//		{
+//			new FileSaveAs(this.view).actionPerformed(e);
+//		}
+//		else
+//		{
+//			this.view.getController().saveFile();
+//		}
+//	}
+//}
 
-class FileSaveAs implements ActionListener
-{
-	private View view;
-        
-	public FileSaveAs(View view)
-	{
-		this.view = view;
-	}
-        
-	public void actionPerformed(ActionEvent e) 
-	{
-		JFileChooser fileSave = new JFileChooser();
-		fileSave.setFileFilter(new OpenFileFilter(".scar"));
-                
-		int ret = fileSave.showDialog(view, "Save As");
-		                
-		if (ret == JFileChooser.APPROVE_OPTION)
-		{
-			MainController controller = view.getController();
-            
-			File file;
-			
-			if (fileSave.getSelectedFile().toString().contains(".scar"))
-			{
-				file = fileSave.getSelectedFile();
-			}
-			else
-			{
-				file = new File(fileSave.getSelectedFile().toString() + ".scar");
-			}
-			//File file = fileSave.getSelectedFile();
-			controller.saveFileAs(file);
-        
-			String[] fileName = file.getName().split("\\.");
-			String tempFileName = fileName[0];
-        
-			for (int i = 1; i < fileName.length; i++)
-			{
-                 
-                 if (i != fileName.length - 1)
-                 {
-                         tempFileName += fileName[i];
-                 }
-			}
-        
-			this.view.changeTitle(tempFileName);
-        }
-	}
-}
+//class FileSaveAs implements ActionListener
+//{
+//	private View view;
+//        
+//	public FileSaveAs(View view)
+//	{
+//		this.view = view;
+//	}
+//        
+//	public void actionPerformed(ActionEvent e) 
+//	{
+//		JFileChooser fileSave = new JFileChooser();
+//		fileSave.setFileFilter(new OpenFileFilter(".scar"));
+//                
+//		int ret = fileSave.showDialog(view, "Save As");
+//		                
+//		if (ret == JFileChooser.APPROVE_OPTION)
+//		{
+//			MainController controller = view.getController();
+//            
+//			File file;
+//			
+//			if (fileSave.getSelectedFile().toString().contains(".scar"))
+//			{
+//				file = fileSave.getSelectedFile();
+//			}
+//			else
+//			{
+//				file = new File(fileSave.getSelectedFile().toString() + ".scar");
+//			}
+//			//File file = fileSave.getSelectedFile();
+//			controller.saveFileAs(file);
+//        
+//			String[] fileName = file.getName().split("\\.");
+//			String tempFileName = fileName[0];
+//        
+//			for (int i = 1; i < fileName.length; i++)
+//			{
+//                 
+//                 if (i != fileName.length - 1)
+//                 {
+//                         tempFileName += fileName[i];
+//                 }
+//			}
+//        
+//			this.view.changeTitle(tempFileName);
+//        }
+//	}
+//}
 
-class FilePrint implements ActionListener
-{
-	private View view;
-	
-	public FilePrint(View view)
-	{
-		this.view = view;
-	}
-	
-	public void actionPerformed(ActionEvent e) 
-	{
-		MessageFormat header = new MessageFormat("Page {0,number,integer}");
-		try 
-		{
-		    if(!this.view.getTable().print(JTable.PrintMode.FIT_WIDTH, header, null) && MainController.DEBUG)
-		    {
-		    	System.err.println("User cancelled printing");
-		    }
-		} 
-		catch (PrinterException ex) 
-		{
-			if(MainController.DEBUG)
-			{
-				System.err.format("Cannot print %s%n", ex.getMessage());
-			}
-		}
-	}
-}
+//class FilePrint implements ActionListener
+//{
+//	private View view;
+//	
+//	public FilePrint(View view)
+//	{
+//		this.view = view;
+//	}
+//	
+//	public void actionPerformed(ActionEvent e) 
+//	{
+//		MessageFormat header = new MessageFormat("Page {0,number,integer}");
+//		try 
+//		{
+//		    if(!this.view.getTable().print(JTable.PrintMode.FIT_WIDTH, header, null) && MainController.DEBUG)
+//		    {
+//		    	System.err.println("User cancelled printing");
+//		    }
+//		} 
+//		catch (PrinterException ex) 
+//		{
+//			if(MainController.DEBUG)
+//			{
+//				System.err.format("Cannot print %s%n", ex.getMessage());
+//			}
+//		}
+//	}
+//}
 
-class FileExit extends WindowAdapter implements ActionListener
-{
-	private View view;
-	
-	public FileExit(View view)
-	{
-		this.view = view;
-	}
-	
-    public void windowClosing(WindowEvent e) 
-    {
-        this.check();
-    }
-	
-	public void actionPerformed(ActionEvent e) 
-	{
-		this.check();
-	}
-	
-	public void check()
-	{
-		if (!this.view.isTableChanged())
-		{
-			this.function();
-		}
-		else
-		{
-			String fileName = "";
-			if(this.view.getController().getFilename() == null)
-			{
-				if (this.view.newDocument - 1 == 0)
-				{
-					fileName = "New Spreadsheet";
-				}
-				else
-				{
-					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
-				}
-			}
-			else
-			{
-				fileName = this.view.getController().getFilename().getName();
-			}
-			
-			Object[] options = 
-			{
-					"Save",
-					"Don't Save",
-					"Cancel"
-            };
-			
-			int n = JOptionPane.showOptionDialog(
-				this.view,
-			    "Do you want to save your changes to " + fileName + "?",
-			    this.view.getApplicationTitle(),
-			    JOptionPane.YES_NO_CANCEL_OPTION,
-			    JOptionPane.QUESTION_MESSAGE,
-			    null,
-			    options,
-			    options[2]
-			 );
-			
-			if(n == 0)
-			{
-				new FileSave(this.view).actionPerformed(null);
-				this.function();
-			}
-			else if(n == 1)
-			{
-				this.function();
-			}
-			else if (n == 2)
-			{
-				// Cancel
-			}
-		}
-	}
-	
-	public void function()
-	{
-		System.exit(0);
-	}
-}
+//class FileExit extends WindowAdapter implements ActionListener
+//{
+//	private View view;
+//	
+//	public FileExit(View view)
+//	{
+//		this.view = view;
+//	}
+//	
+//    public void windowClosing(WindowEvent e) 
+//    {
+//        this.check();
+//    }
+//	
+//	public void actionPerformed(ActionEvent e) 
+//	{
+//		this.check();
+//	}
+//	
+//	public void check()
+//	{
+//		if (!this.view.isTableChanged())
+//		{
+//			this.function();
+//		}
+//		else
+//		{
+//			String fileName = "";
+//			if(this.view.getController().getFilename() == null)
+//			{
+//				if (this.view.newDocument - 1 == 0)
+//				{
+//					fileName = "New Spreadsheet";
+//				}
+//				else
+//				{
+//					fileName = "New Spreadsheet" + (this.view.newDocument - 1);
+//				}
+//			}
+//			else
+//			{
+//				fileName = this.view.getController().getFilename().getName();
+//			}
+//			
+//			Object[] options = 
+//			{
+//					"Save",
+//					"Don't Save",
+//					"Cancel"
+//            };
+//			
+//			int n = JOptionPane.showOptionDialog(
+//				this.view,
+//			    "Do you want to save your changes to " + fileName + "?",
+//			    this.view.getApplicationTitle(),
+//			    JOptionPane.YES_NO_CANCEL_OPTION,
+//			    JOptionPane.QUESTION_MESSAGE,
+//			    null,
+//			    options,
+//			    options[2]
+//			 );
+//			
+//			if(n == 0)
+//			{
+//				new FileSave(this.view).actionPerformed(null);
+//				this.function();
+//			}
+//			else if(n == 1)
+//			{
+//				this.function();
+//			}
+//			else if (n == 2)
+//			{
+//				// Cancel
+//			}
+//		}
+//	}
+//	
+//	public void function()
+//	{
+//		System.exit(0);
+//	}
+//}
 
-class TextFieldUpdate extends MouseAdapter
-{
-	
-	private View view;
-	
-	public TextFieldUpdate(View view)
-	{
-		this.view = view;
-	}
-    
-    @Override
-    public void mouseClicked(MouseEvent e)
-    {
-    	int clickedColumn = this.view.getTable().columnAtPoint(e.getPoint());
-        int clickedRow = this.view.getTable().rowAtPoint(e.getPoint());
-            
-        try 
-        {
-			this.view.selectionIndicator.setText(Alphabet.parseInt(clickedColumn + 1) + (clickedRow + 1));
-        } 
-        catch (NumberOutOfBoundsException e1) 
-        {
-		}
-            
-        //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
-        try 
-        {
-        	this.view.textField.setText(this.view.getController().getSheet().getCell(clickedColumn + 1, clickedRow + 1).getFormula());
-        }
-        catch(NullPointerException e1)
-        {
-        	this.view.textField.setText("");
-        }
-            
-    }
+//class TextFieldUpdate extends MouseAdapter
+//{
+//	
+//	private View view;
+//	
+//	public TextFieldUpdate(View view)
+//	{
+//		this.view = view;
+//	}
+//    
+//    @Override
+//    public void mouseClicked(MouseEvent e)
+//    {
+//    	int clickedColumn = this.view.getTable().columnAtPoint(e.getPoint());
+//        int clickedRow = this.view.getTable().rowAtPoint(e.getPoint());
+//            
+//        try 
+//        {
+//			this.view.selectionIndicator.setText(Alphabet.parseInt(clickedColumn + 1) + (clickedRow + 1));
+//        } 
+//        catch (NumberOutOfBoundsException e1) 
+//        {
+//		}
+//            
+//        //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+//        try 
+//        {
+//        	this.view.textField.setText(this.view.getController().getSheet().getCell(clickedColumn + 1, clickedRow + 1).getFormula());
+//        }
+//        catch(NullPointerException e1)
+//        {
+//        	this.view.textField.setText("");
+//        }
+//            
+//    }
+//
+//	
+//}
 
-	
-}
+//class TableUpdate implements TableModelListener
+//{
+//	
+//	private View view;
+//	
+//	public TableUpdate(View view)
+//	{
+//		this.view = view;
+//	}
+//
+//	@Override
+//	public void tableChanged(TableModelEvent e)
+//	{
+//		
+//		if (this.view.openDocument == false)
+//		{
+//			int selectedColumn = e.getColumn();
+//			int selectedRow = e.getFirstRow();
+//			
+//			String changedValue = (String) this.view.getTable().getValueAt(selectedRow, selectedColumn);
+//			
+//			try
+//			{
+//				Cell cell = this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1);
+//				
+//				if (!cell.getValue().equals(changedValue))
+//				{
+//					cell.setFormula(changedValue);
+//					cell.setState(Cell.EDITED);
+//					this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+//				}
+//					
+//			}
+//			catch(NullPointerException e1)
+//			{
+//				if (!changedValue.equals(""))
+//				{
+//					try 
+//					{
+//						Cell newCell = new Cell(changedValue);
+//						newCell.setState(Cell.EDITED);
+//						this.view.getController().getSheet().setCell(newCell, selectedColumn + 1, selectedRow + 1);
+//						this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
+//					} 
+//					catch (IndexOutOfBoundsException | NullObjectException e2) 
+//					{
+//						// Throw exception
+//					}
+//				}
+//			}
+//			
+//			try 
+//			{
+//				this.view.getController().getSheet().parse();
+//				this.view.reloadTable();
+//			} 
+//			catch (CharacterOutOfBoundsException | IllegalFormulaException e1) 
+//			{
+//				// Throw exception
+//			}
+//		}
+//	}
+//	
+//}
 
-class TableUpdate implements TableModelListener
-{
-	
-	private View view;
-	
-	public TableUpdate(View view)
-	{
-		this.view = view;
-	}
-
-	@Override
-	public void tableChanged(TableModelEvent e)
-	{
-		
-		if (this.view.openDocument == false)
-		{
-			int selectedColumn = e.getColumn();
-			int selectedRow = e.getFirstRow();
-			
-			String changedValue = (String) this.view.getTable().getValueAt(selectedRow, selectedColumn);
-			
-			try
-			{
-				Cell cell = this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1);
-				
-				if (!cell.getValue().equals(changedValue))
-				{
-					cell.setFormula(changedValue);
-					cell.setState(Cell.EDITED);
-					this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-				}
-					
-			}
-			catch(NullPointerException e1)
-			{
-				if (!changedValue.equals(""))
-				{
-					try 
-					{
-						Cell newCell = new Cell(changedValue);
-						newCell.setState(Cell.EDITED);
-						this.view.getController().getSheet().setCell(newCell, selectedColumn + 1, selectedRow + 1);
-						this.view.textField.setText(this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-					} 
-					catch (IndexOutOfBoundsException | NullObjectException e2) 
-					{
-						// Throw exception
-					}
-				}
-			}
-			
-			try 
-			{
-				this.view.getController().getSheet().parse();
-				this.view.reloadTable();
-			} 
-			catch (CharacterOutOfBoundsException | IllegalFormulaException e1) 
-			{
-				// Throw exception
-			}
-		}
-	}
-	
-}
-
-class FormulaUpdate implements ActionListener{
-
-	private View view;
-	
-	public FormulaUpdate(View view){
-		this.view = view;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (!(this.view.getTable().getSelectedColumn() == -1 || this.view.getTable().getSelectedRow() == -1)) {
-			int selectedColumn = this.view.getTable().getSelectedColumn();
-			int selectedRow = this.view.getTable().getSelectedRow();
-			String formula = this.view.textField.getText();
-			
-			this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).setFormula(formula);
-			this.view.getTable().setValueAt(formula, selectedRow, selectedColumn);
-			
-			
-		}
-		
-		
-		
-	}
-	
-	
-}
+//class FormulaUpdate implements ActionListener
+//{
+//
+//	private View view;
+//	
+//	public FormulaUpdate(View view)
+//	{
+//		this.view = view;
+//	}
+//	
+//	@Override
+//	public void actionPerformed(ActionEvent e) 
+//{
+//		if (!(this.view.getTable().getSelectedColumn() == -1 || this.view.getTable().getSelectedRow() == -1)) 
+//		{
+//			int selectedColumn = this.view.getTable().getSelectedColumn();
+//			int selectedRow = this.view.getTable().getSelectedRow();
+//			String formula = this.view.textField.getText();
+//			
+//			this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).setFormula(formula);
+//			this.view.getTable().setValueAt(formula, selectedRow, selectedColumn);
+//			
+//			
+//		}
+//		
+//	
+//	}
+//	
+//	
+//}
 
