@@ -36,7 +36,7 @@ public class Iseven
                 int temp = 0;
                 try
                 {
-                        temp += (int) Math.floor(Double.parseDouble(group1));
+                	temp += (int) Math.floor(Double.parseDouble(group1));
                 }
                 catch(Exception e)
                 {
@@ -50,7 +50,7 @@ public class Iseven
                 else
                 {
                 	return "FALSE";
-                    }
+                }
             }
             return res;
         }

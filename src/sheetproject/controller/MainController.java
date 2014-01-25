@@ -14,7 +14,7 @@ import sheetproject.spreadsheet.XmlDriver;
 
 
 /**
- * Main Controller for the project
+ * Main Controller for the project: The project is started from here.
  * 
  * @author Robin Borst
  * @author Martijn Gribnau
