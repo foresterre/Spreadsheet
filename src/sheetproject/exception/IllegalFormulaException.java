@@ -10,23 +10,47 @@ package sheetproject.exception;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-public class IllegalFormulaException extends Exception {
+public class IllegalFormulaException extends Exception 
+{
 
+	/**
+	 * Serialize UID (Unused, but required)
+	 */
 	private static final long serialVersionUID = -2677876290138999187L;
-
-	public IllegalFormulaException() {
+	
+	/**
+	 * Exception for an illegal formula
+	 */
+	public IllegalFormulaException() 
+	{
 		super();
 	}
-
-	public IllegalFormulaException(String message) {
+	
+	/**
+	 * Exception for an illegal formula containing a message
+	 * @param message: message of the exception
+	 */
+	public IllegalFormulaException(String message) 
+	{
 		super(message);
 	}
 
-	public IllegalFormulaException(String message, Throwable cause) {
+	/**
+	 * Exception for an illegal formula containing a message and the cause
+	 * @param message: message of the exception
+	 * @param cause: cause of the exception
+	 */
+	public IllegalFormulaException(String message, Throwable cause) 
+	{
 		super(message, cause);
 	}
-
-	public IllegalFormulaException(Throwable cause) {
+	
+	/**
+	 * Exception for an illegal formula containing the cause
+	 * @param cause: cause of the exception
+	 */
+	public IllegalFormulaException(Throwable cause) 
+	{
 		super(cause);
 	}
 }

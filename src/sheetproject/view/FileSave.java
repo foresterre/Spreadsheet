@@ -15,7 +15,7 @@ public class FileSave implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		
-		if(this.view.getController().getFilename() == null)
+		if(this.view.getController().getFileName() == null)
 		{
 			new FileSaveAs(this.view).actionPerformed(e);
 		}

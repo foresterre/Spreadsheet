@@ -1,7 +1,7 @@
 package sheetproject.exception;
 
 /**
- * Exception thrown when a character is out of bound
+ * Exception thrown when a character is out of the set bounds
  * 
  * @author Robin Borst
  * @author Martijn Gribnau
@@ -10,23 +10,46 @@ package sheetproject.exception;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-public class CharacterOutOfBoundsException extends Exception {
-
+public class CharacterOutOfBoundsException extends Exception 
+{
+	/**
+	 * Serialize UID (Unused, but required)
+	 */
 	private static final long serialVersionUID = 1749308240505726326L;
-
-	public CharacterOutOfBoundsException() {
+	
+	/**
+	 * Exception constructor for a character out of the set bounds
+	 */
+	public CharacterOutOfBoundsException() 
+	{
 		super();
 	}
-
-	public CharacterOutOfBoundsException(String message) {
+	
+	/**
+	 * Exception for a character out of the set bounds containing a message
+	 * @param message: Message of the exception
+	 */
+	public CharacterOutOfBoundsException(String message) 
+	{
 		super(message);
 	}
 
-	public CharacterOutOfBoundsException(String message, Throwable cause) {
+	/**
+	 * Exception for a character out of the set bounds containing a message and the cause
+	 * @param message: Message of the exception
+	 * @param cause: Cause of the exception
+	 */
+	public CharacterOutOfBoundsException(String message, Throwable cause) 
+	{
 		super(message, cause);
 	}
 
-	public CharacterOutOfBoundsException(Throwable cause) {
+	/**
+	 * Exception for a character out of the set bounds containing the cause
+	 * @param cause: Cause of the exception
+	 */
+	public CharacterOutOfBoundsException(Throwable cause) 
+	{
 		super(cause);
 	}
 }

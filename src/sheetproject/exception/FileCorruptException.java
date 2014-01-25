@@ -12,21 +12,45 @@ package sheetproject.exception;
  */
 public class FileCorruptException extends Exception {
 
+	/**
+	 * Serialize UID (Unused, but required)
+	 */
 	private static final long serialVersionUID = 74438857863696364L;
-
-	public FileCorruptException() {
+	
+	/**
+	 * Exception for a corrupt or otherwise unreadable file 
+	 */
+	public FileCorruptException() 
+	{
 		super();
 	}
-
-	public FileCorruptException(String message) {
+	
+	/**
+	 * Exception for a corrupt or otherwise unreadable file containing a message
+	 * @param message: message of the exception
+	 */
+	public FileCorruptException(String message) 
+	{
 		super(message);
 	}
 
-	public FileCorruptException(String message, Throwable cause) {
+	/**
+	 * Exception for a corrupt or otherwise unreadable file containing a message and the cause
+	 * @param message: message of the exception
+	 * @param cause: cause of the exception
+	 */
+	public FileCorruptException(String message, Throwable cause) 
+	{
 		super(message, cause);
 	}
 
-	public FileCorruptException(Throwable cause) {
+	
+	/**
+	 * Exception for a corrupt or otherwise unreadable file containing the cause
+	 * @param cause: cause of the exception
+	 */
+	public FileCorruptException(Throwable cause) 
+	{
 		super(cause);
 	}
 }
