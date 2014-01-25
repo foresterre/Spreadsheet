@@ -7,6 +7,16 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Class to add the ability to ask to save the changes before closing the application
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 public class FileExit extends WindowAdapter implements ActionListener
 {
 	private View view;

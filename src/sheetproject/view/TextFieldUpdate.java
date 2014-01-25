@@ -6,6 +6,16 @@ import java.awt.event.MouseEvent;
 import sheetproject.alphabet.Alphabet;
 import sheetproject.exception.NumberOutOfBoundsException;
 
+/**
+ * Class for the TextFieldUpdate
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 public class TextFieldUpdate extends MouseAdapter
 {
 	private View view;
@@ -37,7 +47,7 @@ public class TextFieldUpdate extends MouseAdapter
         catch(NullPointerException e1)
         {
         	this.view.textField.setText("");
-        }
-            
-    }
+		}
+
+	}
 }

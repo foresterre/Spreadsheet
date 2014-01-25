@@ -9,6 +9,16 @@ import javax.swing.JOptionPane;
 
 import sheetproject.controller.MainController;
 
+/**
+ * Class for opening a file
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 public class FileOpen implements ActionListener 
 {
 	private View view;

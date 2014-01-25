@@ -13,6 +13,10 @@ import sheetproject.spreadsheet.Sheet;
  * Class that counts the cells that are not empty.
  * Arguments: formula, number, cell OR range
  * 
+ * =COUNTA(PARAM1,PARAMX)
+ * The COUNTA formula counts the amount of filled cells. So if the content in the cell is not empty and it is in range, it is counted.
+ * PARAM1:PARAMX is a range between two coordinates
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -20,12 +24,22 @@ import sheetproject.spreadsheet.Sheet;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-
 public class Counta
 {
-
+		/**
+		 * Pattern that is used to recognize the formula provided 
+		 */
         static Pattern formulaPattern = Pattern.compile("\\s*COUNTA\\(\\s*(([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*([0-9]+|[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))|([A-Z]{1,2}[0-9]{1,6})\\s*:\\s*([A-Z]{1,2}[0-9]{1,6}))\\s*\\)\\s*");
         
+        /**
+         * Evaluation of the Counta formula
+         * @param formula: formula to be parsed
+         * @param data: the data of the sheet object
+         * @return Counted number of cells of a range between two coordinates, excluding empty cells
+         * @throws CharacterOutOfBoundsException
+         * @throws IllegalFormulaException
+         * @throws NumberOutOfBoundsException
+         */
         public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException, NumberOutOfBoundsException 
         {
                 String res = "";

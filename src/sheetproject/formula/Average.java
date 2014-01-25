@@ -11,12 +11,15 @@ import sheetproject.spreadsheet.Sheet;
 
 /**
  * Class that takes the average of values.
+ * Arguments: formula, number, cell OR range
  * 
- * =AVERAGE(PARAM1, PARAM2) or = AVARAGE(PARAM3:PARAM4)
- * Where PARAM1 and PARAM2 are numbers or Coordinates
+ * =AVERAGE(PARAM1, PARAM2) 
+ * or
+ * =AVERAGE(PARAM3:PARAM4)
+ * Where PARAM1 and PARAM2 are numbers or coordinates
  * PARAM3:PARAM4 is a range of coordinates from PARAM3 to PARAM4
  * 
- * Nesting formulas can be done like so: =AVERAGE(PARAM1,=AVERAGE(PARAM2, PARAM3))
+ * Nesting formulas can be done like so: =AVERAGE(PARAM1,AVERAGE(PARAM2, PARAM3))
  * If nesting is used, please do not forget the correct amount of parentheses
  * 
  * @author Robin Borst
@@ -35,7 +38,7 @@ public class Average
 	static Pattern formulaPattern = Pattern.compile("\\s*AVERAGE\\(\\s*((-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))|([A-Z]{1,2}[0-9]{1,6})\\s*:\\s*([A-Z]{1,2}[0-9]{1,6}))\\s*\\)\\s*");
 
 	/**
-	 * Evaluation of the Average() formula
+	 * Evaluation of the Average formula
 	 * @param formula: the formula to be parsed
 	 * @param data: the data of the sheet object
 	 * @return Answer value of the average between two parameters

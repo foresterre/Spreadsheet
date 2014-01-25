@@ -15,6 +15,14 @@ import sheetproject.spreadsheet.Sheet;
  * Class that counts the cells for which the condition is true.
  * Arguments: formula, number, cell OR range
  * 
+ * =COUNTIF(PARAM1:PARAM2,PARAM3)
+ * Where PARAM1:PARAM2 is a range of coordinates from PARAM1 to PARAM2 to be counted if the condition PARAM3 is evaluated TRUE
+ * 
+ * Nesting formulas can be done like so: =COUNTIF(PARAM1:PARAM2, COUNTIF(PARAM3:PARAM4, COND))
+ * Where PARAM1 and PARAM2 is the first range and  COUNTIF(PARAM3:PARAM4, COND) is the condition
+ * And in the nested formula is PARAM3:PARAM4 the range to count and COND is here the condition.
+ * 
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -22,13 +30,24 @@ import sheetproject.spreadsheet.Sheet;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-
 public class Countif
 {
 
+	/**
+	 * Pattern that is used to recognize the formula provided
+	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*COUNTIF\\(\\s*([A-Z]{1,2}[0-9]{1,6})\\s*:\\s*([A-Z]{1,2}[0-9]{1,6})\\s*,\\s*(<|<=|=|!=|>=|>)\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\)\\s*");
 	
-	
+	/**
+	 * Evaluation of the Countif formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return Amount of cells between the range if the condition is true
+	 * @throws CharacterOutOfBoundsException
+	 * @throws IllegalFormulaException
+	 * @throws ScriptException
+	 * @throws NumberOutOfBoundsException
+	 */
 	public static String evaluate(String formula, Sheet data) throws CharacterOutOfBoundsException, IllegalFormulaException, ScriptException, NumberOutOfBoundsException
 	{
 		String res = "";

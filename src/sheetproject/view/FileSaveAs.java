@@ -8,6 +8,16 @@ import javax.swing.JFileChooser;
 
 import sheetproject.controller.MainController;
 
+/**
+ * Class for saving a file as a new name
+ * 
+ * @author Robin Borst
+ * @author Martijn Gribnau
+ * @author Roy Klip
+ * @author Mitchell Olsthoorn
+ * @author Ike Rijsdijk
+ * @author Alan van Rossum
+ */
 public class FileSaveAs implements ActionListener
 {
 	private View view;
