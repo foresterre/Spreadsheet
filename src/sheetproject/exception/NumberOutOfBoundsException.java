@@ -10,23 +10,46 @@ package sheetproject.exception;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-public class NumberOutOfBoundsException extends Exception {
-
+public class NumberOutOfBoundsException extends Exception 
+{
+	/**
+	 * Serialize UID (Unused, but required)
+	 */
 	private static final long serialVersionUID = -1424706149160702191L;
-
-	public NumberOutOfBoundsException() {
+	
+	/**
+	 * Exception for NumberOutOfBounds
+	 */
+	public NumberOutOfBoundsException() 
+	{
 		super();
 	}
-
-	public NumberOutOfBoundsException(String message) {
+	
+	/**
+	 * Exception for NumberOutOfBounds containing a message
+	 * @param message: message of the exeption
+	 */
+	public NumberOutOfBoundsException(String message) 
+	{
 		super(message);
 	}
-
-	public NumberOutOfBoundsException(String message, Throwable cause) {
+	
+	/**
+	 * Exception for NumberOutOfBounds containing a message and the cause
+	 * @param message: message of the exception
+	 * @param cause: cause of the exception
+	 */
+	public NumberOutOfBoundsException(String message, Throwable cause) 
+	{
 		super(message, cause);
 	}
 
-	public NumberOutOfBoundsException(Throwable cause) {
+	/**
+	 * Exception for NumberOutOfBounds containing the cause
+	 * @param cause: cause of the exception
+	 */
+	public NumberOutOfBoundsException(Throwable cause) 
+	{
 		super(cause);
 	}
 }

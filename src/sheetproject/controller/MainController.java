@@ -14,7 +14,7 @@ import sheetproject.spreadsheet.XmlDriver;
 
 
 /**
- * Main Controller for the project: The project is started from here.
+ * Main Controller for the project
  * 
  * @author Robin Borst
  * @author Martijn Gribnau
@@ -24,7 +24,8 @@ import sheetproject.spreadsheet.XmlDriver;
  * @author Alan van Rossum
  *
  */
-public class MainController {
+public class MainController 
+{
 	
 	/**
 	 * Debug variable
@@ -32,24 +33,23 @@ public class MainController {
 	public static boolean DEBUG = false; 
 	
 	/**
-	 * variable containing the sheet table
+	 * Variable containing the sheet table
 	 */
 	private Sheet sheet;
 	
 	/**
-	 * variable containing the GUI
+	 * Variable containing the GUI
 	 */
 	private static View view;
 	
 	/**
-	 * variable containing the name of the file
+	 * Variable containing the name of the file
 	 */
-	private File filename;
+	private File fileName;
 
 	/**
 	 * Application starting point
-	 * 
-	 * @param args
+	 * @param args: Arguments for the application itself
 	 */
 	public static void main(String[] args) 
 	{
@@ -75,22 +75,21 @@ public class MainController {
 	public void newFile()
 	{
 		this.setSheet(new Sheet());
-		this.filename = null;
+		this.fileName = null;
 	}
 	
 	/**
 	 * Method for opening file
-	 * 
-	 * @param filename The name of the file to read
-	 * @return boolean True if file reading succeeded
+	 * @param filename: The name of the file to read
+	 * @return True if file reading succeeded, otherwise false
 	 */
-	public boolean openFile(File filename)
+	public boolean openFile(File fileName)
 	{
 		boolean succes = false;
 		try
 		{
-			setSheet(XmlDriver.read(filename));
-			this.filename = filename;
+			setSheet(XmlDriver.read(fileName));
+			this.fileName = fileName;
 			succes = true;
 		} 
 		catch (FileCorruptException e)
@@ -140,13 +139,12 @@ public class MainController {
 	
 	/**
 	 * Method for saving current sheet to file
-	 * 
-	 * @return boolean True if file save succeeded
+	 * @return True if file save succeeded, otherwise false
 	 */
 	public boolean saveFile()
 	{
 		boolean success = false;
-		if (this.filename == null)
+		if (this.fileName == null)
 		{
 			if(MainController.DEBUG)
 			{
@@ -155,15 +153,15 @@ public class MainController {
 		} 
 		else
 		{
-			success = saveFileAs(filename);
+			success = saveFileAs(fileName);
 		}
 		
 		if(success)
 		{
 			for(String key : this.getSheet().getCells().keySet())
             {
-                    Cell cell = this.getSheet().getCells().get(key);
-                    cell.setState(Cell.UPTODATE);     
+				Cell cell = this.getSheet().getCells().get(key);
+				cell.setState(Cell.UPTODATE);     
             }
 		}
 		
@@ -171,10 +169,9 @@ public class MainController {
 	}
 	
 	/**
-	 * Method for saving current sheet to new file
-	 * 
-	 * @param filename Name of new file
-	 * @return boolean True if file write succeeded
+	 * Method for saving current sheet to a new file
+	 * @param filename: Name of new file
+	 * @return boolean: True if file write succeeded
 	 */
 	public boolean saveFileAs(File filename)
 	{
@@ -196,8 +193,8 @@ public class MainController {
 		{
 			for(String key : this.getSheet().getCells().keySet())
             {
-                    Cell cell = this.getSheet().getCells().get(key);
-                    cell.setState(Cell.UPTODATE);     
+				Cell cell = this.getSheet().getCells().get(key);
+				cell.setState(Cell.UPTODATE);     
             }
 		}
 		
@@ -205,7 +202,8 @@ public class MainController {
 	}
 
 	/**
-	 * @return the sheet
+	 * Method for returning the Sheet object
+	 * @return the sheet object
 	 */
 	public Sheet getSheet() 
 	{
@@ -213,21 +211,30 @@ public class MainController {
 	}
 
 	/**
-	 * @param sheet Sets a Sheet object to the MainController sheet 
+	 * Method for setting the Sheet object
+	 * @param sheet: Sets a Sheet object to the MainController sheet 
 	 */
 	public void setSheet(Sheet sheet) 
 	{
 		this.sheet = sheet;
 	}
 	
-	public File getFilename() 
+	/**
+	 * Method for obtaining the file name
+	 * @return the file name
+	 */
+	public File getFileName() 
 	{
-		return filename;
+		return fileName;
 	}
-
-	public void setFilename(File filename) 
+	
+	/**
+	 * Method for setting the file name
+	 * @param fileName: the name of the file
+	 */
+	public void setFileName(File fileName) 
 	{
-		this.filename = filename;
+		this.fileName = fileName;
 	}
 
 }

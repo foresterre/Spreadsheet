@@ -23,7 +23,7 @@ public class FileNew implements ActionListener
 		else
 		{
 			String fileName = "";
-			if(this.view.getController().getFilename() == null)
+			if(this.view.getController().getFileName() == null)
 			{
 				if (this.view.newDocument - 1 == 0)
 				{
@@ -36,7 +36,7 @@ public class FileNew implements ActionListener
 			}
 			else
 			{
-				fileName = this.view.getController().getFilename().getName();
+				fileName = this.view.getController().getFileName().getName();
 			}
 			
 			Object[] options = 
