@@ -15,27 +15,28 @@ import sheetproject.spreadsheet.Sheet;
 public class Parser
 {
 	/**
-	 * 
+	 * First allowed format
 	 */
 	static Pattern format = Pattern.compile("(([A-Z]{2,10})\\((.*)\\))");
 	
 	/**
-	 * 
+	 * Second allowed format
 	 */
 	static Pattern format2 = Pattern.compile("\\s*([A-Z]{1,2})([0-9]{1,6})\\s*");
 
 	/**
-	 * 
+	 * Array of String objects containing all the allowed formula's
 	 */
 	private static String[] allowedFormulas = { "Average", "Count", "Counta", "Countif", "If", "Int", "Islogical",
 			"Iseven", "Isnumber", "Lower", "Max", "Median", "Min", "Mod", "Not", "Or", "Power", "Product", "Proper",
 			"Rounddown", "Roundup", "Sign", "Sqrt", "Sum", "Sumif" };
 	
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Method which removes spaces and other blank symbols, which checks if the formula starts with an equal sign.
+	 * Lets the parser evaluate to formula if it starts with the equals sign.
+	 * @param formula: formula to be parsed
+	 * @param data: data of the sheet object
+	 * @return String of the formula without space and which has an equal sign
 	 * @throws IllegalFormulaException
 	 * @throws CharacterOutOfBoundsException
 	 */
@@ -50,10 +51,10 @@ public class Parser
 	}
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Parses the formula
+	 * @param formula: formula to be parsed
+	 * @param data: data of the sheet object
+	 * @return returns the evaluation of the formula
 	 * @throws IllegalFormulaException
 	 * @throws CharacterOutOfBoundsException
 	 */
@@ -65,23 +66,29 @@ public class Parser
 
 		if (m.find())
 		{
-			String classname = m.group(2);
-			classname = classname.toLowerCase();
-			classname = Character.toUpperCase(classname.charAt(0)) + classname.substring(1);
+			String className = m.group(2);
+			className = className.toLowerCase();
+			className = Character.toUpperCase(className.charAt(0)) + className.substring(1);
 
-			if (containsFormula(classname))
+			if (containsFormula(className))
 			{
 				try
 				{
-					classname = "sheetproject.formula." + classname;
-					Class c = Class.forName(classname);
+					className = "sheetproject.formula." + className;
+					
+					Class c = Class.forName(className);
 					Class[] methodParameters = new Class[2];
+					
 					methodParameters[0] = String.class;
 					methodParameters[1] = Sheet.class;
+					
 					Object[] parameters = new Object[2];
+					
 					parameters[0] = formula;
 					parameters[1] = data;
+					
 					Method method = c.getMethod("evaluate", methodParameters);
+					
 					return (String) method.invoke(null, parameters);
 				}
 				catch (ClassNotFoundException e)
@@ -132,9 +139,9 @@ public class Parser
 	}
 
 	/**
-	 * 
-	 * @param formula
-	 * @return
+	 * Check if the formula is in the allowedFormulas list, and thus is allowed
+	 * @param formula: the formula to check if it is in the list
+	 * @return true if it is allowed, otherwise false
 	 */
 	public static boolean containsFormula(String formula)
 	{
@@ -146,27 +153,6 @@ public class Parser
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * TEST FUNCTIE (TO BE REMOVED__ AT FINAL_UITGECOMMENTE_CODE_PATCH)
-	 * @param args
-	 * @throws IndexOutOfBoundsException
-	 * @throws NullObjectException
-	 * @throws IllegalFormulaException
-	 * @throws CharacterOutOfBoundsException
-	 */
-	public static void main(String[] args) throws IndexOutOfBoundsException, NullObjectException, IllegalFormulaException, CharacterOutOfBoundsException
-	{
-		Sheet data = new Sheet();
-		data.setCell(new Cell("6"), 1, 1);
-		data.setCell(new Cell("7"), 1, 2);
-		data.setCell(new Cell(""), 1, 3);
-		data.setCell(new Cell("9"), 2, 1);
-		data.setCell(new Cell("768"), 2, 2);
-		data.setCell(new Cell("11"), 2, 3);
-		String a = Parser.parse("=MEDIAN(A1:B3)", data);
-		System.out.println(a);
 	}
 
 }

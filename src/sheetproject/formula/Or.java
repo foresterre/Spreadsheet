@@ -10,6 +10,20 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the outcome of an or operation 
  * Arguments: formula, cell, letters
  * 
+ * =OR(P1,P2)
+ * P1 and P2 have to be logical values
+ * Use a truth table to check OR
+ * If P1 is TRUE and P2 is TRUE, Returns TRUE
+ * If P1 is TRUE and P2 is FALSE, Returns TRUE
+ * If P1 is FALSE and P2 is TRUE, Returns TRUE
+ * If P1 is FALSE and P2 is FALSE, Returns FALSE
+ * 
+ * Can not use ranges
+ * 
+ * Can be nested
+ * Example: =OR(TRUE,OR(TRUE,FALSE))
+ * Will return TRUE
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -20,15 +34,15 @@ import sheetproject.spreadsheet.Sheet;
 public class Or
 {
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*OR\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z]+)\\s*,\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z]+)\\s*\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Or formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return logical or, returns TRUE or FALSE
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

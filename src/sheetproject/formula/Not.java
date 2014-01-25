@@ -11,6 +11,19 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the opposite of a logical value. 
  * Arguments: formula, cell, letters
  * 
+ * =NOT(PARAM)
+ * PARAM has to be a logical value
+ * Evaluates if the PARAM is TRUE or FALSE
+ * If it is TRUE, returns FALSE
+ * If it is FALSE, returns TRUE
+ * 
+ * No ranges possible
+ * 
+ * Nested formula's possible
+ * Example: =NOT(NOT(TRUE)) will return TRUE
+ * 
+ * Notice logical value TRUE or FALSE required. Not "TRUE" or "False".
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -22,15 +35,15 @@ public class Not
 {
 
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*NOT\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|[a-zA-Z]+)\\s*\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Not formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return Switches TRUE and FALSE to FALSE respectively TRUE
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

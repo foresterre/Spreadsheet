@@ -11,6 +11,13 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the sign of a value: 1 for positive, -1 for negative, 0 for 0. 
  * Arguments: formula, cell, value
  * 
+ * =SIGN(PARAM)
+ * PARAM has to be a number
+ * If the number is positive return 1, if the number is 0 return 0, if the number is negative return -1
+ * 
+ * Can not use a range
+ * Can be nested
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -22,15 +29,15 @@ public class Sign
 {
 
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*SIGN\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Sign formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return positive parameter returns 1, negative parameter returns -1, if parameter is 0 returns 0
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

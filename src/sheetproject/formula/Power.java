@@ -10,6 +10,15 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the power of two values. 
  * Arguments: formula, number, cell
  * 
+ * =POWER(PARAM1,PARAM2) 
+ * returns PARAM1 to the PARAM2-th power 
+ * Any parameter has to be a number
+ * 
+ * Can not be a range
+ * 
+ * Can be nested.
+ * Example: =POWER(PARAM1,POWER(PARAM2,PARAM3))
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -20,15 +29,15 @@ import sheetproject.spreadsheet.Sheet;
 public class Power
 {
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*POWER\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Power formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return power of value A to value B
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */
@@ -51,7 +60,7 @@ public class Power
 			}
 			catch (Exception e)
 			{
-
+				// This catch statement is to catch exceptions that are not important for the executing of our application
 			}
 
 			double temp2 = 0;
@@ -61,7 +70,7 @@ public class Power
 			}
 			catch (Exception e)
 			{
-
+				// This catch statement is to catch exceptions that are not important for the executing of our application
 			}
 
 			res = Double.toString(Math.pow(temp1, temp2));

@@ -63,7 +63,6 @@ public class If
         	group3 = Parser.evaluate(group3, data);
         	
         	String group2 = m.group(2);
-     
         	
         	boolean eval = false;
         	

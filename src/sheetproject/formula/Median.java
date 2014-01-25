@@ -91,7 +91,7 @@ public class Median
 						}
 						catch (Exception e)
 						{
-
+							// This catch statement is to catch exceptions that are not important for the executing of our application
 						}
 					}
 				}
@@ -127,7 +127,7 @@ public class Median
 				}
 				catch (Exception e)
 				{
-
+					// This catch statement is to catch exceptions that are not important for the executing of our application
 				}
 
 				try
@@ -136,7 +136,7 @@ public class Median
 				}
 				catch (Exception e)
 				{
-
+					// This catch statement is to catch exceptions that are not important for the executing of our application
 				}
 
 				return Double.toString(temp / 2.0);

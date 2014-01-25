@@ -10,6 +10,15 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the rest of a divide operation. 
  * Arguments: formula, number, cell
  * 
+ * =MOD(P1,P2)
+ * Where P1 and P2 are numbers.
+ * Returns P1 % P2
+ * 
+ * No ranges possible
+ * 
+ * Nested use example: =MOD(P1,MOD(P2,P3))
+ * With P1,P2,P3 as numbers
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -21,15 +30,15 @@ public class Mod
 {
 
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*MOD\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Mod formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the date of the sheet object
+	 * @return returns the modules of number_1 in respect to number_2
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */
@@ -69,14 +78,14 @@ public class Mod
 				return "DIVIDING BY ZERO";
 			}
 
-			double doubleres = temp1 % temp2;
+			double doubleRes = temp1 % temp2;
 
 			if ((temp1 < 0 ^ temp2 < 0) && (temp1 % temp2 != 0))
 			{
-				doubleres += temp2;
+				doubleRes += temp2;
 			}
 
-			res = Double.toString(doubleres);
+			res = Double.toString(doubleRes);
 		}
 		return res;
 	}

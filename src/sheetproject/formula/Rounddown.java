@@ -12,6 +12,13 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the value rounded down. 
  * Arguments: {formula, cell, value}, num_digits
  * 
+ * =ROUNDDOWN(PARAM)
+ * Rounds down a number (Here PARAM)
+ * PARAM has to be a number
+ * 
+ * Can not use ranges
+ * Can use nesting
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -23,15 +30,15 @@ public class Rounddown
 {
 	
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*ROUNDDOWN\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Rounddown formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return The round down value
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */
@@ -54,7 +61,7 @@ public class Rounddown
 			}
 			catch (Exception e)
 			{
-
+				// This catch statement is to catch exceptions that are not important for the executing of our application
 			}
 
 			int temp2 = 0;
@@ -64,7 +71,7 @@ public class Rounddown
 			}
 			catch (Exception e)
 			{
-
+				// This catch statement is to catch exceptions that are not important for the executing of our application
 			}
 
 			BigDecimal bd = new BigDecimal(temp1);

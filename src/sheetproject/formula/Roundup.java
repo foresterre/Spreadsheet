@@ -12,6 +12,13 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the value rounded up. 
  * Arguments: {formula, cell, value}, num_digits
  * 
+ * =ROUNDUP(PARAM)
+ * PARAM has to be a number
+ * Rounds up PARAM
+ * 
+ * Can not use ranges
+ * Can use nesting
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -22,15 +29,15 @@ import sheetproject.spreadsheet.Sheet;
 public class Roundup
 {
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*ROUNDUP\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
 	
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Roundup formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return The rounded up value
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */
@@ -53,7 +60,7 @@ public class Roundup
 			}
 			catch (Exception e)
 			{
-
+				// This catch statement is to catch exceptions that are not important for the executing of our application
 			}
 
 			double temp2 = 0;
@@ -63,7 +70,7 @@ public class Roundup
 			}
 			catch (Exception e)
 			{
-
+				// This catch statement is to catch exceptions that are not important for the executing of our application
 			}
 
 			BigDecimal bd = new BigDecimal(temp1);

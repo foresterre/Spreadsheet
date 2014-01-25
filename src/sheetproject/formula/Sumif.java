@@ -15,6 +15,11 @@ import sheetproject.spreadsheet.Sheet;
  * Returns the sum if the condition is evaluated TRUE
  * Arguments: formula, cell, value
  * 
+ * =SUMIF(PARAM1:PARAM2,COND)
+ * If the condition COND returns TRUE, sum the range from PARAM1 to PARAM2
+ * 
+ * Can be nested
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -26,15 +31,15 @@ public class Sumif
 {
 
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*SUMIF\\(\\s*([A-Z]{1,2}[0-9]{1,6})\\s*:\\s*([A-Z]{1,2}[0-9]{1,6})\\s*,\\s*(<|<=|=|!=|>=|>)\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Sumif formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return the sum of a range of values if the condition is true
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 * @throws ScriptException

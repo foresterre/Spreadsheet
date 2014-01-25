@@ -11,6 +11,12 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns all words with the first letter characterized and the rest to lower case. 
  * Arguments: formula, cell, text
  * 
+ * =PROPER(PARAM)
+ * The string PARAM will be set to Proper Case (also known as Camel Case)
+ * 
+ * Can not use ranges
+ * Can not be nested
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -21,15 +27,15 @@ import sheetproject.spreadsheet.Sheet;
 public class Proper
 {
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*PROPER\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|\".{1,20}\")\\s*\\)\\s*");
 	
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * EValuation of the Proper formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data to be parsed
+	 * @return A string in proper case (Camel Case)
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

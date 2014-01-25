@@ -13,6 +13,15 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the sum of two values or returns the sum of a range of values. 
  * Arguments: formula, cell, value
  * 
+ * =SUM(PARAM1,PARAM2)
+ * Returns PARAM1 + PARAM2 
+ * Requires PARAM1 and PARAM2 to be numbers
+ * 
+ * or =SUM(PARAM1:PARAM2)
+ * Returns PARAM1 plus any cell with a number in it up to PARAM2
+ * 
+ * Can be nested
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -25,15 +34,15 @@ public class Sum
 {
 
 	/**
-	 * 
+	 * Pattern that is used to recognize the formula provided 
 	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*SUM\\(\\s*((-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))|([A-Z]{1,2}[0-9]{1,6})\\s*:\\s*([A-Z]{1,2}[0-9]{1,6}))\\s*\\)\\s*");
 
 	/**
-	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * Evaluation of the Sum formula
+	 * @param formula: the formula to be parsed
+	 * @param data: the data of the sheet object
+	 * @return One value plus another or the sum of a range of values
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 * @throws NumberOutOfBoundsException
@@ -82,7 +91,7 @@ public class Sum
 						}
 						catch (Exception e)
 						{
-
+							// This catch statement is to catch exceptions that are not important for the executing of our application
 						}
 					}
 				}
@@ -102,7 +111,7 @@ public class Sum
 				}
 				catch (Exception e)
 				{
-
+					// This catch statement is to catch exceptions that are not important for the executing of our application
 				}
 
 				try
@@ -111,7 +120,7 @@ public class Sum
 				}
 				catch (Exception e)
 				{
-
+					// This catch statement is to catch exceptions that are not important for the executing of our application
 				}
 
 				res = Double.toString(temp);
