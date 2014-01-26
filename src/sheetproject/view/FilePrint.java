@@ -21,14 +21,23 @@ import sheetproject.controller.MainController;
  */
 public class FilePrint implements ActionListener
 {
-
+	/**
+	 * Variable for the view object
+	 */
 	private View view;
 
+	/**
+	 * Constructor for the FilePrint method
+	 * @param view: give through object
+	 */
 	public FilePrint(View view)
 	{
 		this.view = view;
 	}
 
+	/**
+	 * On action performed event for FilePrint
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		MessageFormat header = new MessageFormat("Page {0,number,integer}");

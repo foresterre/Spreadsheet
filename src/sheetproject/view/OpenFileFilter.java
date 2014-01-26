@@ -15,22 +15,37 @@ import javax.swing.filechooser.FileFilter;
  */
 public class OpenFileFilter extends FileFilter
 {
-
+	/**
+	 * Empty file extension variable
+	 */
 	private String fileExt = "";
-
+	
+	/**
+	 * Variables for extensions
+	 */
 	private String Ext = ".scar";
 	private String Ext2 = ".xml";
-
+	
+	/**
+	 * Constructor for OpenFileFilter
+	 */
 	public OpenFileFilter()
 	{
 		this(".xml");
 	}
-
+	
+	/**
+	 * Constructor for OpenFileFilter
+	 * @param extension: String containing the extension
+	 */
 	public OpenFileFilter(String extension)
 	{
 		fileExt = extension;
 	}
-
+	
+	/**
+	 * Method for accepting the file extensions
+	 */
 	public boolean accept(File f)
 	{
 		if (f.isDirectory())
@@ -39,7 +54,10 @@ public class OpenFileFilter extends FileFilter
 		}
 		return (f.getName().toLowerCase().endsWith(fileExt) || f.getName().toLowerCase().endsWith(Ext2));
 	}
-
+	
+	/**
+	 * Method to get the description of the OpenFileFilter
+	 */
 	public String getDescription()
 	{
 		if (fileExt.equals(Ext))

@@ -20,14 +20,23 @@ import sheetproject.spreadsheet.Cell;
  */
 public class TableUpdate implements TableModelListener
 {
-
+	/**
+	 * Variable for the view object
+	 */
 	private View view;
-
+	
+	/**
+	 * Constructor for the TableUpdate method
+	 * @param view: give through object
+	 */
 	public TableUpdate(View view)
 	{
 		this.view = view;
 	}
-
+	
+	/**
+	 * On table changed method
+	 */
 	@Override
 	public void tableChanged(TableModelEvent e)
 	{
@@ -64,7 +73,7 @@ public class TableUpdate implements TableModelListener
 					}
 					catch (IndexOutOfBoundsException | NullObjectException e2)
 					{
-						// Throw exception
+						// This catch statement is to catch exceptions that are not important for the executing of our application
 					}
 				}
 			}
@@ -76,7 +85,7 @@ public class TableUpdate implements TableModelListener
 			}
 			catch (CharacterOutOfBoundsException | IllegalFormulaException e1)
 			{
-				// Throw exception
+				// This catch statement is to catch exceptions that are not important for the executing of our application
 			}
 		}
 	}

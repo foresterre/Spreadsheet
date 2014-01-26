@@ -45,33 +45,76 @@ import sheetproject.spreadsheet.Sheet;
  */
 public class View extends JFrame
 {
-
+	
+	/**
+	 * Required but unused serial
+	 */
 	private static final long serialVersionUID = -771894500234558973L;
-
+	
+	/**
+	 * MainController variable
+	 */
 	private MainController controller;
 
+	/**
+	 * Application title variable
+	 */
 	private String applicationTitle = "Scarlett";
 
+	/**
+	 * Application icon location variable
+	 */
 	private String applicationImageLocation = "applicationIcon-128x128.png";
 
+	/**
+	 * Toolbar initialization
+	 */
 	private JToolBar toolbar;
 
+	/**
+	 * Table initialization
+	 */
 	private JTable table;
 
+	/**
+	 * Status panel initialization
+	 */
 	private JPanel statusPanel;
 
+	/**
+	 * Status label initialization
+	 */
 	private JLabel statusLabel;
 
+	/**
+	 * Textfield initialization
+	 */
 	JTextField selectionIndicator;
 
+	/**
+	 * Textfield initialization
+	 */
 	JTextField textField;
 
+	/**
+	 * Scroll pane initialization
+	 */
 	private JScrollPane scrollPane;
 
+	/**
+	 * New document variable
+	 */
 	int newDocument = 0;
 
+	/**
+	 * boolean for openDocument status
+	 */
 	boolean openDocument = false;
 
+	/**
+	 * Constructor for the View
+	 * @param controller: give-through object
+	 */
 	public View(MainController controller)
 	{
 		// Style
@@ -108,6 +151,9 @@ public class View extends JFrame
 
 	}
 
+	/**
+	 * Layout setup method
+	 */
 	public void setupLayout()
 	{
 
@@ -212,6 +258,9 @@ public class View extends JFrame
 		this.statusPanel.add(this.statusLabel);
 	}
 
+	/**
+	 * Table setup method
+	 */
 	public void setupTable()
 	{
 
@@ -302,6 +351,9 @@ public class View extends JFrame
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Table clear method
+	 */
 	public void clearTable()
 	{
 		MainController controller = this.getController();
@@ -315,6 +367,9 @@ public class View extends JFrame
 		}
 	}
 
+	/**
+	 * Table reload method
+	 */
 	public void reloadTable()
 	{
 		this.openDocument = true;
@@ -334,6 +389,10 @@ public class View extends JFrame
 		this.openDocument = false;
 	}
 
+	/**
+	 * 
+	 * @return true if table is changed, otherwise false
+	 */
 	public boolean isTableChanged()
 	{
 		MainController controller = this.getController();
@@ -347,7 +406,11 @@ public class View extends JFrame
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Method for chaning the title to DEBUG mode or not
+	 * @param title: title of the application
+	 */
 	public void changeTitle(String title)
 	{
 		if (title == null)
@@ -373,62 +436,110 @@ public class View extends JFrame
 			}
 		}
 	}
-
+	
+	/**
+	 * Shows the message
+	 * @param message: message
+	 */
 	public void showMessage(String message)
 	{
 		JOptionPane.showMessageDialog(this, message);
 	}
-
+	
+	/**
+	 * Shows the warning
+	 * @param message: warning message
+	 */
 	public void showWarning(String message)
 	{
 		JOptionPane.showMessageDialog(this, message, "Warning", JOptionPane.WARNING_MESSAGE);
 	}
 
+	/**
+	 * Shows the error
+	 * @param message: error message
+	 */
 	public void showError(String message)
 	{
 		JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
 	}
-
+	
+	/**
+	 * Change the current status
+	 * @param status: status message
+	 */
 	public void changeStatus(String status)
 	{
 		this.statusLabel.setText(status);
 	}
 
+	/**
+	 * get the current status
+	 * @return current status
+	 */
 	public String getStatus()
 	{
 		return statusLabel.getText();
 	}
 
+	/**
+	 * set the current status
+	 * @param status: current status message
+	 */
 	public void setStatus(String status)
 	{
 		this.statusLabel.setText(status);
 	}
 
+	/**
+	 * get app title
+	 * @return app title
+	 */
 	public String getApplicationTitle()
 	{
 		return applicationTitle;
 	}
-
+	
+	/**
+	 * set the app title
+	 * @param applicationTitle: applications title
+	 */
 	public void setApplicationTitle(String applicationTitle)
 	{
 		this.applicationTitle = applicationTitle;
 	}
-
+	
+	/**
+	 * Give through method, get the controller
+	 * @return MainController object
+	 */
 	public MainController getController()
 	{
 		return controller;
 	}
 
+	/**
+	 * Set the MainController object
+	 * @param controller: MainController object
+	 */
 	public void setController(MainController controller)
 	{
 		this.controller = controller;
 	}
-
+	
+	/**
+	 * get the table
+	 * @return table
+	 */
 	public JTable getTable()
 	{
 		return table;
 	}
-
+	
+	/**
+	 * set the table
+	 * @param table: current table object
+	 */
 	public void setTable(JTable table)
 	{
 		this.table = table;

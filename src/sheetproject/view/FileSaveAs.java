@@ -20,13 +20,23 @@ import sheetproject.controller.MainController;
  */
 public class FileSaveAs implements ActionListener
 {
+	/**
+	 * Variable for the view object
+	 */
 	private View view;
     
+	/**
+	 * Constructor method for FileSaveAs
+	 * @param view: give-through object
+	 */
 	public FileSaveAs(View view)
 	{
 		this.view = view;
 	}
-        
+    
+	/**
+	 * On action performed event for FileSaveAs
+	 */
 	public void actionPerformed(ActionEvent e) 
 	{
 		JFileChooser fileSave = new JFileChooser();

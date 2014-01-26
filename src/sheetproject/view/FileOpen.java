@@ -21,13 +21,23 @@ import sheetproject.controller.MainController;
  */
 public class FileOpen implements ActionListener 
 {
+	/**
+	 * Variable for the view object
+	 */
 	private View view;
 	
+	/**
+	 * Constructor for the FileOpen method
+	 * @param view: object to give through
+	 */
 	public FileOpen(View view)
 	{
 		this.view = view;
 	}
 	
+	/**
+	 * actionPerformed event
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		if (!this.view.isTableChanged())
@@ -86,6 +96,9 @@ public class FileOpen implements ActionListener
 		}
 	}
 	
+	/**
+	 * Helper method for opening files
+	 */
 	public void function()
 	{		
 		JFileChooser fileOpen = new JFileChooser();

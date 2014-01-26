@@ -18,13 +18,25 @@ import javax.swing.JOptionPane;
 public class FileNew implements ActionListener
 {
 
+	/**
+	 * Variable for the view object
+	 */
 	private View view;
 
+	/**
+	 * Constructor for the FileNew method
+	 * 
+	 * @param view
+	 *            : object to give through
+	 */
 	public FileNew(View view)
 	{
 		this.view = view;
 	}
 
+	/**
+	 * Method to check whether an action was performed or not
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if (!this.view.isTableChanged())
@@ -69,6 +81,9 @@ public class FileNew implements ActionListener
 		}
 	}
 
+	/**
+	 * Helper method
+	 */
 	public void function()
 	{
 		this.view.clearTable();

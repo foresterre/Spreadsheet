@@ -18,13 +18,23 @@ import sheetproject.exception.NumberOutOfBoundsException;
  */
 public class TextFieldUpdate extends MouseAdapter
 {
+	/**
+	 * Variable for the view object
+	 */
 	private View view;
 	
+	/**
+	 * Constructor for TextFieldUpdate
+	 * @param view
+	 */
 	public TextFieldUpdate(View view)
 	{
 		this.view = view;
 	}
     
+	/**
+	 * Method for the mouseClicked event
+	 */
     @Override
     public void mouseClicked(MouseEvent e)
     {

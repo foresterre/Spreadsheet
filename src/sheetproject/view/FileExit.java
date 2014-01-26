@@ -19,23 +19,40 @@ import javax.swing.JOptionPane;
  */
 public class FileExit extends WindowAdapter implements ActionListener
 {
+
+	/**
+	 * 
+	 */
 	private View view;
-	
+
+	/**
+	 * Constructor for FileExit method
+	 * @param view: Paramater to give the view object through
+	 */
 	public FileExit(View view)
 	{
 		this.view = view;
 	}
 	
-    public void windowClosing(WindowEvent e) 
-    {
-        this.check();
-    }
-	
-	public void actionPerformed(ActionEvent e) 
+	/**
+	 * Check for the windowClosing event
+	 */
+	public void windowClosing(WindowEvent e)
+	{
+		this.check();
+	}
+
+	/**
+	 * Check for the actionPerformed event
+	 */
+	public void actionPerformed(ActionEvent e)
 	{
 		this.check();
 	}
 	
+	/**
+	 * Method which determines whether to ask for save on exit or not 
+	 */
 	public void check()
 	{
 		if (!this.view.isTableChanged())
@@ -45,7 +62,7 @@ public class FileExit extends WindowAdapter implements ActionListener
 		else
 		{
 			String fileName = "";
-			if(this.view.getController().getFileName() == null)
+			if (this.view.getController().getFileName() == null)
 			{
 				if (this.view.newDocument - 1 == 0)
 				{
@@ -60,31 +77,17 @@ public class FileExit extends WindowAdapter implements ActionListener
 			{
 				fileName = this.view.getController().getFileName().getName();
 			}
-			
-			Object[] options = 
-			{
-					"Save",
-					"Don't Save",
-					"Cancel"
-            };
-			
-			int n = JOptionPane.showOptionDialog(
-				this.view,
-			    "Do you want to save your changes to " + fileName + "?",
-			    this.view.getApplicationTitle(),
-			    JOptionPane.YES_NO_CANCEL_OPTION,
-			    JOptionPane.QUESTION_MESSAGE,
-			    null,
-			    options,
-			    options[2]
-			 );
-			
-			if(n == 0)
+
+			Object[] options = { "Save", "Don't Save", "Cancel" };
+
+			int n = JOptionPane.showOptionDialog(this.view, "Do you want to save your changes to " + fileName + "?", this.view.getApplicationTitle(), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+
+			if (n == 0)
 			{
 				new FileSave(this.view).actionPerformed(null);
 				this.function();
 			}
-			else if(n == 1)
+			else if (n == 1)
 			{
 				this.function();
 			}
@@ -95,6 +98,9 @@ public class FileExit extends WindowAdapter implements ActionListener
 		}
 	}
 	
+	/**
+	 * exit function
+	 */
 	public void function()
 	{
 		System.exit(0);

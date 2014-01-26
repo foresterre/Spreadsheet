@@ -17,14 +17,24 @@ import sheetproject.controller.MainController;
  */
 public class FormulaUpdate implements ActionListener
 {
-
+	
+	/**
+	 * Variable for the view object
+	 */
 	private View view;
-
+	
+	/**
+	 * Constructor for the FormulaUpdate method
+	 * @param view: give through object
+	 */
 	public FormulaUpdate(View view)
 	{
 		this.view = view;
 	}
-
+	
+	/**
+	 * on action performed event for the FormulaUpdate
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
