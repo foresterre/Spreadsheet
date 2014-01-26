@@ -11,8 +11,10 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns all words with the first letter characterized and the rest to lower case. 
  * Arguments: formula, cell, text
  * 
- * =PROPER(PARAM)
+ * =PROPER("PARAM")
  * The string PARAM will be set to Proper Case (also known as Camel Case)
+ * Example: =PROPER("a BIT of text")
+ * Will become: "A Bit Of Text"
  * 
  * Can not use ranges
  * Can not be nested

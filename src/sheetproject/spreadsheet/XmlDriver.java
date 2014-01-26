@@ -39,131 +39,134 @@ import sheetproject.exception.NullObjectException;
  * @author Alan van Rossum
  */
 public class XmlDriver
-{	
-	
+{
+
 	/**
 	 * Method for reading a XML file into a sheet object
 	 * 
-	 * @param filename String Filename of the file to read
-	 * @return Sheet Sheet object containing the contents of the file
-	 * @throws FileCorruptException 
-	 * @throws FileNotFoundException 
-	 * @throws NullObjectException 
-	 * @throws IndexOutOfBoundsException 
-	 * @throws CharacterOutOfBoundsException 
-	 * @throws IllegalFormulaException 
+	 * @param filename: Filename of the file to read
+	 * @return Sheet object containing the contents of the file
+	 * @throws FileCorruptException
+	 * @throws FileNotFoundException
+	 * @throws NullObjectException
+	 * @throws IndexOutOfBoundsException
+	 * @throws CharacterOutOfBoundsException
+	 * @throws IllegalFormulaException
 	 */
 	public static Sheet read(File filename) throws FileCorruptException, IndexOutOfBoundsException, NullObjectException, FileNotFoundException, CharacterOutOfBoundsException, IllegalFormulaException
-	{		
-		
+	{
+
 		// get the rows and columns from the Sheet object
-		int columns = Sheet.getColumns();	
+		int columns = Sheet.getColumns();
 		int rows = Sheet.getRows();
-		
+
 		Sheet sheet = new Sheet();
-		
+
 		try
 		{
-			
+
 			DocumentBuilderFactory sheetDocBuildFac = DocumentBuilderFactory.newInstance();
 			DocumentBuilder sheetDocBuild = sheetDocBuildFac.newDocumentBuilder();
 			Document sheetDoc = sheetDocBuild.parse(filename);
 			sheetDoc.getDocumentElement().normalize();
-			
+
 			// check duplicates array
 			ArrayList<String> check = new ArrayList<String>();
-			
+
 			// read xml file
 			NodeList nodeList = sheetDoc.getElementsByTagName("CELL");
-			
-			for (int i = 0; i < nodeList.getLength(); i++) 
+
+			for (int i = 0; i < nodeList.getLength(); i++)
 			{
 				Node node = nodeList.item(i);
-				
+
 				if (node.getNodeType() == Node.ELEMENT_NODE)
 				{
 					Element element = (Element) node;
 					String content = element.getTextContent().replaceAll("\n", "");
-					
+
 					Cell cell = new Cell(content);
 					int x;
 					int y;
-					
+
 					// Throw an exception when a entry has a too high column number
 					try
 					{
 						x = Integer.parseInt(element.getAttribute("column"));
 					}
-					catch(NumberFormatException e)
+					catch (NumberFormatException e)
 					{
-						throw new FileCorruptException("The xml file has a entry with a too high column number or is not a number. Max is " + Integer.MAX_VALUE);
+						throw new FileCorruptException("The xml file has a entry with a too high column number or is not a number. Max is "
+								+ Integer.MAX_VALUE);
 					}
-					
+
 					// Throw an exception if the xml file has a negative column number
 					if (x < 1)
 					{
 						throw new FileCorruptException("The xml file has a negative column number");
 					}
-					
+
 					// Throw an exception if the xml file has too many columns
 					if (x > columns)
 					{
 						throw new FileCorruptException("The xml file has to many columns. Max is " + columns);
 					}
-										
+
 					// Throw an exception when an entry has a too high row number
 					try
 					{
 						y = Integer.parseInt(element.getAttribute("row"));
 					}
-					catch(NumberFormatException e)
+					catch (NumberFormatException e)
 					{
-						throw new FileCorruptException("The xml file has a entry with a too high row number or is not a number. Max is " + Integer.MAX_VALUE);
+						throw new FileCorruptException("The xml file has a entry with a too high row number or is not a number. Max is "
+								+ Integer.MAX_VALUE);
 					}
-					
+
 					// Throw an exception if the xml file has a negative row number
 					if (y < 1)
 					{
 						throw new FileCorruptException("The xml file has a negative row number");
 					}
-					
+
 					// Throw an exception if the xml file has too many rows
 					if (y > rows)
 					{
 						throw new FileCorruptException("The xml file has to many rows. Max is " + rows);
 					}
-					
+
 					// Colors
 					try
 					{
-					int colorForeground = Integer.parseInt(element.getAttribute("foregroundColor"));
-					cell.setForeground(new Color(colorForeground));
+						int colorForeground = Integer.parseInt(element.getAttribute("foregroundColor"));
+						cell.setForeground(new Color(colorForeground));
 					}
-					catch(NumberFormatException e)
+					catch (NumberFormatException e)
 					{
-						
+
 					}
-					
+
 					try
 					{
-					int colorBackground = Integer.parseInt(element.getAttribute("backgroundColor"));
-					cell.setBackground(new Color(colorBackground));
+						int colorBackground = Integer.parseInt(element.getAttribute("backgroundColor"));
+						cell.setBackground(new Color(colorBackground));
 					}
-					catch(NumberFormatException e)
+					catch (NumberFormatException e)
 					{
-						
+
 					}
-					
+
 					// Check for duplicates
-					if (check.contains(x + "," + y)){
+					if (check.contains(x + "," + y))
+					{
 						throw new FileCorruptException("XML contains duplicate cells");
 					}
-					
+
 					sheet.setCell(cell, x, y);
 					check.add(x + "," + y);
 				}
 			}
-		} 
+		}
 		catch (FileNotFoundException e)
 		{
 			throw new FileCorruptException("File not found!");
@@ -171,7 +174,7 @@ public class XmlDriver
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		} 
+		}
 		catch (SAXException e)
 		{
 			e.printStackTrace();
@@ -180,28 +183,29 @@ public class XmlDriver
 		{
 			e.printStackTrace();
 		}
-		
+
 		sheet.parse();
 		return sheet;
-		
+
 	}
 
 	/**
 	 * Method for writing to a file
-	 * @param sheetObject The data which will be written to the XML file
-	 * @param filename The XML file which to which will be written
+	 * 
+	 * @param sheetObject: The data which will be written to the XML file
+	 * @param filename: The XML file which to which will be written
 	 */
-	public static void write(Sheet sheetObject, File filename) 
+	public static void write(Sheet sheetObject, File filename)
 	{
-		try 
-		{			
+		try
+		{
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();			 
-		
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
 			Document doc = docBuilder.newDocument();
 			Element sheetElement = doc.createElement("SPREADSHEET");
-			doc.appendChild(sheetElement);	 
-			
+			doc.appendChild(sheetElement);
+
 			for (String key : sheetObject.getCells().keySet())
 			{
 				// Create Shortcut
@@ -209,49 +213,49 @@ public class XmlDriver
 
 				// Create cell Element
 				Element cell = doc.createElement("CELL");
-				
+
 				// Getting Coords
 				String[] coords = key.split(",");
-				
+
 				// Add row attrib to cell
-				cell.setAttribute("row", coords[1]);		
-				
+				cell.setAttribute("row", coords[1]);
+
 				// Add column attrib to cell
 				cell.setAttribute("column", coords[0]);
-				
+
 				// Set content
 				cell.setTextContent(item.getFormula());
-				
+
 				// Set colors
 				String colorForeground = Integer.toString(item.getForeground().getRGB());
 				cell.setAttribute("foregroundColor", colorForeground);
 				String colorBackground = Integer.toString(item.getBackground().getRGB());
 				cell.setAttribute("backgroundColor", colorBackground);
-				
+
 				// Add the child "cell" to the sheetElement
 				sheetElement.appendChild(cell);
 			}
-			
-			// write the content into xml file			
+
+			// write the content into xml file
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(filename);			
-				
+			StreamResult result = new StreamResult(filename);
+
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-			transformer.transform(source, result);			 
+			transformer.transform(source, result);
 
 		}
-		catch (ParserConfigurationException e) 
-		{			
+		catch (ParserConfigurationException e)
+		{
 			e.printStackTrace();
 		}
 		catch (TransformerConfigurationException e)
-		{			
+		{
 			e.printStackTrace();
 		}
-		catch (TransformerException e) 
-		{			
+		catch (TransformerException e)
+		{
 			e.printStackTrace();
 		}
 	}
