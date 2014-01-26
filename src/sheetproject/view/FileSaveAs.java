@@ -40,7 +40,11 @@ public class FileSaveAs implements ActionListener
             
 			File file;
 			
-			if (fileSave.getSelectedFile().toString().contains(".scar"))
+			if (fileSave.getSelectedFile().toString().endsWith(".scar"))
+			{
+				file = fileSave.getSelectedFile();
+			}
+			else if(fileSave.getSelectedFile().toString().endsWith(".xml"))
 			{
 				file = fileSave.getSelectedFile();
 			}
