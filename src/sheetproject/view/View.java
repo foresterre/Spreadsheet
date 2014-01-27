@@ -276,41 +276,9 @@ public class View extends JFrame
 		this.getTable().getTableHeader().setReorderingAllowed(false);
 
 		this.getTable().addMouseListener(new TextFieldUpdate(this));
-		// this.getTable().addMouseListener(new MouseAdapter()
-		// {
-		//
-		// @Override
-		// public void mouseClicked(MouseEvent e)
-		// {
-		// int selectedColumn = getTable().columnAtPoint(e.getPoint());
-		// int selectedRow = getTable().rowAtPoint(e.getPoint());
-		//
-		// try
-		// {
-		// selectionIndicator.setText(Alfabet.parseInt(selectedColumn + 1) + (selectedRow + 1));
-		// }
-		// catch (NumberOutOfBoundsException e1)
-		// {
-		// }
-		//
-		// //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
-		// try
-		// {
-		// textField.setText(getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).getFormula());
-		// }
-		// catch(NullPointerException e1)
-		// {
-		// textField.setText("");
-		// }
-		//
-		// }
-		// });
-
 		this.getTable().getModel().addTableModelListener(new TableUpdate(this));
 
 		// Setup row number table
-		TableRowSorter<TableModel> rowsorter = new TableRowSorter<TableModel>(getTable().getModel());
-		this.getTable().setRowSorter(rowsorter);
 
 		AbstractTableModel model = new AbstractTableModel()
 		{
