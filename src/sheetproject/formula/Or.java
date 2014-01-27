@@ -40,9 +40,10 @@ public class Or
 
 	/**
 	 * Evaluation of the Or formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
-	 * @return logical or, returns TRUE or FALSE
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Logical or, returns TRUE or FALSE
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

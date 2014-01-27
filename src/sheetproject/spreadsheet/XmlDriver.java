@@ -44,7 +44,7 @@ public class XmlDriver
 	/**
 	 * Method for reading a XML file into a sheet object
 	 * 
-	 * @param File Filename of the file to read
+	 * @param filename Filename of the file to read
 	 * @return Sheet object containing the contents of the file
 	 * @throws FileCorruptException
 	 * @throws FileNotFoundException
@@ -192,8 +192,8 @@ public class XmlDriver
 	/**
 	 * Method for writing to a file
 	 * 
-	 * @param Sheet The data which will be written to the XML file
-	 * @param File The XML file which to which will be written
+	 * @param sheetObject The data which will be written to the XML file
+	 * @param filename The XML file which to which will be written
 	 */
 	public static void write(Sheet sheetObject, File filename)
 	{

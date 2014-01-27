@@ -23,8 +23,8 @@ public class Alphabet
 	/**
 	 * Static function that parser the number in the alphabet to corresponding letter
 	 * 
-	 * @param int The number corresponding with the x-th letter of the alphabet or double letter (Exampple AQ or FT)
-	 * @return String Returns the one or two uppercase letters corresponding to i
+	 * @param i The number corresponding with the x-th letter of the alphabet or double letter (Exampple AQ or FT)
+	 * @return Returns the one or two uppercase letters corresponding to i
 	 * @throws NumberOutOfBoundsException
 	 */
 	public static String parseInt(int i) throws NumberOutOfBoundsException
@@ -49,8 +49,8 @@ public class Alphabet
 	/**
 	 * Static function that parser the letter in the alphabet to corresponding number
 	 *  
-	 * @param String Parses one or two letters (from A to ZZ) to a corresponding number (from 1 to 701)
-	 * @return int The number corresponding to i
+	 * @param i Parses one or two letters (from A to ZZ) to a corresponding number (from 1 to 701)
+	 * @return The number corresponding to i
 	 * @throws CharacterOutOfBoundsException
 	 */
 	public static int parseChar(String i) throws CharacterOutOfBoundsException

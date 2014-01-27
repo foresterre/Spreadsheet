@@ -22,13 +22,14 @@ import sheetproject.controller.MainController;
 public class FilePrint implements ActionListener
 {
 	/**
-	 * Variable for the view object
+	 * Local view reference
 	 */
 	private View view;
 
 	/**
 	 * Constructor for the FilePrint method
-	 * @param view: give through object
+	 * 
+	 * @param view View to pass through
 	 */
 	public FilePrint(View view)
 	{

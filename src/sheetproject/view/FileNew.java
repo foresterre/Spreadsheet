@@ -19,15 +19,14 @@ public class FileNew implements ActionListener
 {
 
 	/**
-	 * Variable for the view object
+	 * Local view reference
 	 */
 	private View view;
 
 	/**
 	 * Constructor for the FileNew method
 	 * 
-	 * @param view
-	 *            : object to give through
+	 * @param view View to pass through
 	 */
 	public FileNew(View view)
 	{

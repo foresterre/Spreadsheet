@@ -16,13 +16,14 @@ import java.awt.event.ActionListener;
 public class FileSave implements ActionListener 
 {
 	/**
-	 * Variable for the view object
+	 * Local view reference
 	 */
 	private View view;
 	
 	/**
 	 * Constructor for the FileSave method
-	 * @param view: give-through object
+	 * 
+	 * @param view View to pass through
 	 */
 	public FileSave(View view)
 	{

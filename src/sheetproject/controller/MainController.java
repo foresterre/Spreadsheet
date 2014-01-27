@@ -50,7 +50,7 @@ public class MainController
 	/**
 	 * Application starting point
 	 * 
-	 * @param String[] Arguments for the application itself
+	 * @param args Arguments for the application itself
 	 */
 	public static void main(String[] args) 
 	{
@@ -82,7 +82,7 @@ public class MainController
 	/**
 	 * Method for opening file
 	 * 
-	 * @param File The name of the file to read
+	 * @param filename The name of the file to read
 	 * @return boolean True if file reading succeeded, otherwise false
 	 */
 	public boolean openFile(File filename)
@@ -142,7 +142,7 @@ public class MainController
 	/**
 	 * Method for saving current sheet to file
 	 * 
-	 * @return boolean True if file save succeeded, otherwise false
+	 * @return True if file save succeeded, otherwise false
 	 */
 	public boolean saveFile()
 	{
@@ -174,8 +174,8 @@ public class MainController
 	/**
 	 * Method for saving current sheet to a new file
 	 * 
-	 * @param File Name of new file
-	 * @return boolean True if file write succeeded, false otherwise
+	 * @param filename Name of new file
+	 * @return True if file write succeeded, false otherwise
 	 */
 	public boolean saveFileAs(File filename)
 	{
@@ -209,7 +209,7 @@ public class MainController
 	/**
 	 * Method for returning the Sheet object
 	 * 
-	 * @return Sheet The sheet object
+	 * @return The sheet object
 	 */
 	public Sheet getSheet() 
 	{
@@ -219,7 +219,7 @@ public class MainController
 	/**
 	 * Method for setting the Sheet object
 	 * 
-	 * @param Sheet Sets a Sheet object to the MainController sheet 
+	 * @param sheet Sets a Sheet object to the MainController sheet 
 	 */
 	public void setSheet(Sheet sheet) 
 	{
@@ -229,7 +229,7 @@ public class MainController
 	/**
 	 * Method for obtaining the file name
 	 * 
-	 * @return File The file name
+	 * @return The file name
 	 */
 	public File getFileName() 
 	{
@@ -239,7 +239,7 @@ public class MainController
 	/**
 	 * Method for setting the file name
 	 * 
-	 * @param File The name of the file
+	 * @param fileName The name of the file
 	 */
 	public void setFileName(File fileName) 
 	{

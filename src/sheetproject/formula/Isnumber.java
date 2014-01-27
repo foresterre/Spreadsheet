@@ -32,8 +32,9 @@ public class Isnumber
 
 	/**
 	 * Evaluation of the Isnumber formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
 	 * @return TRUE if the parameter is a number, otherwise false
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException

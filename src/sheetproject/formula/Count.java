@@ -36,8 +36,9 @@ public class Count
         
     /**
      * Evaluation of the Count formula
-     * @param formula: the formula to be parsed
-     * @param data: the data of the sheet object
+     * 
+     * @param formula The formula to be parsed
+     * @param data The data of the sheet object
      * @return Counted number of cells of a range between two coordinates
      * @throws CharacterOutOfBoundsException
      * @throws IllegalFormulaException

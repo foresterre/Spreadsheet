@@ -113,7 +113,8 @@ public class View extends JFrame
 
 	/**
 	 * Constructor for the View
-	 * @param controller: give-through object
+	 * 
+	 * @param controller COntroller object to pass through
 	 */
 	public View(MainController controller)
 	{
@@ -354,7 +355,7 @@ public class View extends JFrame
 	/**
 	 * Checks if the table has changed
 	 * 
-	 * @return boolean true if table is changed, otherwise false
+	 * @return TRUE if table is changed, otherwise FALSE
 	 */
 	public boolean isTableChanged()
 	{
@@ -373,7 +374,7 @@ public class View extends JFrame
 	/**
 	 * Method for changing the title
 	 * 
-	 * @param String Title of the application
+	 * @param title Title of the application
 	 */
 	public void changeTitle(String title)
 	{
@@ -404,7 +405,7 @@ public class View extends JFrame
 	/**
 	 * Shows the message
 	 * 
-	 * @param String message
+	 * @param message message
 	 */
 	public void showMessage(String message)
 	{
@@ -414,7 +415,7 @@ public class View extends JFrame
 	/**
 	 * Shows the warning
 	 * 
-	 * @param String Warning message
+	 * @param message Warning message
 	 */
 	public void showWarning(String message)
 	{
@@ -424,7 +425,7 @@ public class View extends JFrame
 	/**
 	 * Shows the error
 	 * 
-	 * @param String Error message
+	 * @param message Error message
 	 */
 	public void showError(String message)
 	{
@@ -434,7 +435,7 @@ public class View extends JFrame
 	/**
 	 * Change the current status
 	 * 
-	 * @param String Status message
+	 * @param status Status message
 	 */
 	public void changeStatus(String status)
 	{
@@ -444,7 +445,7 @@ public class View extends JFrame
 	/**
 	 * Get the current status
 	 * 
-	 * @return String Current status
+	 * @return Current status
 	 */
 	public String getStatus()
 	{
@@ -454,7 +455,7 @@ public class View extends JFrame
 	/**
 	 * Set the current status
 	 * 
-	 * @param String Current status message
+	 * @param status Current status message
 	 */
 	public void setStatus(String status)
 	{
@@ -463,7 +464,8 @@ public class View extends JFrame
 
 	/**
 	 * Get application title
-	 * @return String Application title
+	 * 
+	 * @return Application title
 	 */
 	public String getApplicationTitle()
 	{
@@ -472,7 +474,8 @@ public class View extends JFrame
 	
 	/**
 	 * Set the application title
-	 * @param String Applications title
+	 * 
+	 * @param applicationTitle Applications title
 	 */
 	public void setApplicationTitle(String applicationTitle)
 	{
@@ -482,7 +485,7 @@ public class View extends JFrame
 	/**
 	 * Give through method, get the controller
 	 * 
-	 * @return MainController Controller
+	 * @return Controller
 	 */
 	public MainController getController()
 	{
@@ -492,7 +495,7 @@ public class View extends JFrame
 	/**
 	 * Set the MainController object
 	 * 
-	 * @param MainController MainController object
+	 * @param controller MainController object
 	 */
 	public void setController(MainController controller)
 	{
@@ -502,7 +505,7 @@ public class View extends JFrame
 	/**
 	 * Get the table
 	 * 
-	 * @return JTable table
+	 * @return table
 	 */
 	public JTable getTable()
 	{
@@ -511,7 +514,8 @@ public class View extends JFrame
 	
 	/**
 	 * Set the table
-	 * @param JTable Current table object
+	 * 
+	 * @param table Current table object
 	 */
 	public void setTable(JTable table)
 	{

@@ -37,8 +37,9 @@ public class Proper
 	
 	/**
 	 * EValuation of the Proper formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data to be parsed
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data to be parsed
 	 * @return A string in proper case (Camel Case)
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException

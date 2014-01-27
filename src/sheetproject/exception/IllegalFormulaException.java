@@ -28,7 +28,7 @@ public class IllegalFormulaException extends Exception
 	
 	/**
 	 * Exception for an illegal formula containing a message
-	 * @param String Message of the exception
+	 * @param message Message of the exception
 	 */
 	public IllegalFormulaException(String message) 
 	{
@@ -37,8 +37,8 @@ public class IllegalFormulaException extends Exception
 
 	/**
 	 * Exception for an illegal formula containing a message and the cause
-	 * @param String Message of the exception
-	 * @param Throwable Cause of the exception
+	 * @param message Message of the exception
+	 * @param cause Cause of the exception
 	 */
 	public IllegalFormulaException(String message, Throwable cause) 
 	{
@@ -47,7 +47,7 @@ public class IllegalFormulaException extends Exception
 	
 	/**
 	 * Exception for an illegal formula containing the cause
-	 * @param Throwable Cause of the exception
+	 * @param cause Cause of the exception
 	 */
 	public IllegalFormulaException(Throwable cause) 
 	{

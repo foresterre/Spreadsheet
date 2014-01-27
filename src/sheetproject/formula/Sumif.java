@@ -37,9 +37,10 @@ public class Sumif
 
 	/**
 	 * Evaluation of the Sumif formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
-	 * @return the sum of a range of values if the condition is true
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return The sum of a range of values if the condition is true
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 * @throws ScriptException
@@ -94,5 +95,4 @@ public class Sumif
 
 		return res;
 	}
-
 }

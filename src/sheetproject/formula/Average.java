@@ -39,8 +39,9 @@ public class Average
 
 	/**
 	 * Evaluation of the Average formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
 	 * @return Answer value of the average between two parameters
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException

@@ -27,7 +27,7 @@ public class FileCorruptException extends Exception {
 	
 	/**
 	 * Exception for a corrupt or otherwise unreadable file containing a message
-	 * @param String Message of the exception
+	 * @param message Message of the exception
 	 */
 	public FileCorruptException(String message) 
 	{
@@ -36,8 +36,8 @@ public class FileCorruptException extends Exception {
 
 	/**
 	 * Exception for a corrupt or otherwise unreadable file containing a message and the cause
-	 * @param String Message of the exception
-	 * @param Throwable Cause of the exception
+	 * @param message Message of the exception
+	 * @param cause Cause of the exception
 	 */
 	public FileCorruptException(String message, Throwable cause) 
 	{
@@ -47,7 +47,7 @@ public class FileCorruptException extends Exception {
 	
 	/**
 	 * Exception for a corrupt or otherwise unreadable file containing the cause
-	 * @param Throwable Cause of the exception
+	 * @param cause Cause of the exception
 	 */
 	public FileCorruptException(Throwable cause) 
 	{

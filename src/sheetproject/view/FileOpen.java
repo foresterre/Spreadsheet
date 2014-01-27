@@ -22,13 +22,14 @@ import sheetproject.controller.MainController;
 public class FileOpen implements ActionListener 
 {
 	/**
-	 * Variable for the view object
+	 * Local view reference
 	 */
 	private View view;
 	
 	/**
 	 * Constructor for the FileOpen method
-	 * @param view: object to give through
+	 * 
+	 * @param view View to pass through
 	 */
 	public FileOpen(View view)
 	{
@@ -36,7 +37,7 @@ public class FileOpen implements ActionListener
 	}
 	
 	/**
-	 * actionPerformed event
+	 * ActionPerformed event
 	 */
 	public void actionPerformed(ActionEvent e) {
 		

@@ -33,9 +33,10 @@ public class Parser
 	
 	/**
 	 * Method which removes spaces and other blank symbols, which checks if the formula starts with an equal sign.
-	 * Lets the parser evaluate to formula if it starts with the equals sign.
-	 * @param formula: formula to be parsed
-	 * @param data: data of the sheet object
+	 * Lets the parser evaluate the formula if it starts with the equals sign.
+	 * 
+	 * @param formula Formula to be parsed
+	 * @param data Data of the sheet object
 	 * @return String of the formula without space and which has an equal sign
 	 * @throws IllegalFormulaException
 	 * @throws CharacterOutOfBoundsException
@@ -52,9 +53,10 @@ public class Parser
 
 	/**
 	 * Parses the formula
-	 * @param formula: formula to be parsed
-	 * @param data: data of the sheet object
-	 * @return returns the evaluation of the formula
+	 * 
+	 * @param formula Formula to be parsed
+	 * @param data Data of the sheet object
+	 * @return Returns the evaluation of the formula
 	 * @throws IllegalFormulaException
 	 * @throws CharacterOutOfBoundsException
 	 */
@@ -144,8 +146,9 @@ public class Parser
 
 	/**
 	 * Check if the formula is in the allowedFormulas list, and thus is allowed
-	 * @param formula: the formula to check if it is in the list
-	 * @return true if it is allowed, otherwise false
+	 * 
+	 * @param formula The formula to check if it is in the list
+	 * @return TRUE if it is allowed, otherwise FALSE
 	 */
 	public static boolean containsFormula(String formula)
 	{
@@ -158,5 +161,4 @@ public class Parser
 		}
 		return false;
 	}
-
 }

@@ -58,7 +58,7 @@ public class Cell
 	
 	/**
 	 * Constructor for the cell class 
-	 * @param String String containing the content of the cell
+	 * @param content String containing the content of the cell
 	 */
 	public Cell(String content)
 	{
@@ -67,10 +67,10 @@ public class Cell
 
 	/**
 	 * Constructor for the cell class
-	 * @param String String containing the content of the cell
-	 * @param int State of the cell
-	 * @param Color foreground color of the cell
-	 * @param Color background color of the cell
+	 * @param content String containing the content of the cell
+	 * @param state State of the cell
+	 * @param foreground Foreground color of the cell
+	 * @param background Background color of the cell
 	 */
 	public Cell(String content, int state, Color foreground, Color background)
 	{
@@ -83,7 +83,7 @@ public class Cell
 	/**
 	 * Method that returns the value of the cell
 	 * 
-	 * @return String The value of the cell
+	 * @return The value of the cell
 	 */
 	public String getValue()
 	{
@@ -93,7 +93,7 @@ public class Cell
 	/**
 	 * Method that sets the value of the cell
 	 * 
-	 * @param String The value to set
+	 * @param value The value to set
 	 */
 	public void setValue(String value)
 	{
@@ -103,7 +103,7 @@ public class Cell
 	/**
 	 * Method that returns the formula of the cell
 	 * 
-	 * @return String Content of the cell
+	 * @return Content of the cell
 	 */
 	public String getFormula()
 	{
@@ -113,7 +113,7 @@ public class Cell
 	/**
 	 * Method that sets the formula of the cell
 	 * 
-	 * @param String Formula for the cell
+	 * @param formula Formula for the cell
 	 */
 	public void setFormula(String formula)
 	{
@@ -123,7 +123,7 @@ public class Cell
 	/**
 	 * Method that returns the state of the cell
 	 * 
-	 * @return int The state of the cell
+	 * @return The state of the cell
 	 */
 	public int getState()
 	{
@@ -133,7 +133,7 @@ public class Cell
 	/**
 	 * Method that sets the state of the cell
 	 * 
-	 * @param int The state to set
+	 * @param state The state to set
 	 */
 	public void setState(int state)
 	{
@@ -143,7 +143,7 @@ public class Cell
 	/**
 	 * Method that returns the foreground color of the cell
 	 * 
-	 * @return Color The foreground color
+	 * @return The foreground color
 	 */
 	public Color getForeground()
 	{
@@ -153,7 +153,7 @@ public class Cell
 	/**
 	 * Method that sets the foreground color of the cell
 	 * 
-	 * @param Color The foreground color to set
+	 * @param foreground The foreground color to set
 	 */
 	public void setForeground(Color foreground)
 	{
@@ -163,7 +163,7 @@ public class Cell
 	/**
 	 * Method that returns the background color of the cell
 	 * 
-	 * @return Color The background color
+	 * @return The background color
 	 */
 	public Color getBackground()
 	{
@@ -173,7 +173,7 @@ public class Cell
 	/**
 	 * Method that sets the background color of the cell
 	 * 
-	 * @param Color the background color to set
+	 * @param background The background color to set
 	 */
 	public void setBackground(Color background)
 	{
@@ -183,7 +183,7 @@ public class Cell
 	/**
 	 * Method for parsing the formula of the cell
 	 * 
-	 * @param Sheet The sheet with the data for parsing
+	 * @param sheet The sheet with the data for parsing
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */
@@ -197,7 +197,7 @@ public class Cell
 	 * 
 	 * Returns a string representation of the cell object
 	 * 
-	 * @return String String representation of the cell
+	 * @return String representation of the cell
 	 */
 	public String toString()
 	{
@@ -207,7 +207,7 @@ public class Cell
 	/**
 	 * Equals method Checks if two cell objects are equal
 	 * 
-	 * @return boolean Returns true if they are equal, false otherwise
+	 * @return Returns true if they are equal, false otherwise
 	 */
 	public boolean equals(Object other)
 	{

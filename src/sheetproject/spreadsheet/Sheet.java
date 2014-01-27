@@ -51,7 +51,7 @@ public class Sheet
 	/**
 	 * Method that returns the number of columns of the table
 	 * 
-	 * @return int Number of columns
+	 * @return Number of columns
 	 */
 	public static int getColumns()
 	{
@@ -61,7 +61,7 @@ public class Sheet
 	/**
 	 * Method that returns the number of rows of the table
 	 * 
-	 * @return int Number of rows
+	 * @return Number of rows
 	 */
 	public static int getRows()
 	{
@@ -71,7 +71,7 @@ public class Sheet
 	/**
 	 * Method that returns the cells
 	 * 
-	 * @return HashMap Containing the cells
+	 * @return Hashmap Containing the cells
 	 */
 	public HashMap<String, Cell> getCells()
 	{
@@ -81,10 +81,10 @@ public class Sheet
 	/**
 	 * Method that returns the cell
 	 * 
-	 * @param int Integer representing the column
-	 * @param int Integer representing the row
+	 * @param column Integer representing the column
+	 * @param row Integer representing the row
 	 * @throws IndexOutOfBoundsException
-	 * @return Cell The cell on those x and y values
+	 * @return The cell on those x and y values
 	 */
 	public Cell getCell(int column, int row) throws IndexOutOfBoundsException
 	{
@@ -111,9 +111,9 @@ public class Sheet
 	/**
 	 * Method that sets the cell
 	 * 
-	 * @param Cell A cell
-	 * @param int Integer representing the column
-	 * @param int Integer representing the row
+	 * @param cell A cell
+	 * @param column Integer representing the column
+	 * @param row Integer representing the row
 	 * @throws IndexOutOfBoundsException
 	 * @throws NullObjectException
 	 */
@@ -163,7 +163,7 @@ public class Sheet
 	/**
 	 * Equals method Checks if two sheet objects are equal
 	 * 
-	 * @return boolean Returns true if the sheet objects are equal false otherwise
+	 * @return Returns true if the sheet objects are equal false otherwise
 	 */
 	public boolean equals(Object other)
 	{
@@ -185,7 +185,7 @@ public class Sheet
 	/**
 	 * ToString method Visualizes the content of the XML file
 	 * 
-	 * @return String Returns a representation of the XML content with its values
+	 * @return Returns a representation of the XML content with its values
 	 */
 	public String toString()
 	{
