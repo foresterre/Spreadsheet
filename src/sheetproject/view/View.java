@@ -359,7 +359,7 @@ public class View extends JFrame
 
 	/**
 	 * 
-	 * @return true if table is changed, otherwise false
+	 * @return boolean true if table is changed, otherwise false
 	 */
 	public boolean isTableChanged()
 	{
@@ -443,7 +443,7 @@ public class View extends JFrame
 
 	/**
 	 * get the current status
-	 * @return current status
+	 * @return String current status
 	 */
 	public String getStatus()
 	{
@@ -461,7 +461,7 @@ public class View extends JFrame
 
 	/**
 	 * get app title
-	 * @return app title
+	 * @return String app title
 	 */
 	public String getApplicationTitle()
 	{
@@ -497,7 +497,7 @@ public class View extends JFrame
 	
 	/**
 	 * get the table
-	 * @return table
+	 * @return JTable table
 	 */
 	public JTable getTable()
 	{
