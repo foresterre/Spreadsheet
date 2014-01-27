@@ -11,6 +11,7 @@
  
 # Package Files #
 *.jar
+!Scarlett.jar
 *.war
 *.ear
 *.db
@@ -70,4 +71,6 @@ local.properties
  
 # PDT-specific
 .buildpath
+/bin
+/bin
 /bin
