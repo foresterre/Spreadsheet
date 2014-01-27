@@ -16,7 +16,7 @@ import sheetproject.spreadsheet.Sheet;
  * Otherwise it returns FALSE. 
  * If it is not a number, it will return NOT A NUMBER.
  * 
- * This formula can not be nested
+ * This formula can be nested
  * 
  * @author Robin Borst
  * @author Martijn Gribnau
@@ -27,7 +27,9 @@ import sheetproject.spreadsheet.Sheet;
  */
 public class Iseven
 {
-
+	/**
+	 * Pattern that is used to recognize the formula provided 
+	 */
 	static Pattern formulaPattern = Pattern.compile("\\s*ISEVEN\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
 
 	/**

@@ -12,9 +12,9 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the value rounded down. 
  * Arguments: {formula, cell, value}, num_digits
  * 
- * =ROUNDDOWN(PARAM)
+ * =ROUNDDOWN(PARAM, DIGITS)
  * Rounds down a number (Here PARAM)
- * PARAM has to be a number
+ * PARAM and DIGITS have to be numbers
  * 
  * Can not use ranges
  * Can use nesting

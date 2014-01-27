@@ -135,7 +135,13 @@ public class Parser
 		{
 			int i = Alphabet.parseChar(m2.group(1));
 			int j = Integer.parseInt(m2.group(2));
-			String cellContent = data.getCell(i, j).getFormula();
+			String cellContent = "";
+			try{
+				cellContent = data.getCell(i, j).getFormula();
+			}
+			catch (NullPointerException e){				
+			
+			}
 			cellContent = Parser.evaluate(cellContent, data);
 			return cellContent;
 		}

@@ -13,7 +13,7 @@ import sheetproject.spreadsheet.Sheet;
  * =ISNUMBER(PARAM)
  * If PARAM is a number this function will return true. Otherwise it will return false.
  * 
- * This formula can not be nested
+ * This formula can be nested
  * 
  * @author Robin Borst
  * @author Martijn Gribnau

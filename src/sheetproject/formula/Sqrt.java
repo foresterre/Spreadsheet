@@ -13,7 +13,7 @@ import sheetproject.spreadsheet.Sheet;
  * 
  * =SQRT(PARAM)
  * PARAM has to be a number
- * returns the squareroot of the PARAM
+ * returns the square root of the PARAM
  * 
  * Can not use ranges
  * Can be nested

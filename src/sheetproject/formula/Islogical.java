@@ -13,7 +13,7 @@ import sheetproject.spreadsheet.Sheet;
  * =ISLOGICAL(PARAM)
  * If the PARAM had a logical value TRUE or FALSE, this function will return TRUE, otherwise it will return FALSE
  * 
- * This formula can not be nested
+ * This formula can be nested
  * 
  * @author Robin Borst
  * @author Martijn Gribnau

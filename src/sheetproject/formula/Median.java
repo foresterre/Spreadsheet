@@ -17,7 +17,7 @@ import sheetproject.spreadsheet.Sheet;
  * =MEDIAN(PARAM1,PARAM2) or =MEDIAN(PARAM3:PARAM4)
  * Returns the median value of PARAM1 and PARAM2 or the median value of PARAM3 to PARAM4
  * 
- * Can be used with nested formula's
+ * Can be used with nested formulas
  * 
  * @author Robin Borst
  * @author Martijn Gribnau

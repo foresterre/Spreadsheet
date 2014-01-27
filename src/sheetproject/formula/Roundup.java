@@ -12,9 +12,9 @@ import sheetproject.spreadsheet.Sheet;
  * Class that returns the value rounded up. 
  * Arguments: {formula, cell, value}, num_digits
  * 
- * =ROUNDUP(PARAM)
- * PARAM has to be a number
- * Rounds up PARAM
+ * =ROUNDUP(PARAM, DIGITS)
+ * Rounds up a number (Here PARAM)
+ * PARAM and DIGITS have to be numbers
  * 
  * Can not use ranges
  * Can use nesting

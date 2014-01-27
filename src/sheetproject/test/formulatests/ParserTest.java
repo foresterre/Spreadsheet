@@ -70,11 +70,11 @@ public class ParserTest {
 		assertEquals(Parser.evaluate("SUM()", data), "");
 	}
 	
-	@Test(expected=NullPointerException.class)
+	@Test//(expected=NullPointerException.class)
 	public void testEvaluateNegativeCellNotExisting() throws IllegalFormulaException, CharacterOutOfBoundsException, IndexOutOfBoundsException, NullObjectException
 	{		
 		data.setCell(new Cell("7"), 1, 1);
-		assertEquals(Parser.evaluate("A2", data), "7");
+		assertEquals(Parser.evaluate("A2", data), "");
 	}
 
 	@Test

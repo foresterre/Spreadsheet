@@ -16,7 +16,7 @@ import sheetproject.spreadsheet.Sheet;
  * Arguments: formula, cell, value
  * 
  * =SUMIF(PARAM1:PARAM2,COND)
- * If the condition COND returns TRUE, sum the range from PARAM1 to PARAM2
+ *  Sum the range from PARAM1 to PARAM2, for which the condition COND returns TRUE
  * 
  * Can be nested
  * 

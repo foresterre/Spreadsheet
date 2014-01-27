@@ -18,8 +18,8 @@ import sheetproject.spreadsheet.Sheet;
  * =COUNTIF(PARAM1:PARAM2,PARAM3)
  * Where PARAM1:PARAM2 is a range of coordinates from PARAM1 to PARAM2 to be counted if the condition PARAM3 is evaluated TRUE
  * 
- * Nesting formulas can be done like so: =COUNTIF(PARAM1:PARAM2, COUNTIF(PARAM3:PARAM4, COND))
- * Where PARAM1 and PARAM2 is the first range and  COUNTIF(PARAM3:PARAM4, COND) is the condition
+ * Nesting formulas can be done like so: =COUNTIF(PARAM1:PARAM2, >COUNTIF(PARAM3:PARAM4, COND))
+ * Where PARAM1 and PARAM2 is the first range and  >COUNTIF(PARAM3:PARAM4, COND) is the condition
  * And in the nested formula is PARAM3:PARAM4 the range to count and COND is here the condition.
  * 
  * 
