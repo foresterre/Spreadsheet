@@ -52,7 +52,7 @@ public class Count
         if (m.find())
         {
         	String group1 = m.group(1);
-        	if (group1.contains(":"))
+        	if (group1.contains(":") && !group1.contains("(") && !group1.contains(")"))
         	{
         		String beginCell = m.group(4);        	
         		String endCell = m.group(5);
