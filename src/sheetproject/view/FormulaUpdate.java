@@ -48,6 +48,9 @@ public class FormulaUpdate implements ActionListener
 
 				this.view.getController().getSheet().getCell(selectedColumn + 1, selectedRow + 1).setFormula(formula);
 				this.view.getTable().setValueAt(formula, selectedRow, selectedColumn);
+				
+				this.view.getController().getSheet().parse();
+				this.view.reloadTable();
 			}
 		}
 		catch (Exception ex)
