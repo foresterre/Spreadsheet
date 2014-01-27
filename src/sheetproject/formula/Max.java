@@ -43,9 +43,10 @@ public class Max
 
 	/**
 	 * Evaluation of the Max formula
-	 * @param formula: the formula to be parsed 
-	 * @param data: the data of the sheet object
-	 * @return the maximum value of two parameters or a range
+	 * 
+	 * @param formula The formula to be parsed 
+	 * @param data The data of the sheet object
+	 * @return The maximum value of two parameters or a range
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 * @throws NumberOutOfBoundsException
@@ -58,7 +59,7 @@ public class Max
 		if (m.find())
 		{
 			String group1 = m.group(1);
-			if (group1.contains(":"))
+			if (group1.contains(":")  && !group1.contains("(") && !group1.contains(")"))
 			{
 				String beginCell = m.group(4);
 				String endCell = m.group(5);

@@ -21,13 +21,14 @@ import sheetproject.controller.MainController;
 public class FileSaveAs implements ActionListener
 {
 	/**
-	 * Variable for the view object
+	 * Local view reference
 	 */
 	private View view;
     
 	/**
 	 * Constructor method for FileSaveAs
-	 * @param view: give-through object
+	 * 
+	 * @param view View to pass through
 	 */
 	public FileSaveAs(View view)
 	{

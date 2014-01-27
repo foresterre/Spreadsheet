@@ -49,7 +49,8 @@ public class MainController
 
 	/**
 	 * Application starting point
-	 * @param args: Arguments for the application itself
+	 * 
+	 * @param args Arguments for the application itself
 	 */
 	public static void main(String[] args) 
 	{
@@ -80,16 +81,17 @@ public class MainController
 	
 	/**
 	 * Method for opening file
-	 * @param filename: The name of the file to read
-	 * @return True if file reading succeeded, otherwise false
+	 * 
+	 * @param filename The name of the file to read
+	 * @return boolean True if file reading succeeded, otherwise false
 	 */
-	public boolean openFile(File fileName)
+	public boolean openFile(File filename)
 	{
 		boolean succes = false;
 		try
 		{
-			setSheet(XmlDriver.read(fileName));
-			this.fileName = fileName;
+			setSheet(XmlDriver.read(filename));
+			this.fileName = filename;
 			succes = true;
 		} 
 		catch (FileCorruptException e)
@@ -139,6 +141,7 @@ public class MainController
 	
 	/**
 	 * Method for saving current sheet to file
+	 * 
 	 * @return True if file save succeeded, otherwise false
 	 */
 	public boolean saveFile()
@@ -170,8 +173,9 @@ public class MainController
 	
 	/**
 	 * Method for saving current sheet to a new file
-	 * @param filename: Name of new file
-	 * @return boolean: True if file write succeeded
+	 * 
+	 * @param filename Name of new file
+	 * @return True if file write succeeded, false otherwise
 	 */
 	public boolean saveFileAs(File filename)
 	{
@@ -179,6 +183,7 @@ public class MainController
 		try
 		{
 			XmlDriver.write(this.sheet, filename);
+			this.fileName = filename;
 			success = true;
 		} 
 		catch(Exception e)
@@ -203,7 +208,8 @@ public class MainController
 
 	/**
 	 * Method for returning the Sheet object
-	 * @return the sheet object
+	 * 
+	 * @return The sheet object
 	 */
 	public Sheet getSheet() 
 	{
@@ -212,7 +218,8 @@ public class MainController
 
 	/**
 	 * Method for setting the Sheet object
-	 * @param sheet: Sets a Sheet object to the MainController sheet 
+	 * 
+	 * @param sheet Sets a Sheet object to the MainController sheet 
 	 */
 	public void setSheet(Sheet sheet) 
 	{
@@ -221,7 +228,8 @@ public class MainController
 	
 	/**
 	 * Method for obtaining the file name
-	 * @return the file name
+	 * 
+	 * @return The file name
 	 */
 	public File getFileName() 
 	{
@@ -230,7 +238,8 @@ public class MainController
 	
 	/**
 	 * Method for setting the file name
-	 * @param fileName: the name of the file
+	 * 
+	 * @param fileName The name of the file
 	 */
 	public void setFileName(File fileName) 
 	{

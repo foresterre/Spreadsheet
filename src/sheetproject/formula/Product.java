@@ -36,9 +36,10 @@ public class Product
 	
 	/**
 	 * Evaluation of the Product formula
-	 * @param formula: the formula to be parsed
-	 * @param data the data of the sheet object
-	 * @return roduct of value A and value B or of the each value in a range
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Product of value A and value B or the product of each value in a range
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 * @throws NumberOutOfBoundsException
@@ -51,7 +52,7 @@ public class Product
 		if (m.find())
 		{
 			String group1 = m.group(1);
-			if (group1.contains(":"))
+			if (group1.contains(":")  && !group1.contains("(") && !group1.contains(")"))
 			{
 				String beginCell = m.group(4);
 				String endCell = m.group(5);

@@ -41,9 +41,10 @@ public class Not
 
 	/**
 	 * Evaluation of the Not formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
-	 * @return Switches TRUE and FALSE to FALSE respectively TRUE
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Switches TRUE and FALSE to respectively FALSE and TRUE
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

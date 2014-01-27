@@ -40,8 +40,9 @@ public class If
 	
 	/**
 	 * Evaluation of the If formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
 	 * @return Value of the second parameter if the first parameter (condition) is true, otherwise the value of the third parameter
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException

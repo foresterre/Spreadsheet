@@ -32,9 +32,10 @@ public class Islogical
 	
 	/**
 	 * Evaluation of the Islogical formula
-	 * @param formula
-	 * @param data
-	 * @return
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return TRUE if string is logical, FALSE if the string is not logical
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

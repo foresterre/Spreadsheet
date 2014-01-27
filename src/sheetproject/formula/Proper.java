@@ -19,6 +19,8 @@ import sheetproject.spreadsheet.Sheet;
  * Can not use ranges
  * Can not be nested
  * 
+ * Max: 512 Characters in a direct string input
+ * 
  * @author Robin Borst
  * @author Martijn Gribnau
  * @author Roy Klip
@@ -31,12 +33,13 @@ public class Proper
 	/**
 	 * Pattern that is used to recognize the formula provided 
 	 */
-	static Pattern formulaPattern = Pattern.compile("\\s*PROPER\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|\".{1,20}\")\\s*\\)\\s*");
+	static Pattern formulaPattern = Pattern.compile("\\s*PROPER\\(\\s*([A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\)|\".{1,512}\")\\s*\\)\\s*");
 	
 	/**
 	 * EValuation of the Proper formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data to be parsed
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data to be parsed
 	 * @return A string in proper case (Camel Case)
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException

@@ -21,8 +21,9 @@ public class Alphabet
 	private static String[] list = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}; 
 	
 	/**
+	 * Static function that parser the number in the alphabet to corresponding letter
 	 * 
-	 * @param i: the number corresponding with the x-th letter of the alphabet or double letter (Exampple AQ or FT)
+	 * @param i The number corresponding with the x-th letter of the alphabet or double letter (Exampple AQ or FT)
 	 * @return Returns the one or two uppercase letters corresponding to i
 	 * @throws NumberOutOfBoundsException
 	 */
@@ -46,8 +47,9 @@ public class Alphabet
 	
 	
 	/**
-	 * 
-	 * @param i: Parses one or two letters (from A to ZZ) to a corresponding number (from 1 to 701)
+	 * Static function that parser the letter in the alphabet to corresponding number
+	 *  
+	 * @param i Parses one or two letters (from A to ZZ) to a corresponding number (from 1 to 701)
 	 * @return The number corresponding to i
 	 * @throws CharacterOutOfBoundsException
 	 */
@@ -72,5 +74,4 @@ public class Alphabet
 		}
 		throw new CharacterOutOfBoundsException();
 	}
-	
 }

@@ -34,10 +34,11 @@ public class Min
 	static Pattern formulaPattern = Pattern.compile("\\s*MIN\\(\\s*((-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*,\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))|([A-Z]{1,2}[0-9]{1,6})\\s*:\\s*([A-Z]{1,2}[0-9]{1,6}))\\s*\\)\\s*");
 
 	/**
+	 * Evaluation of the Min formula
 	 * 
-	 * @param formula
-	 * @param data
-	 * @return
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Minimum value of the series provided
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 * @throws NumberOutOfBoundsException
@@ -50,7 +51,7 @@ public class Min
 		if (m.find())
 		{
 			String group1 = m.group(1);
-			if (group1.contains(":"))
+			if (group1.contains(":")  && !group1.contains("(") && !group1.contains(")"))
 			{
 				String beginCell = m.group(4);
 				String endCell = m.group(5);

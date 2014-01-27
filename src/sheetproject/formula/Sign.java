@@ -35,9 +35,10 @@ public class Sign
 
 	/**
 	 * Evaluation of the Sign formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
-	 * @return positive parameter returns 1, negative parameter returns -1, if parameter is 0 returns 0
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Positive parameter returns 1, negative parameter returns -1, if parameter is 0 returns 0
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

@@ -19,13 +19,14 @@ import sheetproject.exception.NumberOutOfBoundsException;
 public class TextFieldUpdate extends MouseAdapter
 {
 	/**
-	 * Variable for the view object
+	 * Local view reference
 	 */
 	private View view;
 	
 	/**
 	 * Constructor for TextFieldUpdate
-	 * @param view
+	 * 
+	 * @param view View to pass through
 	 */
 	public TextFieldUpdate(View view)
 	{
@@ -47,9 +48,9 @@ public class TextFieldUpdate extends MouseAdapter
         } 
         catch (NumberOutOfBoundsException e1) 
         {
+        	// This catch statement is to catch exceptions that are not important for the executing of our application
 		}
-            
-        //String displayString = (String) getTable().getValueAt(selectedRow, selectedColumn);
+        
         try 
         {
         	this.view.textField.setText(this.view.getController().getSheet().getCell(clickedColumn + 1, clickedRow + 1).getFormula());

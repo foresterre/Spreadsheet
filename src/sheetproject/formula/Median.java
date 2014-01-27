@@ -36,9 +36,10 @@ public class Median
 
 	/**
 	 * Evaluation of the Median formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
-	 * @return the median of a range or two cells
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return The median of a range or two cells
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 * @throws NumberOutOfBoundsException
@@ -51,7 +52,7 @@ public class Median
 		if (m.find())
 		{
 			String group1 = m.group(1);
-			if (group1.contains(":"))
+			if (group1.contains(":")  && !group1.contains("(") && !group1.contains(")"))
 			{
 				String beginCell = m.group(4);
 				String endCell = m.group(5);

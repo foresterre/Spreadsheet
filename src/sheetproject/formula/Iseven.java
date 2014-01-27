@@ -33,11 +33,10 @@ public class Iseven
 	static Pattern formulaPattern = Pattern.compile("\\s*ISEVEN\\(\\s*(-?[0-9]+|-?[0-9]+\\.[0-9]+|[A-Z]{1,2}[0-9]{1,6}|[A-Z]{2,10}\\(.*\\))\\s*\\)\\s*");
 
 	/**
+	 * Evaluation of the Iseven formula
 	 * 
-	 * @param formula
-	 *            : the formula to be parsed
-	 * @param data
-	 *            : the data of the sheet object
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
 	 * @return TRUE if number is even, FALSE if the number is uneven, NOT A NUMBER if the value is not a number
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException

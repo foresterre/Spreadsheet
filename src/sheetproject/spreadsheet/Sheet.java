@@ -19,7 +19,7 @@ import sheetproject.exception.NullObjectException;
  * @author Ike Rijsdijk
  * @author Alan van Rossum
  */
-public class Sheet extends AbstractTableModel
+public class Sheet
 {
 
 	/**
@@ -51,7 +51,7 @@ public class Sheet extends AbstractTableModel
 	/**
 	 * Method that returns the number of columns of the table
 	 * 
-	 * @return int Number of columns
+	 * @return Number of columns
 	 */
 	public static int getColumns()
 	{
@@ -71,7 +71,7 @@ public class Sheet extends AbstractTableModel
 	/**
 	 * Method that returns the cells
 	 * 
-	 * @return HashMap Containing the cells
+	 * @return Hashmap Containing the cells
 	 */
 	public HashMap<String, Cell> getCells()
 	{
@@ -81,10 +81,10 @@ public class Sheet extends AbstractTableModel
 	/**
 	 * Method that returns the cell
 	 * 
-	 * @param column: int Integer representing the column
-	 * @param row: int Integer representing the row
+	 * @param column Integer representing the column
+	 * @param row Integer representing the row
 	 * @throws IndexOutOfBoundsException
-	 * @return The cell
+	 * @return The cell on those x and y values
 	 */
 	public Cell getCell(int column, int row) throws IndexOutOfBoundsException
 	{
@@ -111,9 +111,9 @@ public class Sheet extends AbstractTableModel
 	/**
 	 * Method that sets the cell
 	 * 
-	 * @param cell: The cell
-	 * @param column:Integer representing the column
-	 * @param row: Integer representing the row
+	 * @param cell A cell
+	 * @param column Integer representing the column
+	 * @param row Integer representing the row
 	 * @throws IndexOutOfBoundsException
 	 * @throws NullObjectException
 	 */
@@ -163,7 +163,7 @@ public class Sheet extends AbstractTableModel
 	/**
 	 * Equals method Checks if two sheet objects are equal
 	 * 
-	 * @return boolean returns true if they are equal
+	 * @return Returns true if the sheet objects are equal false otherwise
 	 */
 	public boolean equals(Object other)
 	{
@@ -183,9 +183,9 @@ public class Sheet extends AbstractTableModel
 	}
 
 	/**
-	 * toString method Visualizes the content of the xml file
+	 * ToString method Visualizes the content of the XML file
 	 * 
-	 * @return String returns a representation of the xml content with its values
+	 * @return Returns a representation of the XML content with its values
 	 */
 	public String toString()
 	{
@@ -202,76 +202,5 @@ public class Sheet extends AbstractTableModel
 		}
 
 		return returnString;
-	}
-
-	/**
-	 * get method for the column count
-	 * @return amount of columns in the current sheet
-	 */
-	@Override
-	public int getColumnCount()
-	{
-		return Sheet.getColumns();
-	}
-
-	/**
-	 * get method for the row count
-	 * @return amount of rows in the current sheet
-	 */
-	@Override
-	public int getRowCount()
-	{
-		return Sheet.getRows();
-	}
-	
-	
-	/**
-	 * get method for the value at a specific coordinate
-	 * @return coordinates in a cell object
-	 */
-	@Override
-	public Object getValueAt(int x, int y)
-	{
-		return this.getCell(x + 1, y + 1);
-	}
-
-	/**
-	 * check whether the cell is editable or not
-	 * @return true if the cell is in an editable state
-	 */
-	@Override
-	public boolean isCellEditable(int row, int col)
-	{
-		return true;
-	}
-
-	/**
-	 * set method for the value at a coordinate
-	 */
-	@Override
-	public void setValueAt(Object value, int row, int col)
-	{
-		try
-		{
-			this.setCell((Cell) value, col, row);
-		}
-		catch (IndexOutOfBoundsException | NullObjectException e)
-		{
-			if (MainController.DEBUG)
-			{
-				e.printStackTrace();
-			}
-		}
-		fireTableCellUpdated(row, col);
-	}
-
-	/**
-	 * get methode for the current class at a column
-	 * @return Class of the current value
-	 */
-	@Override
-	public Class getColumnClass(int c)
-	{
-		return getValueAt(0, c).getClass();
 	}
 }

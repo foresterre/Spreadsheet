@@ -36,7 +36,8 @@ public class OpenFileFilter extends FileFilter
 	
 	/**
 	 * Constructor for OpenFileFilter
-	 * @param extension: String containing the extension
+	 * 
+	 * @param extension String containing the extension
 	 */
 	public OpenFileFilter(String extension)
 	{
@@ -45,6 +46,8 @@ public class OpenFileFilter extends FileFilter
 	
 	/**
 	 * Method for accepting the file extensions
+	 * 
+	 * @param f Filename
 	 */
 	public boolean accept(File f)
 	{

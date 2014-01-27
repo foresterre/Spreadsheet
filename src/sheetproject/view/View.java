@@ -113,14 +113,13 @@ public class View extends JFrame
 
 	/**
 	 * Constructor for the View
-	 * @param controller: give-through object
+	 * 
+	 * @param controller COntroller object to pass through
 	 */
 	public View(MainController controller)
 	{
 		// Style
-		
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		// JDialog.setDefaultLookAndFeelDecorated(true);
 
 		// Set visibility to TRUE
 		this.setVisible(true);
@@ -143,6 +142,7 @@ public class View extends JFrame
 		Image titleIcon = tk.getImage(this.applicationImageLocation);
 		this.setIconImage(titleIcon);
 
+		// Setup functions
 		this.setupLayout();
 		this.getController().newFile();
 		this.setupTable();
@@ -205,16 +205,7 @@ public class View extends JFrame
 		fileExit.setToolTipText("Exit Application");
 		fileExit.addActionListener(new FileExit(this));
 
-		// COMMENTING THESE OUT FOR BETTER PRESENTATION SCREENSHOTS + CLASS WRECKING() BELOW
-		// ALSO SET DEBUG TO ZERO (SAME REASON)
-		// JMenuItem Wrecking = new JMenuItem("Wreck it");
-		// Wrecking.setMnemonic(KeyEvent.VK_W);
-		// Wrecking.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.ALT_MASK));
-		// Wrecking.setToolTipText("Wreck it, boy");
-		// Wrecking.addActionListener(new Wrecking());
-
-		// Add menu items to file menu bar item
-		// file.add(Wrecking);
+		// Add all menu items
 		file.add(fileNew);
 		file.add(fileOpen);
 		file.add(fileSave);
@@ -321,6 +312,8 @@ public class View extends JFrame
 
 	/**
 	 * Table clear method
+	 * 
+	 * Clears the whole table
 	 */
 	public void clearTable()
 	{
@@ -337,6 +330,8 @@ public class View extends JFrame
 
 	/**
 	 * Table reload method
+	 * 
+	 * Reloads the values from the sheet object into the table
 	 */
 	public void reloadTable()
 	{
@@ -358,8 +353,9 @@ public class View extends JFrame
 	}
 
 	/**
+	 * Checks if the table has changed
 	 * 
-	 * @return true if table is changed, otherwise false
+	 * @return TRUE if table is changed, otherwise FALSE
 	 */
 	public boolean isTableChanged()
 	{
@@ -376,8 +372,9 @@ public class View extends JFrame
 	}
 	
 	/**
-	 * Method for chaning the title to DEBUG mode or not
-	 * @param title: title of the application
+	 * Method for changing the title
+	 * 
+	 * @param title Title of the application
 	 */
 	public void changeTitle(String title)
 	{
@@ -407,7 +404,8 @@ public class View extends JFrame
 	
 	/**
 	 * Shows the message
-	 * @param message: message
+	 * 
+	 * @param message message
 	 */
 	public void showMessage(String message)
 	{
@@ -416,7 +414,8 @@ public class View extends JFrame
 	
 	/**
 	 * Shows the warning
-	 * @param message: warning message
+	 * 
+	 * @param message Warning message
 	 */
 	public void showWarning(String message)
 	{
@@ -425,7 +424,8 @@ public class View extends JFrame
 
 	/**
 	 * Shows the error
-	 * @param message: error message
+	 * 
+	 * @param message Error message
 	 */
 	public void showError(String message)
 	{
@@ -434,7 +434,8 @@ public class View extends JFrame
 	
 	/**
 	 * Change the current status
-	 * @param status: status message
+	 * 
+	 * @param status Status message
 	 */
 	public void changeStatus(String status)
 	{
@@ -442,8 +443,9 @@ public class View extends JFrame
 	}
 
 	/**
-	 * get the current status
-	 * @return current status
+	 * Get the current status
+	 * 
+	 * @return Current status
 	 */
 	public String getStatus()
 	{
@@ -451,8 +453,9 @@ public class View extends JFrame
 	}
 
 	/**
-	 * set the current status
-	 * @param status: current status message
+	 * Set the current status
+	 * 
+	 * @param status Current status message
 	 */
 	public void setStatus(String status)
 	{
@@ -460,8 +463,9 @@ public class View extends JFrame
 	}
 
 	/**
-	 * get app title
-	 * @return app title
+	 * Get application title
+	 * 
+	 * @return Application title
 	 */
 	public String getApplicationTitle()
 	{
@@ -469,8 +473,9 @@ public class View extends JFrame
 	}
 	
 	/**
-	 * set the app title
-	 * @param applicationTitle: applications title
+	 * Set the application title
+	 * 
+	 * @param applicationTitle Applications title
 	 */
 	public void setApplicationTitle(String applicationTitle)
 	{
@@ -479,7 +484,8 @@ public class View extends JFrame
 	
 	/**
 	 * Give through method, get the controller
-	 * @return MainController object
+	 * 
+	 * @return Controller
 	 */
 	public MainController getController()
 	{
@@ -488,7 +494,8 @@ public class View extends JFrame
 
 	/**
 	 * Set the MainController object
-	 * @param controller: MainController object
+	 * 
+	 * @param controller MainController object
 	 */
 	public void setController(MainController controller)
 	{
@@ -496,7 +503,8 @@ public class View extends JFrame
 	}
 	
 	/**
-	 * get the table
+	 * Get the table
+	 * 
 	 * @return table
 	 */
 	public JTable getTable()
@@ -505,8 +513,9 @@ public class View extends JFrame
 	}
 	
 	/**
-	 * set the table
-	 * @param table: current table object
+	 * Set the table
+	 * 
+	 * @param table Current table object
 	 */
 	public void setTable(JTable table)
 	{

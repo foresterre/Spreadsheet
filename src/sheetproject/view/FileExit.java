@@ -21,13 +21,13 @@ public class FileExit extends WindowAdapter implements ActionListener
 {
 
 	/**
-	 * 
+	 * Local view reference
 	 */
 	private View view;
 
 	/**
 	 * Constructor for FileExit method
-	 * @param view: Paramater to give the view object through
+	 * @param view View to pass through
 	 */
 	public FileExit(View view)
 	{
@@ -99,7 +99,7 @@ public class FileExit extends WindowAdapter implements ActionListener
 	}
 	
 	/**
-	 * exit function
+	 * Exit function
 	 */
 	public void function()
 	{

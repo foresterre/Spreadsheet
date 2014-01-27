@@ -25,7 +25,8 @@ public class FormulaUpdate implements ActionListener
 	
 	/**
 	 * Constructor for the FormulaUpdate method
-	 * @param view: give through object
+	 * 
+	 * @param view View to pass through
 	 */
 	public FormulaUpdate(View view)
 	{
@@ -33,7 +34,7 @@ public class FormulaUpdate implements ActionListener
 	}
 	
 	/**
-	 * on action performed event for the FormulaUpdate
+	 * On action performed event for the FormulaUpdate
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -60,6 +61,5 @@ public class FormulaUpdate implements ActionListener
 				ex.printStackTrace();
 			}
 		}
-
 	}
 }

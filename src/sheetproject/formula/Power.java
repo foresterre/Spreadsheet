@@ -35,9 +35,10 @@ public class Power
 
 	/**
 	 * Evaluation of the Power formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
-	 * @return power of value A to value B
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Power of value A to value B
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

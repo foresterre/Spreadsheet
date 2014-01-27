@@ -36,8 +36,9 @@ public class Count
         
     /**
      * Evaluation of the Count formula
-     * @param formula: the formula to be parsed
-     * @param data: the data of the sheet object
+     * 
+     * @param formula The formula to be parsed
+     * @param data The data of the sheet object
      * @return Counted number of cells of a range between two coordinates
      * @throws CharacterOutOfBoundsException
      * @throws IllegalFormulaException
@@ -52,7 +53,7 @@ public class Count
         if (m.find())
         {
         	String group1 = m.group(1);
-        	if (group1.contains(":"))
+        	if (group1.contains(":") && !group1.contains("(") && !group1.contains(")"))
         	{
         		String beginCell = m.group(4);        	
         		String endCell = m.group(5);

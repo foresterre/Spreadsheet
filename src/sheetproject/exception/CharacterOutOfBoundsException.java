@@ -27,7 +27,7 @@ public class CharacterOutOfBoundsException extends Exception
 	
 	/**
 	 * Exception for a character out of the set bounds containing a message
-	 * @param message: Message of the exception
+	 * @param message Message of the exception
 	 */
 	public CharacterOutOfBoundsException(String message) 
 	{
@@ -36,8 +36,8 @@ public class CharacterOutOfBoundsException extends Exception
 
 	/**
 	 * Exception for a character out of the set bounds containing a message and the cause
-	 * @param message: Message of the exception
-	 * @param cause: Cause of the exception
+	 * @param message Message of the exception
+	 * @param cause Cause of the exception
 	 */
 	public CharacterOutOfBoundsException(String message, Throwable cause) 
 	{
@@ -46,7 +46,7 @@ public class CharacterOutOfBoundsException extends Exception
 
 	/**
 	 * Exception for a character out of the set bounds containing the cause
-	 * @param cause: Cause of the exception
+	 * @param cause Cause of the exception
 	 */
 	public CharacterOutOfBoundsException(Throwable cause) 
 	{

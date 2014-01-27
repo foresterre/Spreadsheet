@@ -36,9 +36,10 @@ public class Sqrt
 	
 	/**
 	 * Evaluation of the Sqrt formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
-	 * @return returns the squareroot of the parameter
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Returns the squareroot of the parameter
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

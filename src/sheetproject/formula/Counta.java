@@ -33,8 +33,9 @@ public class Counta
         
         /**
          * Evaluation of the Counta formula
-         * @param formula: formula to be parsed
-         * @param data: the data of the sheet object
+         * 
+         * @param formula Formula to be parsed
+         * @param data The data of the sheet object
          * @return Counted number of cells of a range between two coordinates, excluding empty cells
          * @throws CharacterOutOfBoundsException
          * @throws IllegalFormulaException
@@ -48,7 +49,7 @@ public class Counta
                 if (m.find())
                 {
                 	String group1 = m.group(1);
-                    if (group1.contains(":"))
+                    if (group1.contains(":")  && !group1.contains("(") && !group1.contains(")"))
                     {
                     	String beginCell = m.group(4);        	
                     	String endCell = m.group(5);

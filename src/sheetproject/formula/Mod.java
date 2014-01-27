@@ -36,9 +36,10 @@ public class Mod
 
 	/**
 	 * Evaluation of the Mod formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the date of the sheet object
-	 * @return returns the modules of number_1 in respect to number_2
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The date of the sheet object
+	 * @return Returns the modules of number_1 in respect to number_2
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

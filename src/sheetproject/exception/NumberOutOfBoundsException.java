@@ -27,7 +27,7 @@ public class NumberOutOfBoundsException extends Exception
 	
 	/**
 	 * Exception for NumberOutOfBounds containing a message
-	 * @param message: message of the exeption
+	 * @param message Message of the exeption
 	 */
 	public NumberOutOfBoundsException(String message) 
 	{
@@ -36,8 +36,8 @@ public class NumberOutOfBoundsException extends Exception
 	
 	/**
 	 * Exception for NumberOutOfBounds containing a message and the cause
-	 * @param message: message of the exception
-	 * @param cause: cause of the exception
+	 * @param message Message of the exception
+	 * @param cause Cause of the exception
 	 */
 	public NumberOutOfBoundsException(String message, Throwable cause) 
 	{
@@ -46,7 +46,7 @@ public class NumberOutOfBoundsException extends Exception
 
 	/**
 	 * Exception for NumberOutOfBounds containing the cause
-	 * @param cause: cause of the exception
+	 * @param cause Cause of the exception
 	 */
 	public NumberOutOfBoundsException(Throwable cause) 
 	{

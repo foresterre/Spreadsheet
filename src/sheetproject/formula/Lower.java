@@ -32,9 +32,10 @@ public class Lower
 
 	/**
 	 * Evaluation of the Lower formula
-	 * @param formula
-	 * @param data
-	 * @return
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
+	 * @return Lowercase version of the string provided
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
 	 */

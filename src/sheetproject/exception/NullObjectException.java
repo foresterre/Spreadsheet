@@ -27,7 +27,7 @@ public class NullObjectException extends Exception
 	
 	/**
 	 * Exception for a null object containing a message
-	 * @param message: message of the exception
+	 * @param message Message of the exception
 	 */
 	public NullObjectException(String message) 
 	{
@@ -36,8 +36,8 @@ public class NullObjectException extends Exception
 
 	/**
 	 * Exception for a null object containing a message and the cause
-	 * @param message: message of the exception
-	 * @param cause: cause of the exception
+	 * @param message Message of the exception
+	 * @param cause Cause of the exception
 	 */
 	public NullObjectException(String message, Throwable cause) 
 	{
@@ -46,7 +46,7 @@ public class NullObjectException extends Exception
 	
 	/**
 	 * Exception for a null object containing the cause
-	 * @param cause: cause of the exception
+	 * @param cause Cause of the exception
 	 */
 	public NullObjectException(Throwable cause) 
 	{

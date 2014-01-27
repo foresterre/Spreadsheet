@@ -40,8 +40,9 @@ public class Sum
 
 	/**
 	 * Evaluation of the Sum formula
-	 * @param formula: the formula to be parsed
-	 * @param data: the data of the sheet object
+	 * 
+	 * @param formula The formula to be parsed
+	 * @param data The data of the sheet object
 	 * @return One value plus another or the sum of a range of values
 	 * @throws CharacterOutOfBoundsException
 	 * @throws IllegalFormulaException
@@ -55,7 +56,7 @@ public class Sum
 		if (m.find())
 		{
 			String group1 = m.group(1);
-			if (group1.contains(":"))
+			if (group1.contains(":")  && !group1.contains("(") && !group1.contains(")"))
 			{
 				String beginCell = m.group(4);
 				String endCell = m.group(5);

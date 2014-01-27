@@ -21,13 +21,14 @@ import sheetproject.spreadsheet.Cell;
 public class TableUpdate implements TableModelListener
 {
 	/**
-	 * Variable for the view object
+	 * Local view reference
 	 */
 	private View view;
 	
 	/**
 	 * Constructor for the TableUpdate method
-	 * @param view: give through object
+	 * 
+	 * @param view View to pass through
 	 */
 	public TableUpdate(View view)
 	{
