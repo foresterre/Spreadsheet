@@ -1,4 +1,4 @@
-#Heren en Alan, We zijn de wijzigingen nog in het googlce docs document aan het maken. Dus svp niet het DOCX document hier aanpassen. Die wijzigingen gaan mogelijk verloren!
+#Heren en Alan, We zijn de wijzigingen nog in het googlce docs document aan het maken (sinds het afgelopen weekend, die wijzigingen staan ook niet in het docx document). Dus svp <u>NIET</u> het DOCX document hier aanpassen. Die wijzigingen gaan mogelijk verloren!
 
 
 Project: Spreadsheet
