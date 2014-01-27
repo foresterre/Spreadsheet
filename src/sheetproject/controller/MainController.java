@@ -83,13 +83,13 @@ public class MainController
 	 * @param filename: The name of the file to read
 	 * @return True if file reading succeeded, otherwise false
 	 */
-	public boolean openFile(File fileName)
+	public boolean openFile(File filename)
 	{
 		boolean succes = false;
 		try
 		{
-			setSheet(XmlDriver.read(fileName));
-			this.fileName = fileName;
+			setSheet(XmlDriver.read(filename));
+			this.fileName = filename;
 			succes = true;
 		} 
 		catch (FileCorruptException e)
@@ -179,6 +179,7 @@ public class MainController
 		try
 		{
 			XmlDriver.write(this.sheet, filename);
+			this.fileName = filename;
 			success = true;
 		} 
 		catch(Exception e)
