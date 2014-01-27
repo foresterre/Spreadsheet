@@ -121,6 +121,10 @@ public class Parser
 					// This catch statement is to catch exceptions that are not important for the executing of our application
 					e.printStackTrace();
 				}
+				catch (Exception e)
+				{
+					// This catch statement is to catch exceptions that are not important for the executing of our application
+				}
 			}
 			else
 			{

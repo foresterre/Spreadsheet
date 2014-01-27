@@ -52,7 +52,7 @@ public class FormulaUpdate implements ActionListener
 		}
 		catch (Exception ex)
 		{
-			if (MainController.DEBUG == true)
+			if (MainController.DEBUG)
 			{
 				ex.printStackTrace();
 			}
